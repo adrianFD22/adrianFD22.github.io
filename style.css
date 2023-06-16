@@ -1,0 +1,21 @@
+
+body {
+    background-color: #282828;
+    min-width: 600px;
+}
+
+p {
+    font-family: monospace;
+    margin: 0;
+    color: #ebdbb2;
+}
+
+.input:before {
+    color: #d79921;
+    content: "[adrianFD22@github ~]$ ";
+    font-weight: bold;
+}
+
+.output {
+    margin-bottom: 15px;
+}
