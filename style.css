@@ -1,7 +1,6 @@
 
 body {
     background-color: #282828;
-    min-width: 600px;
 }
 
 p {
@@ -10,12 +9,25 @@ p {
     color: #ebdbb2;
 }
 
+.center {
+    min-width: 40em;
+    position: absolute;
+    padding-left: 5%;
+    padding-top: 0.5em;
+    padding-bottom: 5em;
+}
+
+.input {
+    margin-bottom: 0.1em;
+}
+
 .input:before {
     color: #d79921;
     content: "[adrianFD22@github ~]$ ";
     font-weight: bold;
+    margin-left: -5px;
 }
 
 .output {
-    margin-bottom: 15px;
+    margin-bottom: 1.5em;
 }
