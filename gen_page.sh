@@ -35,32 +35,32 @@ compile_post() {
     local curr_file="$1"    # The current file or directory to be compiled
     local depth="$2"        # The depth to reference the directory where the sections are
     local new_depth="../${depth}"
-    #new_depth="${new_depth%/}"
 
-    #echo -e "$header" >> "$curr_file"
-
-    #-----------------------------
-    # If curr_file is a directory
-    #-----------------------------
+    #----------------------------------------
+    # If curr_file is a non empty directory
+    #----------------------------------------
     if [ -d "$curr_file" ]; then
-        local list_files=$(ls -d "$curr_file"/*);
-        echo "$new_depth DIR: $curr_file"
+        local list_files
+
+        # List all files the directory before starting changing things
+        [ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -d "$curr_file"/*)
+
         # Junky solution: copy css in order pandoc recognises when compiling
         cp -f resources/style.css "$curr_file/style.css"
 
-        # Compile recursively all files in directory
-        for new_file in "$curr_file"/*; do
-            compile_post "$new_file" "$new_depth"
-        done
+        # Compile recursively all files in directory if it is not empty
+        if [ -n "$list_files" ]; then
+            for new_file in "$curr_file"/*; do
+                compile_post "$new_file" "$new_depth"
+            done
+        fi;
 
         # If index.html is not created, create one
         if ! [ -f "$curr_file/index.html" ]; then
-            #create_header "$sections" "$depth" >> "$curr_file/index.md"    # Compute header
-
-            # List all files the directory
             local new_file_href
             local new_file_name
 
+            echo "# ${curr_file#content_tmp/sections/}" >> "$curr_file/index.md"
             echo "<ul id=\"show_folder\">" >> "$curr_file/index.md"
             for new_file in $list_files; do
                 new_file_name="$(basename "$new_file")"
@@ -71,7 +71,7 @@ compile_post() {
 
                 elif [ -d "$new_file" ]; then
                     new_file_href="$new_file_name/index.html"
-                fi;
+                fi
 
                 echo -e "\t<li><a href=\"$new_file_href\">$new_file_name</a></li>" >> "$curr_file/index.md"
             done
@@ -93,24 +93,26 @@ compile_post() {
         local file_name=${file_name%%.*}
 
         # Check file
-        [ "$file_ext" != md ] && return 0;
+        [ "$file_ext" != md ] && return 0
 
         for ignored_file in $ignored_list; do
-            [ "content_tmp/$ignore_file" = "$curr_file" ] && return 0;
+            if [ "content_tmp/$ignored_file" = "$curr_file" ]; then
+                rm "$curr_file"
+                return 0
+            fi
         done
 
         # Compile
         local dir_name=$(dirname "$curr_file")
         local file_html="$dir_name/$file_name.html"
         touch "$file_html"
-        echo "$new_depth compile file: $file_html"
 
         create_header "$sections" "$depth" >> "$file_html" # Compute header
         cat "$curr_file" >> "$file_html"
 
-        pandoc -s --template="resources/default.html5" --metadata "title:$title" -c "style.css" -f markdown -t html "$file_html" -o "$file_html" #2> /dev/null
+        pandoc -s --template="resources/default.html5" --metadata "title:$title" -c "style.css" -f markdown -t html "$file_html" -o "$file_html"
         rm "$curr_file"
-    fi;
+    fi
 }
 
 
@@ -119,7 +121,7 @@ compile_post() {
 ###################
 
 # Ignore files
-ignore_list="README.md"
+ignored_list="sections/Blog/ignored.md"
 
 # Clean
 rm -f index.html
@@ -137,9 +139,10 @@ for curr_nav in $(ls -d .. content/sections/*); do
 done
 
 # Generate pages
+echo "Compiling index"
 compile_post content_tmp/index.md "sections/"
 for curr_file in $(ls -d content_tmp/sections/*); do
-    echo "generate $curr_file"
+    echo "Compiling ${curr_file#content_tmp/sections/}"
     compile_post "$curr_file"
 done
 
@@ -148,3 +151,4 @@ for curr_file in $(ls -d content_tmp/*); do
     mv "$curr_file" .
 done
 rmdir content_tmp
+echo Done
