@@ -1,81 +1,150 @@
 #!/bin/bash
 
-# -----------------
-#     Functions
-# -----------------
+###################
+#    Parameters
+###################
 
-# Generate pages rescursively
-compile_posts() {
-    local curr_dir="$1"
+title="AFD"
+
+
+###################
+#    Functions
+###################
+
+# Compute the header (navbar) to prepend to a page
+create_header() {
+    local sections="$1"
     local depth="$2"
 
-    local dir_html="${curr_dir#content/}"
-    local file_html="$dir_html/index.html"
+    echo -e "<ul id=\"navbar\">"
+    echo -e "\t<li><a href=\"$depth$(echo $sections | cut -d' ' -f 1)/index.html\">Home</a></li>"
 
-    # Generate header of current page
-    mkdir -p "$dir_html"
-    touch "$file_html"
-
-    # Copy css to current directory (this junk is because cant link css from outside to pandoc compilation)
-    cp -f resources/style.css "$dir_html/style.css"
-
-    #echo "Compiling $curr_dir"
-    # Add header
-    local header="<ul id=\"navbar\">\n"
-
-    header+="\t<li><a href=\"$depth$(echo $sections | cut -d' ' -f 1)/index.html\">Home</a></li>\n"
-    for curr_nav in $(echo $sections | cut -d' ' --complement -f 1); do      # Get the directories of content/sections and create a navbar with them (names and hyperlinks)
-        local dir_name="$(basename "$curr_nav")"
-        #echo "  curr_nav = $curr_nav"
-        #echo "  a = $depth$dir_name"
-        #echo
-        header+="\t<li><a href=\"$depth$dir_name/index.html\">$dir_name</a></li>\n"
+    # Get the directories of content/sections and create a navbar with them (names and hyperlinks)
+    for curr_nav in $(echo $sections | cut -d' ' --complement -f 1); do
+        echo -e "\t<li><a href=\"$depth$curr_nav/index.html\">$(basename $curr_nav)</a></li>"
     done
-    header+="</ul>\n"
-    echo -e "$header" >> "$file_html"
+    echo -e "</ul>"
+}
 
-    if [ -f "$curr_dir/index.md" ]; then
-        cat "$curr_dir/index.md" >> "$file_html"
-        pandoc -s -c "style.css" -f markdown -t html "$file_html" -o "$file_html" 2> /dev/null
-        #pandoc "$curr_dir/index.md" >> "$file_html" 2> /dev/null    # Standalone flag has to be in order to use css
-    else
-        #echo "$depth Compiling: $curr_dir"
-        echo "<ul id=\"show_folder\">" >> "$file_html"
-        #ls "$curr_dir"
+# Check if curr_file is a file or
+# a directory and compile it
+# accordingly. Directories are
+# compiled to a TOC and markdown
+# files to the post they describe
+compile_post() {
+    local curr_file="$1"    # The current file or directory to be compiled
+    local depth="$2"        # The depth to reference the directory where the sections are
+    local new_depth="../${depth}"
+    #new_depth="${new_depth%/}"
 
-        for new_dir in "$curr_dir"/*; do
-            new_dir_name=$(basename $new_dir)
-            #echo "$depth checking $new_dir"
+    #echo -e "$header" >> "$curr_file"
 
-            if [ -d "$new_dir" ]; then
-                echo -e "\t<li><a href=\"$new_dir_name/index.html\">$new_dir_name</a></li>" >> "$file_html"
-                #echo -e "- [$new_dir_name]($new_dir_name/index.html)" >> "$file_html"
-                compile_posts "$new_dir" "../$depth"
-            fi
+    #-----------------------------
+    # If curr_file is a directory
+    #-----------------------------
+    if [ -d "$curr_file" ]; then
+        local list_files=$(ls -d "$curr_file"/*);
+        echo "$new_depth DIR: $curr_file"
+        # Junky solution: copy css in order pandoc recognises when compiling
+        cp -f resources/style.css "$curr_file/style.css"
+
+        # Compile recursively all files in directory
+        for new_file in "$curr_file"/*; do
+            compile_post "$new_file" "$new_depth"
         done
 
-        echo "</ul>" >> "$file_html"
-        pandoc -s -f markdown -t html -c "style.css" "$file_html" -o "$file_html" 2> /dev/null   # Standalone flag has to be in order to use css
-    fi
-    #pandoc -s --resource-path="$dir_html/$depth/.." -c "style.css" "$file_html" -o "$file_html"    # Standalone flag has to be in order to use css
-    #rm -f "$dir_html/style.css"
+        # If index.html is not created, create one
+        if ! [ -f "$curr_file/index.html" ]; then
+            #create_header "$sections" "$depth" >> "$curr_file/index.md"    # Compute header
+
+            # List all files the directory
+            local new_file_href
+            local new_file_name
+
+            echo "<ul id=\"show_folder\">" >> "$curr_file/index.md"
+            for new_file in $list_files; do
+                new_file_name="$(basename "$new_file")"
+
+                if [ -f "${new_file%.md}.html" ]; then
+                    new_file_name="${new_file_name%.md}"
+                    new_file_href="$new_file_name".html
+
+                elif [ -d "$new_file" ]; then
+                    new_file_href="$new_file_name/index.html"
+                fi;
+
+                echo -e "\t<li><a href=\"$new_file_href\">$new_file_name</a></li>" >> "$curr_file/index.md"
+            done
+            echo "</ul>" >> "$curr_file/index.md"
+
+            # Compile the new file
+            compile_post "$curr_file/index.md" "$new_depth"
+        fi
+
+    #-------------------------
+    # If curr_file is a file
+    #-------------------------
+    else
+        # If curr_file is not in the
+        # ignore list and is a md
+        # file, compile it
+        local file_name=$(basename "$curr_file")
+        local file_ext=${file_name##*.}
+        local file_name=${file_name%%.*}
+
+        # Check file
+        [ "$file_ext" != md ] && return 0;
+
+        for ignored_file in $ignored_list; do
+            [ "content_tmp/$ignore_file" = "$curr_file" ] && return 0;
+        done
+
+        # Compile
+        local dir_name=$(dirname "$curr_file")
+        local file_html="$dir_name/$file_name.html"
+        touch "$file_html"
+        echo "$new_depth compile file: $file_html"
+
+        create_header "$sections" "$depth" >> "$file_html" # Compute header
+        cat "$curr_file" >> "$file_html"
+
+        pandoc -s --template="resources/default.html5" --metadata "title:$title" -c "style.css" -f markdown -t html "$file_html" -o "$file_html" #2> /dev/null
+        rm "$curr_file"
+    fi;
 }
 
 
-# -----------------
+###################
 #       Main
-# -----------------
+###################
+
+# Ignore files
+ignore_list="README.md"
 
 # Clean
-rm index.html
+rm -f index.html
 rm -fr sections
+rm -fr content_tmp
+
+# Copy sections
+mkdir content_tmp
+cp -r content/* content_tmp/
 
 # Obtain navbar elements
-sections=$(ls -d .. content/sections/*)
-
-# Generate nested pages
-compile_posts "content/./" "sections/"
-
-for curr_dir in content/sections/* ; do      # Get the directories of content/sections and create a navbar with them (names and hyperlinks)
-    compile_posts "$curr_dir" "../"
+sections=""
+for curr_nav in $(ls -d .. content/sections/*); do
+    sections+="$(basename "$curr_nav") "
 done
+
+# Generate pages
+compile_post content_tmp/index.md "sections/"
+for curr_file in $(ls -d content_tmp/sections/*); do
+    echo "generate $curr_file"
+    compile_post "$curr_file"
+done
+
+# Clean after building
+for curr_file in $(ls -d content_tmp/*); do
+    mv "$curr_file" .
+done
+rmdir content_tmp
