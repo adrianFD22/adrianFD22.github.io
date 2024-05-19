@@ -5,6 +5,7 @@
 ###################
 
 title="AFD"
+ignored_list="sections/Blog/ignored.md"
 
 
 ###################
@@ -17,10 +18,10 @@ create_header() {
     local depth="$2"
 
     echo -e "<ul id=\"navbar\">"
-    echo -e "\t<li><a href=\"$depth$(echo $sections | cut -d' ' -f 1)/index.html\">Home</a></li>"
+    echo -e "\t<li><a href=\"$depth$(echo -e $sections | head -n 1)/index.html\">Home</a></li>"
 
     # Get the directories of content/sections and create a navbar with them (names and hyperlinks)
-    for curr_nav in $(echo $sections | cut -d' ' --complement -f 1); do
+    for curr_nav in $(echo -e $sections | tail -n +2); do
         echo -e "\t<li><a href=\"$depth$curr_nav/index.html\">$(basename $curr_nav)</a></li>"
     done
     echo -e "</ul>"
@@ -43,14 +44,14 @@ compile_post() {
         local list_files
 
         # List all files the directory before starting changing things
-        [ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -d "$curr_file"/*)
+        [ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -t1d "$curr_file"/*)
 
         # Junky solution: copy css in order pandoc recognises when compiling
         cp -f resources/style.css "$curr_file/style.css"
 
         # Compile recursively all files in directory if it is not empty
         if [ -n "$list_files" ]; then
-            for new_file in "$curr_file"/*; do
+            for new_file in $list_files; do
                 compile_post "$new_file" "$new_depth"
             done
         fi;
@@ -61,7 +62,7 @@ compile_post() {
             local new_file_name
 
             echo "# ${curr_file#content_tmp/sections/}" >> "$curr_file/index.md"
-            echo "<ul id=\"show_folder\">" >> "$curr_file/index.md"
+            echo "<ul id=\"list_dirs\">" >> "$curr_file/index.md"
             for new_file in $list_files; do
                 new_file_name="$(basename "$new_file")"
 
@@ -108,7 +109,9 @@ compile_post() {
         touch "$file_html"
 
         create_header "$sections" "$depth" >> "$file_html" # Compute header
+        echo "<div id=\"container\">" >> "$file_html"
         cat "$curr_file" >> "$file_html"
+        echo "</div>" >> "$file_html"
 
         pandoc -s --template="resources/default.html5" --metadata "title:$title" -c "style.css" -f markdown -t html "$file_html" -o "$file_html"
         rm "$curr_file"
@@ -120,8 +123,8 @@ compile_post() {
 #       Main
 ###################
 
-# Ignore files
-ignored_list="sections/Blog/ignored.md"
+# Set IFS
+IFS=$(echo -e "\n\b")
 
 # Clean
 rm -f index.html
@@ -134,20 +137,22 @@ cp -r content/* content_tmp/
 
 # Obtain navbar elements
 sections=""
-for curr_nav in $(ls -d .. content/sections/*); do
-    sections+="$(basename "$curr_nav") "
+for curr_nav in $(ls -1d .. content/sections/*); do
+    sections+="$(basename "$curr_nav")\n"
 done
 
 # Generate pages
 echo "Compiling index"
 compile_post content_tmp/index.md "sections/"
-for curr_file in $(ls -d content_tmp/sections/*); do
+cp -f resources/style.css "style.css"
+
+for curr_file in $(ls -1d content_tmp/sections/*); do
     echo "Compiling ${curr_file#content_tmp/sections/}"
     compile_post "$curr_file"
 done
 
 # Clean after building
-for curr_file in $(ls -d content_tmp/*); do
+for curr_file in $(ls -1d content_tmp/*); do
     mv "$curr_file" .
 done
 rmdir content_tmp

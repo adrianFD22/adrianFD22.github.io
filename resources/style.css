@@ -13,6 +13,9 @@ body {
     background: #282828;
 }
 
+a {
+    color: #ebdbb2;
+}
 
 /* ----------------- */
 /*       Navbar      */
@@ -37,8 +40,27 @@ body {
 
 
 /* ----------------- */
+/*     List files    */
+/* ----------------- */
+
+#list_dirs {
+    list-style-type: none;
+    padding: 0px;
+}
+
+#list_dirs a {
+    color: #ebdbb2;
+}
+
+/* ----------------- */
 /*  Rest of elements */
 /* ----------------- */
+
+#container {
+    line-height: 1.7;
+    margin-top: 20px;
+    margin-left: 1px;
+}
 
 p {
     color: #ebdbb2;

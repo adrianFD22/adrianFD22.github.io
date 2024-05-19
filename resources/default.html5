@@ -52,7 +52,6 @@ $if(abstract)$
 $abstract$
 </div>
 $endif$
-</header>
 $endif$
 $if(toc)$
 <nav id="$idprefix$TOC" role="doc-toc">
