@@ -20,7 +20,6 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { line-height: 1.25; }
@@ -87,6 +86,10 @@
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
 </head>
 <body>
 <ul id="navbar">
@@ -102,16 +105,14 @@
 </ul>
 <div id="container">
 <h1 id="pijaditas-de-latex">Pijaditas de LaTeX</h1>
-<p>Recopilatorio personal de algunas cosas guays de LaTeX, algunas de
-ellas útiles.</p>
-<ul>
-<li>Quitar la barra inferior de navegación inútil del beamer.</li>
-</ul>
+<p><span class="math inline">\(\aleph_1\)</span> Recopilatorio personal
+de algunas cosas guays de LaTeX, algunas de ellas útiles.</p>
+<h2 id="quitar-la-barra-inferior-de-navegación-inútil-del-beamer">Quitar
+la barra inferior de navegación inútil del beamer</h2>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode tex"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\setbeamertemplate</span>{navigation symbols}{}</span></code></pre></div>
-<ul>
-<li>Hacer que la l se reemplace por en modo matemático.</li>
-</ul>
+<h2 id="hacer-que-la-l-se-reemplace-por-en-modo-matemático">Hacer que la
+l se reemplace por en modo matemático</h2>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode tex"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\mathcode</span>`l=&quot;8000</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\begingroup</span></span>
@@ -120,25 +121,23 @@ class="sourceCode tex"><code class="sourceCode latex"><span id="cb2-1"><a href="
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\DeclareMathSymbol</span>{<span class="fu">\lsb@l</span>}{<span class="fu">\mathalpha</span>}{letters}{`l}</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\lowercase</span>{<span class="fu">\gdef</span>~{<span class="fu">\ifnum\the\mathgroup</span>=<span class="fu">\m@ne</span> <span class="fu">\ell</span> <span class="fu">\else</span> <span class="fu">\lsb@l</span> <span class="fu">\fi</span>}}<span class="co">%</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\endgroup</span></span></code></pre></div>
-<ul>
-<li>Comentar: hay varias formas de hacerlo. Una opción es usar el
-package comment, pero este no se comporta muy allá con beamer. También
-se puede usar el environment comment de verbatim. Otra alternativa sin
-dependencias extrañas y sin que se rompa nada es:</li>
-</ul>
+<h2 id="comentar">Comentar</h2>
+<p>Hay varias formas de hacerlo. Una opción es usar el package comment,
+pero este no se comporta muy allá con beamer. También se puede usar el
+environment comment de verbatim. Otra alternativa sin dependencias
+extrañas y sin que se rompa nada es:</p>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode tex"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\comment</span>}[1]{}</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\comment</span>{</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    This is a comment.</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<ul>
-<li><p>¡Si escribes algo después del \end{document} será ignorado por el
-compilador! Esto es bastante inútil pero no deja de ser una forma
-graciosa para comentar texto o esconder texto (esteganografía).</p></li>
-<li><p>El package rotating para rotar cosas.</p></li>
-</ul>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\comment</span>{</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    This is a comment.</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2
+id="si-escribes-algo-después-del-enddocument-será-ignorado-por-el-compilador">¡Si
+escribes algo después del \end{document} será ignorado por el
+compilador!</h2>
+<p>Esto es bastante inútil pero no deja de ser una forma graciosa para
+comentar texto o esconder texto (esteganografía).</p>
 </div>
 </body>
 </html>

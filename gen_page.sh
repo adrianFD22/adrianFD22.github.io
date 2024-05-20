@@ -4,8 +4,11 @@
 #    Parameters
 ###################
 
-title="AFD"
-ignored_list="sections/Blog/ignored.md"
+title="AFD"                                 # The title of the webpage
+home_text="Home"                            # Text to appear as the link to the root page
+ignored_list="sections/Blog/ignored.md"     # Markdown files not to be compiled to html. Each file separated by a linebreak \n
+ls_flags=""                                 # Flags to pass to ls when used for listing files in a directory without index.md
+pandoc_flags="--mathjax"                    # Flags to pass to pandoc when compiling markdown files
 
 
 ###################
@@ -18,7 +21,7 @@ create_header() {
     local depth="$2"
 
     echo -e "<ul id=\"navbar\">"
-    echo -e "\t<li><a href=\"$depth$(echo -e $sections | head -n 1)/index.html\">Home</a></li>"
+    echo -e "\t<li><a href=\"$depth$(echo -e $sections | head -n 1)/index.html\">$home_text</a></li>"
 
     # Get the directories of content/sections and create a navbar with them (names and hyperlinks)
     for curr_nav in $(echo -e $sections | tail -n +2); do
@@ -44,7 +47,7 @@ compile_post() {
         local list_files
 
         # List all files the directory before starting changing things
-        [ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -t1d "$curr_file"/*)
+        [ -n "$(ls -A $ls_flags "$curr_file")" ] && list_files=$(ls -t1d $ls_flags "$curr_file"/*)
 
         # Junky solution: copy css in order pandoc recognises when compiling
         cp -f resources/style.css "$curr_file/style.css"
@@ -61,7 +64,8 @@ compile_post() {
             local new_file_href
             local new_file_name
 
-            echo "# ${curr_file#content_tmp/sections/}" >> "$curr_file/index.md"
+            {
+            echo "# ${curr_file#content_tmp/sections/}"
             echo "<ul id=\"list_dirs\">" >> "$curr_file/index.md"
             for new_file in $list_files; do
                 new_file_name="$(basename "$new_file")"
@@ -74,9 +78,10 @@ compile_post() {
                     new_file_href="$new_file_name/index.html"
                 fi
 
-                echo -e "\t<li><a href=\"$new_file_href\">$new_file_name</a></li>" >> "$curr_file/index.md"
+                echo -e "\t<li><a href=\"$new_file_href\">$new_file_name</a></li>"
             done
-            echo "</ul>" >> "$curr_file/index.md"
+            echo "</ul>"
+            } >> "$curr_file/index.md"
 
             # Compile the new file
             compile_post "$curr_file/index.md" "$new_depth"
@@ -108,12 +113,14 @@ compile_post() {
         local file_html="$dir_name/$file_name.html"
         touch "$file_html"
 
-        create_header "$sections" "$depth" >> "$file_html" # Compute header
-        echo "<div id=\"container\">" >> "$file_html"
-        cat "$curr_file" >> "$file_html"
-        echo "</div>" >> "$file_html"
+        {
+        create_header "$sections" "$depth"
+        echo "<div id=\"container\">"
+        cat "$curr_file"
+        echo "</div>"
+        } >> "$file_html"
 
-        pandoc -s --template="resources/default.html5" --metadata "title:$title" -c "style.css" -f markdown -t html "$file_html" -o "$file_html"
+        pandoc $pandoc_flags -s --template="resources/default.html5" --metadata "title:$title" -c "style.css" -f markdown -t html "$file_html" -o "$file_html"
         rm "$curr_file"
     fi
 }
