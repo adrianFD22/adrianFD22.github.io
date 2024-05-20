@@ -1,5 +1,5 @@
 
-<img src="profile.jpg" class="center">
+<img src="profile.jpg">
 
 ----
 

@@ -61,7 +61,7 @@ a {
 }
 
 /* Normal text */
-p, li, dd, dt
+p, li, dd, dt, code
 {
     color: #d8d4cf;
 }
@@ -72,7 +72,8 @@ hr
     color: #ebdbb2;
 }
 
-.center {
+
+/* .center {
     display: block;
     margin: auto;
-}
+} */
