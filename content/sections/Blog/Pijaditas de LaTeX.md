@@ -1,7 +1,6 @@
 
 # Pijaditas de LaTeX
 
-$\aleph_1$
 Recopilatorio personal de algunas cosas guays de LaTeX, algunas de ellas útiles.
 
 ## Quitar la barra inferior de navegación inútil del beamer

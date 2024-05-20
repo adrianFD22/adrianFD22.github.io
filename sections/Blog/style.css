@@ -5,10 +5,8 @@
 
 body {
     font-family:  monospace;
-    margin: 0em 1.2em 1em 1.2em;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 2em 0em 2em 2em;
+    margin: 0em auto 0 auto;
+    padding: 2em;
     max-width: 900px;
     background: #282828;
 }
@@ -63,8 +61,18 @@ a {
 }
 
 /* Normal text */
-p, li,
-h1, h2, h3, h4, h5, h6
+p, li, dd, dt
+{
+    color: #d8d4cf;
+}
+
+h1, h2, h3, h4, h5, h6,
+hr
 {
     color: #ebdbb2;
+}
+
+.center {
+    display: block;
+    margin: auto;
 }

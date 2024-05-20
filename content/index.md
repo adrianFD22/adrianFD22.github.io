@@ -1,9 +1,8 @@
 
-::: columns
-<img src="profile.jpg">
+<img src="profile.jpg" class="center">
 
-:::: columnbreak
-::::
+----
+
 - Name: Adrián Fidalgo-Díaz
 - Occupation: PhD student in Mathematics at the University of Valladolid
 - Interests:
@@ -15,4 +14,3 @@
     - Bachelor's degree in Computational Mathematics at the University Jaume I
     - Master's degree in Mathematical Research at the University of Valencia
 - Find me on [Google scholar](https://scholar.google.es/citations?user=5GCV2rQAAAAJ&hl=es) and [Github](https://github.com/adrianFD22).
-::::
