@@ -1,5 +1,16 @@
 
 /* ----------------- */
+/* Custom properties */
+/* ----------------- */
+
+:root {
+    --background-color: #282828;
+    --text-color1:      #d8d4cf;
+    --text-color2:      #d79921;
+    --standout-color:   #ebdbb2;
+}
+
+/* ----------------- */
 /*        Body       */
 /* ----------------- */
 
@@ -8,12 +19,10 @@ body {
     margin: 0em auto 0 auto;
     padding: 2em;
     max-width: 900px;
-    background: #282828;
+    min-width: 500px;
+    background: var(--background-color);
 }
 
-a {
-    color: #ebdbb2;
-}
 
 /* ----------------- */
 /*       Navbar      */
@@ -27,13 +36,11 @@ a {
 
 #navbar li {
     display: inline;
-    text-color: #d79921;
-    /* background-color: #d79921; */
 }
 
 #navbar a {
-    color: #d79921;
-    margin-right: 4px;
+    color: var(--text-color2);
+    margin-right: 0.5em;
 }
 
 
@@ -63,17 +70,19 @@ a {
 /* Normal text */
 p, li, dd, dt, code
 {
-    color: #d8d4cf;
+    color: var(--text-color1);
 }
 
+/* Standout text */
 h1, h2, h3, h4, h5, h6,
-hr
+hr, a
 {
-    color: #ebdbb2;
+    color: var(--standout-color);
 }
 
-
-/* .center {
-    display: block;
-    margin: auto;
-} */
+/* Flex containers. Mainly for making responsive columns */
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

@@ -120,7 +120,7 @@ compile_post() {
         echo "</div>"
         } >> "$file_html"
 
-        pandoc $pandoc_flags -s --template="resources/default.html5" --metadata "title:$title" -c "style.css" -f markdown -t html "$file_html" -o "$file_html"
+        pandoc $pandoc_flags "--highlight-style=zenburn" -s --template="resources/default.html5" --metadata "title:$title" -c "style.css" -f markdown -t html "$file_html" -o "$file_html"
         rm "$curr_file"
     fi
 }

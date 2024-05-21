@@ -4,7 +4,7 @@
 ----
 
 **Contact:** <adrian.fidalgo22@uva.es>\
-**Webpage:** <https://adrianfd22.github.io/hugo-webpage/>
+**Webpage:** <https://adrianfd22.github.io/>
 
 ----
 
