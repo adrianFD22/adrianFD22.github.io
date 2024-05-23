@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AFD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<ul id="navbar">
+<li>
+<a href="../../../index.html">Home</a>
+</li>
+<li>
+<a href="../../Blog/index.html">Blog</a>
+</li>
+<li>
+<a href="../../CV/index.html">CV</a>
+</li>
+</ul>
+<div id="container">
+<style>
+    a { text-decoration: underline; }
+
+    #tablet {
+        display: block;
+        margin: auto;
+    }
+
+    #turn {
+        text-align: center;
+    }
+
+    table {
+        margin: 1em auto 3em auto;
+        padding: 0.5em;
+        background-color: gray;
+    }
+</style>
+<h1 id="tableta-de-chocolate.-para-luis">Tableta de chocolate. Para
+Luis</h1>
+<!-- Board -->
+<canvas id="tablet">
+No furula en este navegador.
+</canvas>
+<h3 id="turn">
+</h3>
+<table style>
+<tr>
+<td>
+<label>Filas</label>
+</td>
+<td>
+<input style="width: 3em" id="n_rows" type="number" min="1" max="10" value=3><br>
+</td>
+</tr>
+<tr>
+<td>
+<label>Columnas</label>
+</td>
+<td>
+<input style="width: 3em" id="n_cols" type="number" min="1" max="10" value=3>
+</td>
+</tr>
+<tr>
+<td>
+<button type="button" onclick="generateTablet(); drawTablet();">
+Generar tableta
+</button>
+<br>
+</td>
+</tr>
+</table>
+<p>Reglas FIFA de la
+<a href="https://es.wikipedia.org/wiki/Chomp">tableta de chocolate</a>:
+quien se coma la onza de la vergüenza pierde.</p>
+<script src="chocolate.js"></script>
+</div>
+</body>
+</html>

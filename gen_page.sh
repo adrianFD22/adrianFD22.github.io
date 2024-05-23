@@ -149,12 +149,12 @@ for curr_nav in $(ls -1d .. content/sections/*); do
 done
 
 # Generate pages
-echo "Compiling index"
+echo "Compiling index..."
 compile_post content_tmp/index.md "sections/"
 cp -f resources/style.css "style.css"
 
 for curr_file in $(ls -1d content_tmp/sections/*); do
-    echo "Compiling ${curr_file#content_tmp/sections/}"
+    echo "Compiling ${curr_file#content_tmp/sections/}..."
     compile_post "$curr_file"
 done
 
