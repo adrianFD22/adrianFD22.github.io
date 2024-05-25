@@ -4,11 +4,11 @@
 #    Parameters
 ###################
 
-title="AFD"                                 # The title of the webpage
-home_text="Home"                            # Text to appear as the link to the root page
-ignored_list="sections/Blog/ignored.md"     # Markdown files not to be compiled to html. Each file separated by a linebreak \n
-ls_flags="-r"                     # Flags to pass to ls when used for listing files in a directory without index.md
-pandoc_flags="--mathjax"                    # Flags to pass to pandoc when compiling markdown files
+title="AFD"                         # The title of the webpage
+home_text="Home"                    # Text to appear as the link to the root page
+sections_order=("Blog" "CV")        # Order in which the sections to appear in the navbar
+ls_flags=("--time=birth")           # Flags used with ls when used for listing files in a directory not containing index.md
+pandoc_flags=("--mathjax")          # Flags used with pandoc
 
 
 ###################
@@ -16,7 +16,7 @@ pandoc_flags="--mathjax"                    # Flags to pass to pandoc when compi
 ###################
 
 # Compute the header (navbar) to prepend to a page
-create_header() {
+create-header() {
     local sections="$1"
     local depth="$2"
 
@@ -36,26 +36,24 @@ create_header() {
 # compiled to a TOC and markdown
 # files to the post they describe
 compile_post() {
-    local curr_file="$1"    # The current file or directory to be compiled
-    local depth="$2"        # The depth to reference the directory where the sections are
-    local new_depth="../${depth}"
+    local curr_file="$1"                    # Path to file or directory in content to be compiled
+    local depth="$2"                        # Relative path to sections directory
+    local new_depth="../${depth}"           # Relative path to sectinos directory from child files
 
     #----------------------------------------
     # If curr_file is a non empty directory
     #----------------------------------------
     if [ -d "$curr_file" ]; then
+        local curr_content="content/${curr_file#content_tmp/}"   # Path to directory in content_tmp to be compiled
         local list_files
 
         # List all files the directory before starting changing things
-        [ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -1d $ls_flags "$curr_file"/*)
-
-        # Junky solution: copy css in order pandoc recognises when compiling
-        cp -f resources/style.css "$curr_file/style.css"
+        [ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -1d "${ls_flags[@]}" "$curr_content"/*)
 
         # Compile recursively all files in directory if it is not empty
         if [ -n "$list_files" ]; then
             for new_file in $list_files; do
-                compile_post "$new_file" "$new_depth"
+                compile_post "content_tmp/${new_file#content/}" "$new_depth"
             done
         fi;
 
@@ -63,14 +61,18 @@ compile_post() {
         if ! [ -f "$curr_file/index.html" ]; then
             local new_file_href
             local new_file_name
+            local new_file_tmp
 
             {
             echo "# ${curr_file#content_tmp/sections/}"
-            echo "<ul id=\"list_dirs\">" >> "$curr_file/index.md"
+            echo "<ul id=\"list_dirs\">"
             for new_file in $list_files; do
                 new_file_name="$(basename "$new_file")"
 
-                if [ -f "${new_file%.md}.html" ]; then
+                new_file_tmp=${new_file%.md}.html
+                new_file_tmp=content_tmp/${new_file_tmp#content/}
+
+                if [ -f "$new_file_tmp" ]; then
                     new_file_name="${new_file_name%.md}"
                     new_file_href="$new_file_name".html
 
@@ -91,9 +93,8 @@ compile_post() {
     # If curr_file is a file
     #-------------------------
     else
-        # If curr_file is not in the
-        # ignore list and is a md
-        # file, compile it
+        # If curr_file is not
+        # a md file, compile it
         local file_name=$(basename "$curr_file")
         local file_ext=${file_name##*.}
         local file_name=${file_name%%.*}
@@ -101,26 +102,19 @@ compile_post() {
         # Check file
         [ "$file_ext" != md ] && return 0
 
-        for ignored_file in $ignored_list; do
-            if [ "content_tmp/$ignored_file" = "$curr_file" ]; then
-                rm "$curr_file"
-                return 0
-            fi
-        done
-
         # Compile
         local dir_name=$(dirname "$curr_file")
         local file_html="$dir_name/$file_name.html"
         touch "$file_html"
 
         {
-        create_header "$sections" "$depth"
+        create-header "$sections" "$depth"
         echo "<div id=\"container\">"
         cat "$curr_file"
         echo "</div>"
         } >> "$file_html"
 
-        pandoc $pandoc_flags "--highlight-style=zenburn" -s --template="resources/default.html5" --metadata "title:$title" -c "style.css" -f markdown -t html "$file_html" -o "$file_html"
+        pandoc "${pandoc_flags[@]}" "--highlight-style=zenburn" -s --template="resources/default.html5" --metadata "title:$title" -c "${depth}../resources/style.css" -f markdown -t html "$file_html" -o "$file_html"
         rm "$curr_file"
     fi
 }
@@ -129,9 +123,6 @@ compile_post() {
 ###################
 #       Main
 ###################
-
-# Set IFS
-IFS=$(echo -e "\n\b")
 
 # Clean
 rm -f index.html
@@ -142,16 +133,21 @@ rm -fr content_tmp
 mkdir content_tmp
 cp --preserve=all -r content/* content_tmp/
 
+# Set IFS for constructing the navbar
+IFS=" "
+
 # Obtain navbar elements
-sections=""
-for curr_nav in $(ls -1d .. content/sections/*); do
-    sections+="$(basename "$curr_nav")\n"
+sections="..\n"
+for curr_nav in "${sections_order[@]}"; do
+    sections+="$curr_nav\n"
 done
+
+# Set IFS for the rest of the script
+IFS=$(echo -e "\n\b")
 
 # Generate pages
 echo "Compiling index..."
 compile_post content_tmp/index.md "sections/"
-cp -f resources/style.css "style.css"
 
 for curr_file in $(ls -1d content_tmp/sections/*); do
     echo "Compiling ${curr_file#content_tmp/sections/}..."
