@@ -18,7 +18,6 @@
     }
 </style>
 
-# Tableta de chocolate. Para Luis
 
 <!-- Board -->
 <canvas id="tablet">
@@ -34,12 +33,13 @@
     </tr>
     <tr>
         <td> <label>Columnas</label> </td>
-        <td> <input style="width: 3em" id="n_cols" type="number" min="1" max="10" value=3> </td>
+        <td> <input style="width: 3em" id="n_cols" type="number" min="1" max="10" value=4> </td>
     </tr>
     <tr>
         <td> <button type="button" onclick="generateTablet(); drawTablet();">Generar tableta</button><br> </td>
     </tr>
 </table>
+Tableta de chocolate. Para Luis.
 
 Reglas FIFA de la
 <a href="https://es.wikipedia.org/wiki/Chomp">tableta de chocolate</a>:
