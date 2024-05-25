@@ -7,7 +7,7 @@
 title="AFD"                                 # The title of the webpage
 home_text="Home"                            # Text to appear as the link to the root page
 ignored_list="sections/Blog/ignored.md"     # Markdown files not to be compiled to html. Each file separated by a linebreak \n
-ls_flags=""                                 # Flags to pass to ls when used for listing files in a directory without index.md
+ls_flags="-r"                     # Flags to pass to ls when used for listing files in a directory without index.md
 pandoc_flags="--mathjax"                    # Flags to pass to pandoc when compiling markdown files
 
 
@@ -47,7 +47,7 @@ compile_post() {
         local list_files
 
         # List all files the directory before starting changing things
-        [ -n "$(ls -A $ls_flags "$curr_file")" ] && list_files=$(ls -t1d $ls_flags "$curr_file"/*)
+        [ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -1d $ls_flags "$curr_file"/*)
 
         # Junky solution: copy css in order pandoc recognises when compiling
         cp -f resources/style.css "$curr_file/style.css"
@@ -140,7 +140,7 @@ rm -fr content_tmp
 
 # Copy sections
 mkdir content_tmp
-cp -r content/* content_tmp/
+cp --preserve=all -r content/* content_tmp/
 
 # Obtain navbar elements
 sections=""

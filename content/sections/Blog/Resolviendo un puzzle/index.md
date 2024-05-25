@@ -21,7 +21,7 @@
 
 # Resolviendo un puzzle
 
-¡Vas a jugar a un juego! Tienes un tablero de 3 filas y 3 columnas cuyas casillas pueden ser de color blanco o negro. Al hacer click en una casilla, todas las que estén más arriba o más hacia la izquierda invierten su color (haz click en alguna para probar para probar). **Tu objetivo es que todas las casillas sean de color blanco**. Te doy permiso para jugar.
+¡Vas a jugar a un juego! Tienes un tablero de 3 filas y 3 columnas cuyas casillas pueden ser de color blanco o negro. Al hacer click en una casilla, todas las que estén más arriba o más hacia la izquierda invierten su color (haz click en alguna para probar). **Tu objetivo es que todas las casillas sean de color blanco**. Te doy permiso para jugar.
 
 <!-- Board -->
 <!-- <div style="display: grid; grid-template-rows: auto; justify-items: center"> -->
@@ -96,7 +96,7 @@ Aunque ya sabemos cuál es la mejor estrategia, yo al menos no sé cómo dar una
 
 Es la misma idea que ver el cubo de Rubik a través de una acción de grupo. Cada tablero es un elemento de $\mathbb{Z}_2^{n \times m}$ así como los movimientos posibles. El hecho de que cualquier tablero tenga solución es que los movimientos generen todo el grupo. Este enfoque ayuda a contar algunas cosas. El número de tableros que se resuelven en $k$ movimientos es $\binom{mn}{k}$, pues se corresponden con elegir $k$ casillas y hacer el movimiento de invertir el rectángulo superior izquierdo a cada una. En particular, para $m$ y $n$ fijos solo hay un
 <a onclick="loadBoard2(board_max10)">tablero</a>
-que se resuelve con el número máximo de movimientos, que es $\binom{mn}{\lfloor \frac{mn}{2} \rfloor}$. Eso es todo.
+(caso $m=n=10$) que se resuelve con el número máximo de movimientos pues $\binom{mn}{mn} = 1$. Eso es todo.
 
 
 [^1]: Espero que esto sea una palabra.

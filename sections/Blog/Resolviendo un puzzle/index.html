@@ -63,9 +63,9 @@
 <p>¡Vas a jugar a un juego! Tienes un tablero de 3 filas y 3 columnas
 cuyas casillas pueden ser de color blanco o negro. Al hacer click en una
 casilla, todas las que estén más arriba o más hacia la izquierda
-invierten su color (haz click en alguna para probar para probar).
-<strong>Tu objetivo es que todas las casillas sean de color
-blanco</strong>. Te doy permiso para jugar.</p>
+invierten su color (haz click en alguna para probar). <strong>Tu
+objetivo es que todas las casillas sean de color blanco</strong>. Te doy
+permiso para jugar.</p>
 <!-- Board -->
 <!-- <div style="display: grid; grid-template-rows: auto; justify-items: center"> -->
 <canvas id="board">
@@ -199,10 +199,10 @@ elegir <span class="math inline">\(k\)</span> casillas y hacer el
 movimiento de invertir el rectángulo superior izquierdo a cada una. En
 particular, para <span class="math inline">\(m\)</span> y <span
 class="math inline">\(n\)</span> fijos solo hay un
-<a onclick="loadBoard2(board_max10)">tablero</a> que se resuelve con el
-número máximo de movimientos, que es <span
-class="math inline">\(\binom{mn}{\lfloor \frac{mn}{2} \rfloor}\)</span>.
-Eso es todo.</p>
+<a onclick="loadBoard2(board_max10)">tablero</a> (caso <span
+class="math inline">\(m=n=10\)</span>) que se resuelve con el número
+máximo de movimientos pues <span class="math inline">\(\binom{mn}{mn} =
+1\)</span>. Eso es todo.</p>
 <script src="flipit.js"></script>
 </div>
 <aside id="footnotes" class="footnotes footnotes-end-of-document"
