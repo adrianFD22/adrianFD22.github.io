@@ -3,6 +3,8 @@
 //      Functions
 //---------------------
 
+const colors = ["#672f0a", "#ddbf86", "#684fa3"];
+const colors_texts = [ "", " blanco", " milka"];
 
 function generateTablet() {
     n_rows = document.getElementById("n_rows").value;
@@ -26,7 +28,8 @@ function drawTablet() {
     for (let row = 0; row < n_rows; row++) {
         for (let col = 0; col < tablet[row]; col++) {
             // Draw background
-            ctx.fillStyle = "#672f0a";
+            //ctx.fillStyle = "#672f0a";
+            ctx.fillStyle = colors[color_index];
             ctx.fillRect(col * square_size, row * square_size, square_size, square_size);
             // Draw border
             ctx.fillStyle = "#4d2e07";
@@ -70,6 +73,13 @@ function eatChocolate(canvas, event) {
     }
 }
 
+function changeColor() {
+    color_index = (color_index + 1) % colors.length;
+    document.getElementById("chocolate").style.color = colors[color_index];
+    document.getElementById("chocolate").text= "chocolate" + colors_texts[color_index];
+    drawTablet();
+}
+
 //---------------------
 //        Main
 //---------------------
@@ -88,6 +98,8 @@ const ctx = canvas.getContext("2d");
 // Generate board
 let square_size = 40;
 let tablet = [];
+let color_index = 0;
+document.getElementById("chocolate").style.color = colors[0];
 
 generateTablet();
 drawTablet();

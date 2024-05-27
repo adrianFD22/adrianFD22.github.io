@@ -84,24 +84,24 @@
     code span.vs { color: #cc9393; } /* VerbatimString */
     code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../resources/style.css" />
+  <link rel="stylesheet" href="../../../resources/style.css" />
 </head>
 <body>
 <ul id="navbar">
 <li>
-<a href="../../index.html">Home</a>
+<a href="../../../index.html">Home</a>
 </li>
 <li>
-<a href="../Blog/index.html">Blog</a>
+<a href="../../Blog/index.html">Blog</a>
 </li>
 <li>
-<a href="../CV/index.html">CV</a>
+<a href="../../CV/index.html">CV</a>
 </li>
 </ul>
 <div id="container">
 <h1 id="pijaditas-de-latex">Pijaditas de LaTeX</h1>
 <p>Recopilatorio personal de algunas cosas guays de LaTeX, algunas de
-ellas útiles.</p>
+ellas útiles. Las he ido recopilando pero he perdido de dónde.</p>
 <h2 id="quitar-la-barra-inferior-de-navegación-inútil-del-beamer">Quitar
 la barra inferior de navegación inútil del beamer</h2>
 <div class="sourceCode" id="cb1"><pre
@@ -127,6 +127,15 @@ class="sourceCode tex"><code class="sourceCode latex"><span id="cb3-1"><a href="
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\comment</span>{</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    This is a comment.</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="superponer-una-imagen-en-beamer">Superponer una imagen en
+beamer</h2>
+<p>Un recurso que me gusta mucho es exponer un resultado y
+posteriormente resumirlo superponiendo una imagen. Para presentaciones
+más desenfadadas esta imagen es un meme.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Put</span>(#1,#2)#3{<span class="fu">\leavevmode\makebox</span>(0,0){<span class="fu">\put</span>(#1,#2){#3}}}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\Put</span>(55,160){<span class="bu">\includegraphics</span>[scale=0.35]{<span class="ex">Images/meme1.jpg</span>}}</span></code></pre></div>
 <h2
 id="si-escribes-algo-después-del-enddocument-será-ignorado-por-el-compilador">¡Si
 escribes algo después del \end{document} será ignorado por el

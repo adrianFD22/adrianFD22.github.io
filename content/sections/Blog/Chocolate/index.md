@@ -1,7 +1,5 @@
 
 <style>
-    a { text-decoration: underline; }
-
     #tablet {
         display: block;
         margin: auto;
@@ -39,7 +37,7 @@
         <td> <button type="button" onclick="generateTablet(); drawTablet();">Generar tableta</button><br> </td>
     </tr>
 </table>
-Tableta de chocolate. Para Luis.
+Tableta de <a id="chocolate" onclick="changeColor()">chocolate</a>. Para Luis.
 
 Reglas FIFA de la
 <a href="https://es.wikipedia.org/wiki/Chomp">tableta de chocolate</a>:
