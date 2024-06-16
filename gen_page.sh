@@ -7,8 +7,8 @@
 title="AFD"                         # The title of the webpage
 home_text="Home"                    # Text to appear as the link to the root page
 sections_order=("Blog" "CV")        # Order in which the sections to appear in the navbar
-ls_flags=("--time=birth")           # Flags for ls when used for listing files in a directory not containing index.md
-pandoc_flags=("--mathjax")          # Flags for pandoc compilation
+ls_flags=("--time=birth" "-r")      # Flags for ls when used for listing files in a directory not containing index.md
+pandoc_flags=("--mathjax")          # Flags to pass to pandoc when compilate markdown files
 
 
 ###################
