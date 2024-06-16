@@ -10,14 +10,14 @@
 
 ## Education
 
-2017-2021
-:   Bachelor's degree in Computational Math; Universitat Jaume I.
+2023-present
+:   PhD in Mathematics advised by Umberto Martínez-Peñas; University of Valladolid.
 
 2021-2022
 :   Master's degree in Mathematical Research; Universitat de València.
 
-2023-present
-:   PhD in Mathematics advised by Umberto Martínez-Peñas; University of Valladolid.
+2017-2021
+:   Bachelor's degree in Computational Math; Universitat Jaume I.
 
 ## Teaching
 
@@ -28,16 +28,17 @@
 
 ## Talks and posters
 
-2023
-:   Poster: *Distributed matrix multiplication via algebraic-geometric codes* at Sixth EACA International School on Computer Algebra and its Applications.
+2024
+:   Talk: "Distributed matrix multiplication with straggler tolerance based on polynomial algebras" at V jornadas de la red MatSI.
+
+2024
+:   Talk: *Numerical semigroup problems motivated by distributed matrix multiplication* at the SecureCAT Follow­Up Workshop.
 
 2023
 :   Talk: *Distributed Matrix Multiplication with straggler tolerance using one point algebraic geometry codes* at V BYMAT conference.
 
-2024
-:   Talk: *Numerical semigroup problems motivated by distributed matrix
-multiplication* at the SecureCAT Follow­Up Workshop.
-
+2023
+:   Poster: *Distributed matrix multiplication via algebraic-geometric codes* at Sixth EACA International School on Computer Algebra and its Applications.
 
 ## Publications
 

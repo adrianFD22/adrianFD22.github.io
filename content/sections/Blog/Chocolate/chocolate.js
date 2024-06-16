@@ -20,6 +20,8 @@ function generateTablet() {
 }
 
 function drawTablet() {
+    //console.log(tablet)
+
     // Clean the canvas. js is damn crazy
     canvas.width = square_size*n_cols;
     canvas.height = square_size*n_rows;
