@@ -8,7 +8,7 @@ Recopilatorio personal de algunas cosas guays de LaTeX, algunas de ellas útiles
 \setbeamertemplate{navigation symbols}{}
 ```
 
-## Hacer que la l se reemplace por \ell en modo matemático
+## Hacer que la l se reemplace por $\ell$ en modo matemático
 ```tex
 \mathcode`l="8000
 \begingroup
