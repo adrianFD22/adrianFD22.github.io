@@ -7,7 +7,7 @@
 title="AFD"                         # The title of the webpage
 home_text="Home"                    # Text to appear as the link to the root page
 sections_order=("Blog" "CV")        # Order in which the sections to appear in the navbar
-ls_flags=("--time=birth" "-r")      # Flags for ls when used for listing files in a directory not containing index.md
+ls_flags=("-r")                     # Flags for ls when used for listing files in a directory not containing index.md
 pandoc_flags=("--mathjax")          # Flags to pass to pandoc when compilate markdown files
 
 
@@ -67,11 +67,12 @@ compile_post() {
             echo "# ${curr_file#content_tmp/sections/}"
             echo "<ul id=\"list_dirs\">"
             for new_file in $list_files; do
-                new_file_name="$(basename "$new_file")"
+                new_file_name="$(basename "$new_file")"     # Name of the file to list
 
-                new_file_tmp=${new_file%.md}.html
+                new_file_tmp=${new_file%.md}.html           # Name of the file to link
                 new_file_tmp=content_tmp/${new_file_tmp#content/}
 
+                # Format file depending if they are a dir or a regular file
                 if [ -f "$new_file_tmp" ]; then
                     new_file_name="${new_file_name%.md}"
                     new_file_href="$new_file_name".html
@@ -79,6 +80,8 @@ compile_post() {
                 elif [ -d "$new_file" ]; then
                     new_file_href="$new_file_name/index.html"
                 fi
+
+                new_file_name="${new_file_name#*_}"         # Delete prefix for ordering files
 
                 echo -e "\t<li><a href=\"$new_file_href\">$new_file_name</a></li>"
             done

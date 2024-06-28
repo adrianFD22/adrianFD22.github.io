@@ -29,7 +29,10 @@
 ## Talks and posters
 
 2024
-:   Talk: "Distributed matrix multiplication with straggler tolerance based on polynomial algebras" at V jornadas de la red MatSI.
+:   Talk: *Distributed matrix multiplication over small fields with straggler tolerance* at XVIII EACA.
+
+2024
+:   Talk: *Distributed matrix multiplication with straggler tolerance based on polynomial algebras* at V jornadas de la red MatSI.
 
 2024
 :   Talk: *Numerical semigroup problems motivated by distributed matrix multiplication* at the SecureCAT Follow­Up Workshop.

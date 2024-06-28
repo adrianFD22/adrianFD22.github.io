@@ -21,3 +21,4 @@ Simply write to a markdown file in ```content``` and run the script ```gen_page.
 Some observations:
 - Since the script compiles every markdown file in ```content/sections```, if you want to store not compiled plain markdown files in you page (for downloading or whatever), you have to work around. One solution is to name them as hidden files with prefix "." for ```ls``` to ignore them. Other approach is storing them outside ```content/sections```.
 - You can include html files ```content```, pandoc will simply compile them as markdown files, with minor effect (I guess). Watch out having both and ```index.html``` and ```index.md``` in the same directory since this will cause ```index.html``` to be ignored.
+- For ordering files, you can begin the file name with a number and "_". This will help ls listing them in order. The script is programmed for ignoring the prefix when creating the link in the html.
