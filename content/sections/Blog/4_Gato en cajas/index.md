@@ -17,7 +17,8 @@
         background-color: gray;
     }
 
-    table h3 {
+    table p {
+        color: black;
         margin: 0.08em;
     }
 </style>
@@ -33,10 +34,10 @@
 <div id="play_buttons">
 <table>
     <tr>
-        <td> <h3 id="day"> Día: 1 </h3> </td>
+        <td> <p id="day"> Día: 1 </p> </td>
     </tr>
     <tr>
-        <td> <h3 id="remaining"> Cajas restantes: 1 </h3> </td>
+        <td> <p id="remaining"> Cajas restantes: 1 </p> </td>
     </tr>
     <tr>
         <td> <button type="button" onclick="reset_graph()">Reiniciar</button> </td>
@@ -78,27 +79,35 @@ Algunos autores consideran una <a onclick="animal_emoji=squirrel_emoji; draw_gra
 
 ## Algunos grafos
 
-<a onclick="init_path(4)">Path 4</a>
-<a onclick="init_path(5)">Path 5</a>
-<a onclick="init_path(6)">Path 6</a>
-<a onclick="init_path(7)">Path 7</a>
-<a onclick="init_path(8)">Path 8</a>
+<a onclick="init_path(4); window.scrollTo(0, 0);">Path 4</a>
+<a onclick="init_path(5); window.scrollTo(0, 0);">Path 5</a>
+<a onclick="init_path(6); window.scrollTo(0, 0);">Path 6</a>
+<a onclick="init_path(7); window.scrollTo(0, 0);">Path 7</a>
+<a onclick="init_path(8); window.scrollTo(0, 0);">Path 8</a>
 
-<a onclick="init_cycle(4)">Cycle 4</a>
-<a onclick="init_cycle(5)">Cycle 5</a>
-<a onclick="init_cycle(6)">Cycle 6</a>
-<a onclick="init_cycle(7)">Cycle 7</a>
-<a onclick="init_cycle(8)">Cycle 8</a>
+<a onclick="init_cycle(4); window.scrollTo(0, 0);">Cycle 4</a>
+<a onclick="init_cycle(5); window.scrollTo(0, 0);">Cycle 5</a>
+<a onclick="init_cycle(6); window.scrollTo(0, 0);">Cycle 6</a>
+<a onclick="init_cycle(7); window.scrollTo(0, 0);">Cycle 7</a>
+<a onclick="init_cycle(8); window.scrollTo(0, 0);">Cycle 8</a>
 
-<a onclick="init_grid(3)">Grid 3</a>
-<a onclick="init_grid(4)">Grid 4</a>
-<a onclick="init_grid(5)">Grid 5</a>
-<a onclick="init_grid(6)">Grid 6</a>
-<a onclick="init_grid(7)">Grid 7</a>
-<a onclick="init_grid(8)">Grid 8</a>
+<a onclick="init_grid(3); window.scrollTo(0, 0);">Grid 3</a>
+<a onclick="init_grid(4); window.scrollTo(0, 0);">Grid 4</a>
+<a onclick="init_grid(5); window.scrollTo(0, 0);">Grid 5</a>
+<a onclick="init_grid(6); window.scrollTo(0, 0);">Grid 6</a>
+<a onclick="init_grid(7); window.scrollTo(0, 0);">Grid 7</a>
+<a onclick="init_grid(8); window.scrollTo(0, 0);">Grid 8</a>
 
-<a onclick="adjacency_matrix=petersen[0]; coordinates=petersen[1]; total_moves=4; reset_graph()">Petersen</a>
-<a onclick="adjacency_matrix=sobre[0]; coordinates=sobre[1]; total_moves=3; reset_graph()">Sobre</a>
-<a onclick="adjacency_matrix=star[0]; coordinates=star[1]; total_moves=1; reset_graph()">Star</a>
+<a onclick="adjacency_matrix=petersen[0]; coordinates=petersen[1]; total_moves=4; reset_graph(); window.scrollTo(0, 0);">Petersen</a>
+<a onclick="adjacency_matrix=sobre[0]; coordinates=sobre[1]; total_moves=3; reset_graph(); window.scrollTo(0, 0);">Sobre</a>
+<a onclick="adjacency_matrix=star[0]; coordinates=star[1]; total_moves=1; reset_graph(); window.scrollTo(0, 0);">Star</a>
+
+
+## La interfaz
+Como me huelo que se me va a olvidar, he aquí cómo funciona la interfaz simuladora de gatos/ardillas en cajas de arriba del todo. Tiene dos modos: Editar y Jugar. Para cambiar entre estos dos, hacer click sobre el correspondiente botón.
+
+- Jugar: haciendo click sobre una caja, esta se abre revelando que no hay gato. Al abrir todas las cajas disponibles para el día, cada gato potencial se propaga a todas sus cajas adyacentes. El botón "Reiniciar" pone un gato potencial en cada caja (reinicia el juego).
+
+- Editar: al hacer click sobre un lugar donde no hay cajas, se crea un nuevo vértice/caja. Haciendo click sobre una caja y luego sobre otra distinta, se crea una arista. "Cajas por día" es el párametro que controla cuántas cajas se pueden abrir cada día. Al hacer click sobre el botón "Borrar vértice" y luego sobre un vértice/caja, este/esta se elimina junto con todas sus aristas. "Borrar grafo" elimina todos los vértices y aristas.
 
 <script src="ardilla.js"></script>

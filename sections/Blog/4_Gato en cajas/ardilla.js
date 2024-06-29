@@ -42,10 +42,15 @@ function draw_graph() {
     // Clear canvas
     canvas.width  = canvas.width;
     canvas.height = canvas.height;
+
+    // Draw background
+    //ctx.fillStyle = "gray";
+    //ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     ctx.font      = vertex_size.toString().concat("px Arial");
 
     // Draw each edge
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = "gray";
     offset = vertex_size/2;
     for (let i=0; i < adjacency_matrix.length; i++) {
         ctx.beginPath();
@@ -64,7 +69,7 @@ function draw_graph() {
     for (let i=0; i < adjacency_matrix.length; i++) {
         //ctx.font = vertex_size.toString().concat("px Arial");
         //ctx.fillText(box_emoji, coordinates[i][0], coordinates[i][1]);
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "gray";
         ctx.fillRect(coordinates[i][0] - vertex_size/2, coordinates[i][1] - vertex_size, vertex_size, vertex_size);
 
         if ( cat_list[i] == 1 ) {
