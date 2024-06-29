@@ -53,7 +53,7 @@ function generateBoard() {
 }
 
 function drawBoard() {
-    // Cleaing the canvas. js is damn crazy
+    // Cleaning the canvas. js is damn crazy
     canvas.width = square_size*n_cols;
     canvas.height = square_size*n_rows;
 

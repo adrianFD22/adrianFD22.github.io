@@ -1,0 +1,104 @@
+
+<style>
+    a { text-decoration: underline; }
+
+    #board {
+        top: 1em;
+        display: block;
+        margin: auto;
+        border-width: 4px;
+        border-style: solid;
+        border-color: gray;
+    }
+
+    table {
+        margin: 1.5em auto;
+        padding: 0.5em;
+        background-color: gray;
+    }
+
+    table h3 {
+        margin: 0.08em;
+    }
+</style>
+
+# Gato en cajas: el que no es de Schrödinger
+
+<!-- Board -->
+<!-- <div style="display: grid; grid-template-rows: auto; justify-items: center"> -->
+<canvas id="board">
+    No furula en este navegador.
+</canvas>
+
+<div id="play_buttons">
+<table>
+    <tr>
+        <td> <h3 id="day"> Día: 1 </h3> </td>
+    </tr>
+    <tr>
+        <td> <h3 id="remaining"> Cajas restantes: 1 </h3> </td>
+    </tr>
+    <tr>
+        <td> <button type="button" onclick="reset_graph()">Reiniciar</button> </td>
+    </tr>
+</table>
+</div>
+
+<div id="edit_buttons" style="display: none">
+<table>
+    <tr>
+        <td> <label>Cajas por día:</label> </td>
+        <td> <input style="width: 3em" id="boxes" type="number" min="1" value=1> </td>
+    </tr>
+    <tr>
+        <td> <button type="button" onclick="sel_remove_vertex=1">Borrar vértice</button> </td>
+    </tr>
+    <tr>
+        <td> <button type="button" onclick="remove_graph(); draw_graph()">Borrar grafo</button> </td>
+    </tr>
+</table>
+</div>
+
+<div style="text-align: center; margin-top: 1.4em">
+<button id="button_mode" type="button" onclick="switch_mode();">Editar</button>
+</div>
+
+## Explicación de la falla
+
+Un acertijo: tienes 5 cajas cerradas puestas en fila y en una de ellas hay un gato, al cual tienes que encontrar. Puedes elegir una caja y abrirla. Si el gato no se encuentra en esa caja, la cierras. Al día siguiente, el gato se habrá movido a una caja adyacente a la que se encontraba el día anterior. Con esta información, has de dar un método para siempre encontrar al gato en un número finito de días.
+
+Una vez resuelto, podemos pensar en una posible generalización de este juego: la adyacencia de las cajas viene dada por un grafo cualquiera. Vemos rápidamente que no siempre podemos encontrar al gato con estas reglas en un grafo el que sea. Por ejemplo, en un ciclo abramos la caja que abramos, siempre quedará una caja adyacente desde la que "propagarse el gato". Sin embargo, podemos ganar si abrimos 2 cajas a cada paso. ¿Dado un grafo, cuál es el menor número de cajas a abrir cada día que nos asegure encontrar al gato? No lo sé jaja xd.
+
+En este [enlace](https://math.stackexchange.com/questions/4418051/how-do-you-catch-a-cat-on-a-tree) se discute en qué grafos se puede ganar abriendo solo una caja a cada vez. En este otro [enlace](https://puzzling.stackexchange.com/questions/58269/hiding-cat-puzzle-on-a-grid), la generalización a grids (supongo que la traducción es cuadrícula).
+
+Le doy las gracias a Nacho por contarme este acertijo y a Luis por ayudarme a discutir esta generalización sin sentido.
+
+Algunos autores consideran una <a onclick="animal_emoji=squirrel_emoji; draw_graph()">ardilla</a> en vez de un gato. Gracias a Rodrigo por hablarme acerca de esta variante del problema.
+
+
+## Algunos grafos
+
+<a onclick="init_path(4)">Path 4</a>
+<a onclick="init_path(5)">Path 5</a>
+<a onclick="init_path(6)">Path 6</a>
+<a onclick="init_path(7)">Path 7</a>
+<a onclick="init_path(8)">Path 8</a>
+
+<a onclick="init_cycle(4)">Cycle 4</a>
+<a onclick="init_cycle(5)">Cycle 5</a>
+<a onclick="init_cycle(6)">Cycle 6</a>
+<a onclick="init_cycle(7)">Cycle 7</a>
+<a onclick="init_cycle(8)">Cycle 8</a>
+
+<a onclick="init_grid(3)">Grid 3</a>
+<a onclick="init_grid(4)">Grid 4</a>
+<a onclick="init_grid(5)">Grid 5</a>
+<a onclick="init_grid(6)">Grid 6</a>
+<a onclick="init_grid(7)">Grid 7</a>
+<a onclick="init_grid(8)">Grid 8</a>
+
+<a onclick="adjacency_matrix=petersen[0]; coordinates=petersen[1]; total_moves=4; reset_graph()">Petersen</a>
+<a onclick="adjacency_matrix=sobre[0]; coordinates=sobre[1]; total_moves=3; reset_graph()">Sobre</a>
+<a onclick="adjacency_matrix=star[0]; coordinates=star[1]; total_moves=1; reset_graph()">Star</a>
+
+<script src="ardilla.js"></script>
