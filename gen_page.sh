@@ -1,12 +1,15 @@
 #!/bin/bash
 
+# TODO: ls_flags dont seem useful. may it be removed
+# TODO: thinking this can be done simpler. Too much code too much complex.
+# TODO: copying files and rename them as trim?
+
 ###################
 #    Parameters
 ###################
 
 title="AFD"                         # The title of the webpage
 home_text="Home"                    # Text to appear as the link to the root page
-sections_order=("Blog" "CV")        # Order in which the sections to appear in the navbar
 ls_flags=("-r")                     # Flags for ls when used for listing files in a directory not containing index.md
 pandoc_flags=("--mathjax")          # Flags to pass to pandoc when compilate markdown files
 
@@ -15,17 +18,24 @@ pandoc_flags=("--mathjax")          # Flags to pass to pandoc when compilate mar
 #    Functions
 ###################
 
+# Trim prefix for ordering
+trim-prefix() {
+    echo "${1#*_}"         # Delete prefix for ordering files
+}
+
 # Compute the header (navbar) to prepend to a page
 create-header() {
     local sections="$1"
     local depth="$2"
 
     echo -e "<ul id=\"navbar\">"
-    echo -e "\t<li><a href=\"$depth$(echo -e $sections | head -n 1)/index.html\">$home_text</a></li>"
+    echo -e "\t<li><a href=\"$depth../index.html\">$home_text</a></li>"
 
     # Get the directories of content/sections and create a navbar with them (names and hyperlinks)
-    for curr_nav in $(echo -e $sections | tail -n +2); do
-        echo -e "\t<li><a href=\"$depth$curr_nav/index.html\">$(basename $curr_nav)</a></li>"
+    for curr_nav in $(echo -e $sections); do
+        section_name=$(basename $curr_nav)
+        section_name=$(trim-prefix "$section_name")
+        echo -e "\t<li><a href=\"$depth$curr_nav/index.html\">$section_name</a></li>"
     done
     echo -e "</ul>"
 }
@@ -64,7 +74,8 @@ compile_post() {
             local new_file_tmp
 
             {
-            echo "# ${curr_file#content_tmp/sections/}"
+
+            echo "# $(trim-prefix "${curr_file#content_tmp/sections/}")"    # TODO: this will not work when listing directory that is nested. The name will no be trim
             echo "<ul id=\"list_dirs\">"
             for new_file in $list_files; do
                 new_file_name="$(basename "$new_file")"     # Name of the file to list
@@ -81,7 +92,7 @@ compile_post() {
                     new_file_href="$new_file_name/index.html"
                 fi
 
-                new_file_name="${new_file_name#*_}"         # Delete prefix for ordering files
+                new_file_name="$(trim-prefix "$new_file_name")"
 
                 echo -e "\t<li><a href=\"$new_file_href\">$new_file_name</a></li>"
             done
@@ -136,17 +147,14 @@ rm -fr content_tmp
 mkdir content_tmp
 cp --preserve=all -r content/* content_tmp/
 
-# Set IFS for constructing the navbar
-IFS=" "
-
-# Obtain navbar elements
-sections="..\n"
-for curr_nav in "${sections_order[@]}"; do
-    sections+="$curr_nav\n"
-done
-
 # Set IFS for the rest of the script
 IFS=$(echo -e "\n\b")
+
+# Obtain navbar elements
+sections=""
+for curr_nav in $(ls -1d content_tmp/sections/*); do
+    sections+="${curr_nav#content_tmp/sections/}\n"
+done
 
 # Generate pages
 echo "Compiling index..."
