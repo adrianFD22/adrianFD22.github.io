@@ -103,50 +103,72 @@
 </li>
 </ul>
 <div id="container">
-<h1 id="pijaditas-de-latex">Pijaditas de LaTeX</h1>
+<h1 id="recursos-de-latex">Recursos de <span
+class="math inline">\(\LaTeX\)</span></h1>
 <p>Recopilatorio personal de algunas cosas guays de LaTeX, algunas de
-ellas útiles. Las he ido recopilando pero he perdido de dónde.</p>
-<h2 id="quitar-la-barra-inferior-de-navegación-inútil-del-beamer">Quitar
-la barra inferior de navegación inútil del beamer</h2>
+ellas útiles. Las he ido recopilando pero he perdido la fuente de
+algunas.</p>
+<hr />
+<h3 id="detexify">Detexify</h3>
+<p><a href="https://detexify.kirelabs.org/classify.html">Detexify</a> es
+una herramienta online para obtener el comando de LaTeX de un símbolo a
+través de dibujarlo.</p>
+<hr />
+<h3 id="reemplazar-l-por-ell">Reemplazar l por <span
+class="math inline">\(\ell\)</span></h3>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode tex"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\setbeamertemplate</span>{navigation symbols}{}</span></code></pre></div>
-<h2 id="hacer-que-la-l-se-reemplace-por-ell-en-modo-matemático">Hacer
-que la l se reemplace por <span class="math inline">\(\ell\)</span> en
-modo matemático</h2>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode tex"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\mathcode</span>`l=&quot;8000</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\begingroup</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\makeatletter</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\lccode</span>`<span class="fu">\~</span>=`<span class="fu">\l</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\DeclareMathSymbol</span>{<span class="fu">\lsb@l</span>}{<span class="fu">\mathalpha</span>}{letters}{`l}</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\lowercase</span>{<span class="fu">\gdef</span>~{<span class="fu">\ifnum\the\mathgroup</span>=<span class="fu">\m@ne</span> <span class="fu">\ell</span> <span class="fu">\else</span> <span class="fu">\lsb@l</span> <span class="fu">\fi</span>}}<span class="co">%</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\endgroup</span></span></code></pre></div>
-<h2 id="comentar">Comentar</h2>
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\mathcode</span>`l=&quot;8000</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\begingroup</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\makeatletter</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\lccode</span>`<span class="fu">\~</span>=`<span class="fu">\l</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\DeclareMathSymbol</span>{<span class="fu">\lsb@l</span>}{<span class="fu">\mathalpha</span>}{letters}{`l}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\lowercase</span>{<span class="fu">\gdef</span>~{<span class="fu">\ifnum\the\mathgroup</span>=<span class="fu">\m@ne</span> <span class="fu">\ell</span> <span class="fu">\else</span> <span class="fu">\lsb@l</span> <span class="fu">\fi</span>}}<span class="co">%</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\endgroup</span></span></code></pre></div>
+<hr />
+<h3 id="comentar-texto">Comentar texto</h3>
 <p>Hay varias formas de hacerlo. Una opción es usar el package comment,
 pero este no se comporta muy allá con beamer. También se puede usar el
 environment comment de verbatim. Otra alternativa sin dependencias
 extrañas y sin que se rompa nada es:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\comment</span>}[1]{}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\comment</span>{</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    This is a comment.</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Como curiosidad esteganográfica, si escribes algo después de
+\end{document}, el compilador lo ignorará.</p>
+<hr />
+<h3 id="latexdiff">latexdiff</h3>
+<p><a href="https://github.com/ftilmann/latexdiff">latexdiff</a> es un
+script de perl que hace lo siguiente: dadas dos versiones del mismo tex,
+genera otro tex que, al compilarlo, muestra los cambios entre ambas
+versiones. Puede usarse de forma fácil en overleaf: <a
+href="https://www.overleaf.com/learn/latex/Articles/How_to_use_latexdiff_on_Overleaf">link</a>.</p>
+<p>Por defecto muestra el texto antiguo en tachado en rojo y el nuevo
+subrayado en azul. Esto se puede sobreescribir redefiniendo los comandos
+que generan el texto al principio del tex producido por latexdiff. Por
+ejemplo, para que solo aparezca el texto nuevo en azul escribimos:</p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode tex"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\comment</span>}[1]{}</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\comment</span>{</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    This is a comment.</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<h2 id="superponer-una-imagen-en-beamer">Superponer una imagen en
-beamer</h2>
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\providecommand</span>{<span class="ex">\DIFdel</span>}[1]{}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\providecommand</span>{<span class="ex">\DIFadd</span>}[1]{{<span class="fu">\color</span>{blue}#1}}</span></code></pre></div>
+<p>También podemos tener un script como <a
+href="https://github.com/adrianFD22/dotfiles/blob/main/.local/bin/scripts/latexdiff">este</a>
+para agilizar el proceso y compilar directamente el tex generado por
+latexdiff.</p>
+<hr />
+<h3 id="beamer-quitar-barra-inferior">Beamer: quitar barra inferior</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\setbeamertemplate</span>{navigation symbols}{}</span></code></pre></div>
+<hr />
+<h3 id="beamer-superponer-una-imagen">Beamer: superponer una imagen</h3>
 <p>Un recurso que me gusta mucho es exponer un resultado y
 posteriormente resumirlo superponiendo una imagen. Para presentaciones
 más desenfadadas esta imagen es un meme.</p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode tex"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Put</span>(#1,#2)#3{<span class="fu">\leavevmode\makebox</span>(0,0){<span class="fu">\put</span>(#1,#2){#3}}}</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\Put</span>(55,160){<span class="bu">\includegraphics</span>[scale=0.35]{<span class="ex">Images/meme1.jpg</span>}}</span></code></pre></div>
-<h2
-id="si-escribes-algo-después-del-enddocument-será-ignorado-por-el-compilador">¡Si
-escribes algo después del \end{document} será ignorado por el
-compilador!</h2>
-<p>Esto es bastante inútil pero no deja de ser una forma graciosa para
-comentar texto o esconder texto (esteganografía).</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Put</span>(#1,#2)#3{<span class="fu">\leavevmode\makebox</span>(0,0){<span class="fu">\put</span>(#1,#2){#3}}}</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\Put</span>(55,160){<span class="bu">\includegraphics</span>[scale=0.35]{<span class="ex">Images/meme1.jpg</span>}}</span></code></pre></div>
 </div>
 </body>
 </html>
