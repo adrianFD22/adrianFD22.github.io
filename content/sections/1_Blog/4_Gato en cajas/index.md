@@ -98,10 +98,10 @@ Algunos autores consideran una <a onclick="animal_emoji=squirrel_emoji; draw_gra
 <a onclick="init_grid(7); window.scrollTo(0, 0);">Grid 7</a>
 <a onclick="init_grid(8); window.scrollTo(0, 0);">Grid 8</a>
 
-<a onclick="adjacency_matrix=petersen[0]; coordinates=petersen[1]; total_moves=4; reset_graph(); window.scrollTo(0, 0);">Petersen</a>
-<a onclick="adjacency_matrix=sobre[0]; coordinates=sobre[1]; total_moves=3; reset_graph(); window.scrollTo(0, 0);">Sobre</a>
-<a onclick="adjacency_matrix=star[0]; coordinates=star[1]; total_moves=1; reset_graph(); window.scrollTo(0, 0);">Estrella</a>
-<a onclick="adjacency_matrix=graph1[0]; coordinates=graph1[1]; total_moves=3; reset_graph(); window.scrollTo(0, 0);">IraIACOCG</a>
+<a onclick="adjacency_matrix=petersen[0].slice(); coordinates=petersen[1].slice(); total_moves=4; reset_graph(); window.scrollTo(0, 0);">Petersen</a>
+<a onclick="adjacency_matrix=sobre[0].slice(); coordinates=sobre[1].slice(); total_moves=3; reset_graph(); window.scrollTo(0, 0);">Sobre</a>
+<a onclick="adjacency_matrix=star[0].slice(); coordinates=star[1].slice(); total_moves=1; reset_graph(); window.scrollTo(0, 0);">Estrella</a>
+<a onclick="adjacency_matrix=graph1[0].slice(); coordinates=graph1[1].slice(); total_moves=3; reset_graph(); window.scrollTo(0, 0);">IraIACOCG</a>
 
 
 
