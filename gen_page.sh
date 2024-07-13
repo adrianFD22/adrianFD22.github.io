@@ -57,7 +57,7 @@ compile_post() {
         local curr_content="content/${curr_file#content_tmp/}"   # Path to directory in content_tmp to be compiled
         local list_files
 
-        # List all files the directory before starting changing things
+        # List all files in the directory before starting changing things
         [ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -1d "${ls_flags[@]}" "$curr_content"/*)
 
         # Compile recursively all files in directory if it is not empty

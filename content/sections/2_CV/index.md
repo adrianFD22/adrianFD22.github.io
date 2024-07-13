@@ -29,6 +29,9 @@
 ## Talks and posters
 
 2024
+:   Talk: *Distributed matrix multiplication with straggler tolerance using algebraic function fields* at ISIT 2024.
+
+2024
 :   Talk: *Distributed matrix multiplication over small fields with straggler tolerance* at XVIII EACA.
 
 2024
