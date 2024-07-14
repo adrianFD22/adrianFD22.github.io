@@ -46,7 +46,7 @@ create-header() {
 # compiled to a TOC and markdown
 # files to the post they describe
 compile_post() {
-    local curr_file="$1"                    # Path to file or directory in content to be compiled
+    local curr_file="$1"                    # Path to file or directory in content_tmp to be compiled
     local depth="$2"                        # Relative path to sections directory
     local new_depth="../${depth}"           # Relative path to sectinos directory from child files
 
@@ -54,16 +54,22 @@ compile_post() {
     # If curr_file is a non empty directory
     #----------------------------------------
     if [ -d "$curr_file" ]; then
-        local curr_content="content/${curr_file#content_tmp/}"   # Path to directory in content_tmp to be compiled
+        #local curr_content="content/${curr_file#content_tmp/}"   # Path to directory in content_tmp to be compiled
         local list_files
 
         # List all files in the directory before starting changing things
-        [ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -1d "${ls_flags[@]}" "$curr_content"/*)
+        #[ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -1d "${ls_flags[@]}" "$curr_content"/*)
+        [ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -1d "${ls_flags[@]}" "$curr_file"/*)
 
         # Compile recursively all files in directory if it is not empty
         if [ -n "$list_files" ]; then
             for new_file in $list_files; do
-                compile_post "content_tmp/${new_file#content/}" "$new_depth"
+                new_file_trim="$(basename "$new_file")"
+                new_file_trim="$(trim-prefix "$new_file_trim")"
+                new_file_trim="$(dirname "$new_file")/$new_file_trim"
+
+                [ "$new_file" != "$new_file_trim" ] && mv -f "$new_file" "$new_file_trim"
+                compile_post "$new_file_trim" "$new_depth"
             done
         fi;
 
@@ -77,22 +83,26 @@ compile_post() {
 
             echo "# $(trim-prefix "${curr_file#content_tmp/sections/}")"    # TODO: this will not work when listing directory that is nested. The name will no be trim
             echo "<ul id=\"list_dirs\">"
+
             for new_file in $list_files; do
+                # Trim prefix
+                new_file_trim="$(basename "$new_file")"
+                new_file_trim="$(trim-prefix "$new_file_trim")"
+                new_file="$(dirname "$new_file")/$new_file_trim"
+
                 new_file_name="$(basename "$new_file")"     # Name of the file to list
 
-                new_file_tmp=${new_file%.md}.html           # Name of the file to link
-                new_file_tmp=content_tmp/${new_file_tmp#content/}
-
                 # Format file depending if they are a dir or a regular file
-                if [ -f "$new_file_tmp" ]; then
+                if [ -d "$new_file" ]; then
+                    new_file_href="$new_file_name/index.html"
+
+                elif [ -f "${new_file%.md}.html" ]; then
                     new_file_name="${new_file_name%.md}"
                     new_file_href="$new_file_name".html
 
-                elif [ -d "$new_file" ]; then
-                    new_file_href="$new_file_name/index.html"
+                else
+                    new_file_href="$new_file_name"
                 fi
-
-                new_file_name="$(trim-prefix "$new_file_name")"
 
                 echo -e "\t<li><a href=\"$new_file_href\">$new_file_name</a></li>"
             done
@@ -152,8 +162,12 @@ IFS=$(echo -e "\n\b")
 
 # Obtain navbar elements
 sections=""
-for curr_nav in $(ls -1d content_tmp/sections/*); do
-    sections+="${curr_nav#content_tmp/sections/}\n"
+for curr_section in $(ls -1d content_tmp/sections/*); do
+    curr_section_trim="${curr_section#content_tmp/sections/}"
+    curr_section_trim=$(trim-prefix "$curr_section_trim")
+
+    sections+="${curr_section_trim}\n"
+    mv "$curr_section" "content_tmp/sections/$curr_section_trim"
 done
 
 # Generate pages
