@@ -2,7 +2,7 @@
 
 # TODO: ls_flags dont seem useful. may it be removed
 # TODO: thinking this can be done simpler. Too much code too much complex.
-# TODO: copying files and rename them as trim?
+# TODO: add icon?
 
 ###################
 #    Parameters
@@ -54,11 +54,9 @@ compile_post() {
     # If curr_file is a non empty directory
     #----------------------------------------
     if [ -d "$curr_file" ]; then
-        #local curr_content="content/${curr_file#content_tmp/}"   # Path to directory in content_tmp to be compiled
         local list_files
 
         # List all files in the directory before starting changing things
-        #[ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -1d "${ls_flags[@]}" "$curr_content"/*)
         [ -n "$(ls -A "$curr_file")" ] && list_files=$(ls -1d "${ls_flags[@]}" "$curr_file"/*)
 
         # Compile recursively all files in directory if it is not empty
@@ -77,7 +75,6 @@ compile_post() {
         if ! [ -f "$curr_file/index.html" ]; then
             local new_file_href
             local new_file_name
-            local new_file_tmp
 
             {
 
@@ -117,8 +114,7 @@ compile_post() {
     # If curr_file is a file
     #-------------------------
     else
-        # If curr_file is not
-        # a md file, compile it
+        # If curr_file is not a md file, compile it
         local file_name=$(basename "$curr_file")
         local file_ext=${file_name##*.}
         local file_name=${file_name%%.*}
