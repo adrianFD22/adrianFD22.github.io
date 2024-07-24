@@ -57,4 +57,6 @@ vaina. Adjunto tablas con tabletas de chocolate y sus movimientos ganadores (sol
 - <a href="some_chocolates_milka.pdf">Tabletas = 0</a>.
 - <a href="some_chocolates_l_with_square.pdf">Tabletas ele con cuadradito</a>.
 
+El código con el que se han generado estos pdfs está en este [repositorio](https://github.com/adrianFD22/chocolate).
+
 <script src="chocolate.js"></script>

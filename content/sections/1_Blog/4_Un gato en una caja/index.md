@@ -25,6 +25,10 @@
 
 # Gato en cajas: el que no es de Schrödinger
 
+Un acertijo: tienes 5 cajas cerradas puestas en fila y en una de ellas hay un gato, al cual tienes que encontrar. Puedes elegir una caja y abrirla. Si el gato no se encuentra en esa caja, la cierras. Al día siguiente, el gato se habrá movido a una caja adyacente a la que se encontraba el día anterior. Con esta información, has de dar un método para siempre encontrar al gato en un número finito de días.
+
+Puedes usar la siguiente interfaz para jugar (está explicada al final de la página), aunque creo que es más educativo que la primera vez que lo resuelvas no la utilices.
+
 <!-- Board -->
 <!-- <div style="display: grid; grid-template-rows: auto; justify-items: center"> -->
 <canvas id="board">
@@ -64,9 +68,7 @@
 <button id="button_mode" type="button" onclick="switch_mode();">Editar</button>
 </div>
 
-## Explicación de la falla
-
-Un acertijo: tienes 5 cajas cerradas puestas en fila y en una de ellas hay un gato, al cual tienes que encontrar. Puedes elegir una caja y abrirla. Si el gato no se encuentra en esa caja, la cierras. Al día siguiente, el gato se habrá movido a una caja adyacente a la que se encontraba el día anterior. Con esta información, has de dar un método para siempre encontrar al gato en un número finito de días.
+## ¿Cajas con distinta adyacencia?
 
 Una vez resuelto, podemos pensar en una posible generalización de este juego: la adyacencia de las cajas viene dada por un grafo cualquiera. Vemos rápidamente que no siempre podemos encontrar al gato con estas reglas en un grafo el que sea. Por ejemplo, en un ciclo abramos la caja que abramos, siempre quedará una caja adyacente desde la que "propagarse el gato". Sin embargo, podemos ganar si abrimos 2 cajas a cada paso. ¿Dado el grafo $G$, cuál es el menor número de cajas a abrir cada día que nos asegure poder encontrar el gato? Sea $s(G)$ dicho número. Adjunto las pocas cotas que conozco (la 3 y la 4 son un caso particular de la 2), cuya demostración se deja como ejercicio:
 
@@ -90,7 +92,7 @@ Algunos autores consideran una <a onclick="animal_emoji=squirrel_emoji; draw_gra
 
 ¡Gracias también a ti por leer! Si tienes alguna idea sobre este problema/juego, no dudes en contactarme.
 
-## Algunos grafos
+## Algunos grafos con los que jugar
 
 <a onclick="init_path(4); window.scrollTo(0, 0);">Path 4</a>
 <a onclick="init_path(5); window.scrollTo(0, 0);">Path 5</a>
