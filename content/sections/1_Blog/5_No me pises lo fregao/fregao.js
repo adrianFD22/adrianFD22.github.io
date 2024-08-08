@@ -8,6 +8,7 @@ floor.src = "baldosa.jpeg";
 const mop = new Image();
 mop.src = "mop.png";
 
+
 //---------------------
 //      Functions
 //---------------------
@@ -158,7 +159,9 @@ const ctx = canvas.getContext("2d");
 let visited = [];
 
 generateBoard();
-drawBoard();
+floor.addEventListener("load", () => {
+    drawBoard();
+});
 
 canvas.addEventListener('mousedown', function(e) {
     movePiece(canvas, e);

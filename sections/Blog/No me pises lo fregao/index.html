@@ -22,6 +22,10 @@
     }
   </style>
   <link rel="stylesheet" href="../../../resources/style.css" />
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
 </head>
 <body>
 <ul id="navbar">
@@ -52,13 +56,21 @@
         background-color: gray;
     }
 </style>
+<script>
+    function showSolution(e) {
+        let solution = document.getElementById("solution");
+        solution.style.display = "block";
+
+        let nosolution = document.getElementById("nosolution");
+        nosolution.remove();
+    }
+</script>
 <h1 id="no-me-pises-lo-fregao">No me pises lo fregao</h1>
 <p>El suelo mojado de mi chalet puede matar.</p>
 <p>El juego: dos personas, 1 y 2. Al empezar, 1 elige una casilla y la
 friega. Después, 2 y 1, alternando turnos, friegan una casilla seca
-adyacente a la anterior. Si no quedan casillas secas en tu turno,
-pierdes porque la única forma de salir de ahí es pisando en mojado y
-resbalándote.</p>
+adyacente a la anterior. Si no puedes fregar en tu turno, pierdes porque
+la única forma de salir de ahí es pisando en mojado y resbalándote.</p>
 <!-- Board -->
 <canvas id="board">
 No furula en este navegador.
@@ -91,7 +103,115 @@ Generar suelo
 </td>
 </tr>
 </table>
+<p>Gracias a Issa por intentar<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a> resolver este juego.
+Gracias a Mario por sus sugerencias y por escucharme siempre, incluso
+cuando hablo de matemáticas que suele ser el 90% de las veces
+<small><small><small>pero solo dentro de un
+10%</small></small></small>.</p>
+<h2 id="quién-gana">¿Quién gana?</h2>
+<div id="nosolution">
+<p>Intenta averiguarlo. Puedes <u onclick="showSolution()">ver la
+solución</u> cuando quieras, pero hacerlo sin conocerla es reconocer que
+has perdido con la humillación que ello conlleva.</p>
+</div>
+<div id="solution" style="display: none">
+<p>Más concretamente, si 1 y 2 jugasen perfecto, quién ganaría? Depende
+del tamaño del tablero. Empecemos por resolver un caso más sencillo, un
+tablero de 2 filas. Tras jugar 1, 2 puede jugar en la única otra casilla
+que se encuentra en la misma columna que la jugada anterior, es decir,
+si 1 juega en una casilla que está en la primera fila, 2 juega en la
+casilla que está justo debajo. De esta forma, a cada movimiento de 1 le
+corresponde un movimiento de 2, con lo que 2 ganará pues jugará en
+último lugar.</p>
+<div class="flex">
+<p><img src="baldosas2xn.png"></p>
+</div>
+<p>En otras palabras, hemos encontrado una regla de cómo jugar basada en
+separar las casillas en parejas de dos adyacentes, algo como “si 1 juega
+esta casilla, yo juego su pareja”. En lenguaje matemático, hemos
+encontrado una partición del conjunto de casillas en la que cada clase
+tiene exactamente dos casillas, las cuales son adyacentes.</p>
+<p>Generalicemos este razonamiento. Supongamos ahora que el tablero es
+de tamaño par, como en particular es el 2xn que acabamos de analizar.
+Esto es equivalente a decir que hay o bien una cantidad par de filas o
+una cantidad par de columnas (o ambas). Supongamos por ejemplo filas
+pares. Esto nos permite separar las casillas por parejas como en el 2xn,
+dando así la misma estrategia que hace ganar a 2: tras jugar 1 en una
+casilla, 2 juega en su pareja.</p>
+<div class="flex">
+<p><img src="baldosasPar.png"></p>
+</div>
+<p>¿Qué ocurre si el número de casillas es impar? La respuesta es: 1
+gana. Vamos a aprovechar lo que hemos razonado en los anteriores
+párrafos para justificar este hecho. Tenemos un tablero nxm con n y m
+impares y es el primer turno. 1 puede jugar en la esquina superior
+izquierda y separar (particionar) las casillas del siguiente modo:
+separamos la primera fila en parejas y el resto del tablero como antes
+(pues el resto es un tablero con cantidad par de filas).</p>
+<div class="flex">
+<p><img src="baldosasImpar.png"></p>
+</div>
+<p>Por ser n y m impares, el tablero siempre se podrá separar de esta
+forma. Tras el movimiento de 2, 1 juega en la pareja de la casilla que
+ha jugado 2. De esta forma, 1 se asegura jugar en último lugar y
+ganar.</p>
+<p>Resumiendo, si el un número de casillas es par gana 2 y si es impar
+gana 1 ¿A qué mola? Notar que en ningún momento hemos recurrido a pensar
+cosas como “¿se fregaran todas las casillas?”. Hemos conseguido una
+estrategia sencilla y elegante sin siquiera preocuparnos de cómo quedará
+el tablero al final. Te hace ganar y au. ¿Se podrá jugar a este juego en
+un tablero más general🤔?</p>
+<p>Si has llegado hasta aquí, te doy las gracias ❤. Dale like y
+suscríbete.</p>
+<h2 id="me-gustan-los-grafos">¡Me gustan los grafos!</h2>
+<p>Este juego tiene una generalización directa a grafos (esto se pone
+matemático). Dado un grafo G, 1 empieza eligiendo un vértice cualquiera
+y lo friega. En lo sucesivo, 2 y 1 se alternan para fregar un vértice
+adyacente al anterior que no esté fregao. Pierdes si te quedas sin
+posibles vértices a fregar.</p>
+<p>Lo que más me gusta de este juego es que la solución en grafos es
+bastante natural si conoces la solución en baldosas. ¡Veámoslo! Como
+esta es mi web voy a tomarme la libertad de llamar teorema a la
+siguiente proposición (y de no numerarlo jaja estoy loco).</p>
+<p><u><strong>Teorema:</strong></u> Dado un grafo G, 2 gana al juego de
+no pisar lo fregao si y solo si existe una partición de <span
+class="math inline">\(V\)</span>, el conjunto de vértices de <span
+class="math inline">\(G\)</span>, en parejas de vértices adyacentes.</p>
+<p><u>Demostración:</u> Si <span class="math inline">\(V\)</span> se
+puede particionar como dice el enunciado, 2 gana aplicando la misma
+estrategia explicada antes de generalizar el juego a grafos.
+Recíprocamente, supongamos que G no se puede particionar de esta forma.
+Considerar un subconjunto <span class="math inline">\(V^\prime \subseteq
+V\)</span> de tamaño máximo tal que <span
+class="math inline">\(V^\prime\)</span> sí que se puede particionar como
+en el enunciado. Fijamos dicha partición. La estrategia ganadora para 1
+es como sigue: primero 1 juega en un vértice <span
+class="math inline">\(u \notin V^\prime\)</span>. A cada jugada de 2, 1
+juega en su pareja según la partición de <span
+class="math inline">\(V^\prime\)</span>. Si 2 pudiera jugar en algún
+momento en un vértice <span class="math inline">\(v \notin
+V^\prime\)</span>, entonces podríamos considerar el conjunto <span
+class="math inline">\(V^\prime \cup \{u, v\}\)</span>, el cual se puede
+particionar como en el enunciado, pues la consecución de movimientos de
+la partida define un camino (path) recubridor de tamaño par en dicho
+conjunto. Esto contradiciría la maximalidad de <span
+class="math inline">\(V^\prime\)</span>, de donde se sigue que todos los
+vértices de la partida, salvo el primero, son vértices de <span
+class="math inline">\(V^\prime\)</span>. De las propiedades de la
+partición de <span class="math inline">\(V^\prime\)</span>, deducimos
+que 1 jugará en último lugar.</p>
+<p>Q.E.D.</p>
+</div>
 <script src="fregao.js"></script>
 </div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Aunque sin éxito por más que diga ella.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
 </body>
 </html>
