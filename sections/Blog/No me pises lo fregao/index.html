@@ -40,6 +40,7 @@
 </li>
 </ul>
 <div id="container">
+
 <style>
     #board {
         display: block;
@@ -103,12 +104,10 @@ Generar suelo
 </td>
 </tr>
 </table>
-<p>Gracias a Issa por intentar<a href="#fn1" class="footnote-ref"
-id="fnref1" role="doc-noteref"><sup>1</sup></a> resolver este juego.
-Gracias a Mario por sus sugerencias y por escucharme siempre, incluso
-cuando hablo de matemáticas que suele ser el 90% de las veces
-<small><small><small>pero solo dentro de un
-10%</small></small></small>.</p>
+<p>Gracias a Issa por intentar resolver este juego. Gracias a Mario por
+sus sugerencias y por escucharme siempre, incluso cuando hablo de
+matemáticas que suele ser el 90% de las veces <small><small><small>pero
+solo dentro de un 10%</small></small></small>.</p>
 <h2 id="quién-gana">¿Quién gana?</h2>
 <div id="nosolution">
 <p>Intenta averiguarlo. Puedes <u onclick="showSolution()">ver la
@@ -202,16 +201,23 @@ class="math inline">\(V^\prime\)</span>. De las propiedades de la
 partición de <span class="math inline">\(V^\prime\)</span>, deducimos
 que 1 jugará en último lugar.</p>
 <p>Q.E.D.</p>
-</div>
+<p>Algunas notas finales (principalmente para Luis y Bea):</p>
+<ul>
+<li>Lo que he llamado “partición en parejas de vértices adyacentes” es
+el concepto de <a
+href="https://es.wikipedia.org/wiki/Apareamiento_(teor%C3%ADa_de_grafos)">apareamiento</a>
+(matching en inglés). Con este lenguaje, el teorema se puede reformular
+como “2 gana si y solo si G admite un apareamiento perfecto”.</li>
+<li>Calcular el <a
+href="https://es.wikipedia.org/wiki/Teorema_de_Sprague-Grundy">NIM
+value</a> de un grafo cualquiera parece una tarea un poco difícil
+(escríbeme si lo consigues o si lo intentas).</li>
+<li>No me parecería raro que alguien haya considerado ya este juego
+antes. Yo al menos lo desconozco (escríbeme por favor si sabes algo al
+respecto).</li>
+</ul>
+<div>
 <script src="fregao.js"></script>
 </div>
-<aside id="footnotes" class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Aunque sin éxito por más que diga ella.<a href="#fnref1"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</aside>
 </body>
 </html>
