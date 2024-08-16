@@ -88,6 +88,10 @@ Resumiendo, si el un número de casillas es par gana 2 y si es impar gana 1 ¿A 
 
 Si has llegado hasta aquí, te doy las gracias ❤. Dale like y suscríbete.
 
+<div class="flex">
+<img src="fin.jpeg">
+</div>
+
 ## ¡Me gustan los grafos!
 
 Este juego tiene una generalización directa a grafos (esto se pone matemático). Dado un grafo G, 1 empieza eligiendo un vértice cualquiera y lo friega. En lo sucesivo, 2 y 1 se alternan para fregar un vértice adyacente al anterior que no esté fregao. Pierdes si te quedas sin posibles vértices a fregar.
