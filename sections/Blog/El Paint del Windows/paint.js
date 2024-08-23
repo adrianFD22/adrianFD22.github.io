@@ -273,7 +273,7 @@ function handleClick(event) {
     }
 
 
-    else if (isPointInsideRect(x,y,[31,53,25,25])) {
+    else if (isPointInsideRect(x,y,[31,53,25,25]) && sel_tool != "bucket") {
     //else if (x >= 31 && x <= 56 && y >= 53 && y <= 78) {
         sel_tool = "bucket";
         n_moves = 0;

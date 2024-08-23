@@ -19,6 +19,24 @@ Estás usando el Paint y has hecho un dibujo. Al usar la herramienta <img src="b
 
 Como siempre, aprovecho para agradecer a las personas que me han escuchado/aguantado en lo relativo a este problema. Gracias a Diego, Perete, Fer, Miguel y a mi madre!
 
+## Algunos dibujos con los que jugar
+
+<a onclick="loadDrawing(0); window.scrollTo(0,0);">Oruga 1</a>
+<a onclick="loadDrawing(1); window.scrollTo(0,0);">Oruga 2</a>
+<a onclick="loadDrawing(2); window.scrollTo(0,0);">Oruga 3</a>
+
+<a onclick="loadChess(3,3); window.scrollTo(0,0);">Ajedrez 3x3</a>
+<a onclick="loadChess(4,4); window.scrollTo(0,0);">Ajedrez 4x4</a>
+<a onclick="loadChess(5,5); window.scrollTo(0,0);">Ajedrez 5x5</a>
+<a onclick="loadChess(6,6); window.scrollTo(0,0);">Ajedrez 6x6</a>
+
+<a onclick="loadDrawing(3); window.scrollTo(0,0);">Cuatro colores</a>
+<a onclick="loadDrawing(4); window.scrollTo(0,0);">Lila</a>
+<a onclick="loadDrawing(5); window.scrollTo(0,0);">No conexo</a>
+<a onclick="loadDrawing(6); window.scrollTo(0,0);">Cubismo</a>
+<a onclick="loadDrawing(7); window.scrollTo(0,0);">Ciclo</a>
+<a onclick="loadDrawing(8); window.scrollTo(0,0);">Ocho</a>
+
 ## "Formalización" del problema
 
 Creo que la forma más sencilla de modelizar este problema es, una vez más, con grafos. Consideremos el grafo cuyos vértices son las distintas áreas de colores y las aristas vienen dadas por la adyacencia de estas, es decir, dos áreas (vértices) son adyacentes si comparten un borde (compartir una esquinita no cuenta). Esto es lo que se conoce como el [grafo dual](https://es.wikipedia.org/wiki/Grafo_dual). Consideremos también la [coloración](https://es.wikipedia.org/wiki/Coloraci%C3%B3n_de_grafos) dada por el dibujo, una función que asigna a cada vértice su color.
@@ -63,24 +81,6 @@ Los dibujos que solo usan 2 colores son los grafos bipartitos, los cuales tienen
 En particular,
 <a onclick="loadChess(6,6); window.scrollTo(0, 0);">esto</a>
 se rellena de forma óptima con $6$ rellenamientos, pues es su radio.
-
-## Algunos dibujos con los que jugar
-
-<a onclick="loadDrawing(0); window.scrollTo(0,0);">Oruga 1</a>
-<a onclick="loadDrawing(1); window.scrollTo(0,0);">Oruga 2</a>
-<a onclick="loadDrawing(2); window.scrollTo(0,0);">Oruga 3</a>
-
-<a onclick="loadChess(3,3); window.scrollTo(0,0);">Ajedrez 3x3</a>
-<a onclick="loadChess(4,4); window.scrollTo(0,0);">Ajedrez 4x4</a>
-<a onclick="loadChess(5,5); window.scrollTo(0,0);">Ajedrez 5x5</a>
-<a onclick="loadChess(6,6); window.scrollTo(0,0);">Ajedrez 6x6</a>
-
-<a onclick="loadDrawing(3); window.scrollTo(0,0);">Cuatro colores</a>
-<a onclick="loadDrawing(4); window.scrollTo(0,0);">Lila</a>
-<a onclick="loadDrawing(5); window.scrollTo(0,0);">No conexo</a>
-<a onclick="loadDrawing(6); window.scrollTo(0,0);">Cubismo</a>
-<a onclick="loadDrawing(7); window.scrollTo(0,0);">Ciclo</a>
-<a onclick="loadDrawing(8); window.scrollTo(0,0);">Ocho</a>
 
 ## Notas
 - La cota del teorema solo tiene en cuenta la estructura del grafo y no cómo está coloreado. ¿Hay alguna forma de dar una cota que aúne ambas cosas?
