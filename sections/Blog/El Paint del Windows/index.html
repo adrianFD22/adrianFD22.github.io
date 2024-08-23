@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AFD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../../resources/style.css" />
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<ul id="navbar">
+<li>
+<a href="../../../index.html">Home</a>
+</li>
+<li>
+<a href="../../Blog/index.html">Blog</a>
+</li>
+<li>
+<a href="../../CV/index.html">CV</a>
+</li>
+</ul>
+<div id="container">
+<style>
+    a { text-decoration: underline; }
+
+    #frame {
+        top: 1em;
+        display: block;
+        margin: auto;
+    }
+</style>
+<h1 id="el-paint-del-windows">El Paint del Windows</h1>
+<p>Estás usando el Paint y has hecho un dibujo. Al usar la herramienta
+<img src="bote.jpeg">, puedes rellenar toda un aréa del mismo color. Tus
+intenciones son colorear todo el dibujo con el mismo color (sin tener en
+cuenta el fondo). Por pereza, quieres usar el menor número posible de
+rellenamientos. La pregunta entonces es “dado un dibujo, cuál el menor
+número de rellenamientos necesarios para hacerlo monocromático?”. Ten en
+cuenta que dos áreas del mismo color pasan a ser “la misma área”. Puedes
+usar la siguiente interfaz<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a> para dibujar rectángulos
+y jugar a rellenarlos.</p>
+<canvas id="frame">
+No furula en este navegador.
+</canvas>
+<p>Como siempre, aprovecho para agradecer a las personas que me han
+escuchado/aguantado en lo relativo a este problema. Gracias a Diego,
+Perete, Fer, Miguel y a mi madre!</p>
+<h2 id="formalización-del-problema">“Formalización” del problema</h2>
+<p>Creo que la forma más sencilla de modelizar este problema es, una vez
+más, con grafos. Consideremos el grafo cuyos vértices son las distintas
+áreas de colores y las aristas vienen dadas por la adyacencia de estas,
+es decir, dos áreas (vértices) son adyacentes si comparten un borde
+(compartir una esquinita no cuenta). Esto es lo que se conoce como el <a
+href="https://es.wikipedia.org/wiki/Grafo_dual">grafo dual</a>.
+Consideremos también la <a
+href="https://es.wikipedia.org/wiki/Coloraci%C3%B3n_de_grafos">coloración</a>
+dada por el dibujo, una función que asigna a cada vértice su color.</p>
+<p>En estos términos, un rellenamiento consiste en cambiar el color de
+un vértice e identificar dicho vértice con sus vecinos que sean del
+nuevo color. Esto asegura que la nueva coloración sigue siendo correcta
+(vértices adyacentes tienen distinto color). De esta forma, con
+sucesivos rellenamientos, iremos simplificando el grafo poco a poco
+haciendo que el número de vértices vaya decreciendo. Por ejemplo, si
+<a onclick="loadDrawing(0); window.scrollTo(0, 0);">aquí</a> rellenamos
+el vértice del medio de azul, el grafo pasará de tener 5 vértices (3
+rojos y 2 azules) a solo 3 (2 rojos y 1 azul). De esta forma, habremos
+acabado cuando solo quede un vértice.</p>
+<p>Aunque no lo he dicho explícitamente, notar que distintas formas de
+rellenar un grafo pueden resolverlo en un distinto número de
+rellenamientos. Esto valida la definición del número mínimo de
+rellenamientos necesarios para resolver un grafo <span
+class="math inline">\(G\)</span> coloreado según <span
+class="math inline">\(c\)</span>. Denotaremos a este número como <span
+class="math inline">\(r(G,c)\)</span> o simplemente <span
+class="math inline">\(r(G)\)</span>, obviando la coloración (classic
+maths).</p>
+<p>A partir de ahora voy a asumir que el grafo es conexo sin perder
+generalidad, ya que <span class="math inline">\(r(G_1 + G_2) = r(G_1) +
+r(G_2)\)</span>.</p>
+<h2 id="cotas-inferiores">Cotas inferiores</h2>
+<p>Una primera observación es que si tenemos <span
+class="math inline">\(n\)</span> colores, vamos a necesitar al menos
+<span class="math inline">\(n-1\)</span> rellenamientos pues con cada
+rellenamiento eliminamos a lo sumo un color y queremos que el grafo
+final tenga solo un color, es decir, <span class="math inline">\(n-1
+\leq r(G)\)</span>. Esta cota es muy simplista pero por ejemplo confirma
+que <a onclick="loadDrawing(3); window.scrollTo(0, 0);">esto</a> tiene
+número de rellenamiento <span class="math inline">\(r(G) =
+3\)</span>.</p>
+<p>Construyamos otra cota algo mejor. Dado un vértice <span
+class="math inline">\(v \in G\)</span>, consideramos la <a
+href="https://es.wikipedia.org/wiki/Distancia_(teor%C3%ADa_de_grafos)">excentricidad</a>
+del vértice <span class="math inline">\(v\)</span> definida como la
+mayor distancia desde <span class="math inline">\(v\)</span> a otro
+vértice de <span class="math inline">\(G\)</span>, esto es, <span
+class="math inline">\(e(v) := \max_{u \in G} d(v,u)\)</span>. La
+excentricidad de un vértice mide cómo de céntrico es un vértice y, en
+particular, una excentricidad grande indica que hay un vértice muy
+lejano a <span class="math inline">\(v\)</span>. Diremos entonces que un
+vértice que tenga excentricidad mínima será un centro del grafo (notar
+que puede haber varios centros) y llamaremos radio, denotado por <span
+class="math inline">\(rad(G)\)</span>, a su excentricidad, la
+excentricidad mínima. Ya podemos enunciar la siguiente cota, que sigue
+siendo un poco caca a veces ya que solo depende del grafo y no de la
+coloración:</p>
+<p><u><strong>Teorema:</strong></u> <span class="math inline">\(rad(G)
+\leq r(G)\)</span>.</p>
+<p><u>Demostración:</u> Vamos a ver que con cada rellenamiento decrece
+el radio a lo sumo en <span class="math inline">\(1\)</span>,
+deduciéndose que hacen falta al menos tantos rellenamientos como <span
+class="math inline">\(rad(G)\)</span>. Sea <span
+class="math inline">\(G^\prime\)</span> el grafo <span
+class="math inline">\(G\)</span> después de rellenar el vértice <span
+class="math inline">\(v \in G\)</span>, es decir, identificarlo con
+algunos de sus vecinos <span
+class="math inline">\(v_1,v_2,\ldots,v_s\)</span>. Supongamos que <span
+class="math inline">\(rad(G^\prime) \leq rad(G) - 2\)</span> para llegar
+a un absurdo. Sea <span class="math inline">\(u \in G^\prime\)</span> un
+centro, considerar un camino de tamaño mínimo <span
+class="math inline">\(uPv = u, u^\prime, \ldots, v\)</span>. Estudiemos
+la excentricidad de <span class="math inline">\(u^\prime\)</span> en
+<span class="math inline">\(G\)</span>. Dado un vértice cualquiera <span
+class="math inline">\(w \in G\)</span>, la distancia a <span
+class="math inline">\(u\)</span> en <span
+class="math inline">\(G^\prime\)</span> es menor o igual a <span
+class="math inline">\(rad(G^\prime) \leq rad(G) - 2\)</span>. Si hay un
+camino mínimo de <span class="math inline">\(u\)</span> a <span
+class="math inline">\(w\)</span> que no pasa por ninguno de los vértices
+<span class="math inline">\(v, v_1, v_2 \ldots, v_s\)</span>, entonces
+<span class="math inline">\(d_G(u^\prime, w) \leq d_G(u,w) + 1 \leq
+rad(G) - 1\)</span>. Para un camino mínimo que pasa por alguno de los
+<span class="math inline">\(v_i\)</span>, este pasa a lo sumo por <span
+class="math inline">\(3\)</span> de estos (pues el diámetro del grafo
+inducido <span class="math inline">\(G[v,v_1,v_2,\ldots,v_s]\)</span> es
+<span class="math inline">\(2\)</span>), con lo que tenemos que <span
+class="math inline">\(d_G(u^\prime, w) \leq d_{G^\prime}(u^\prime, w) +
+2 = d_{G^\prime}(u, w) - 1 + 2 \leq rad(G) - 1\)</span>. Esto contradice
+la definición de radio y el resultado se sigue.</p>
+<p>Q.E.D</p>
+<p>Por ejemplo, deducimos que
+<a onclick="loadDrawing(3); window.scrollTo(0, 0);">esto</a> se rellena
+con <span class="math inline">\(3\)</span> colores de forma óptima.
+Pero, en general, esta cota no representa el número mínimo de
+rellenamientos (véase
+<a onclick="loadDrawing(8); window.scrollTo(0, 0);">esto</a> como
+ejemplo).</p>
+<p>Esta cota funciona relativamente bien para pocos colores, pero para
+muchos, es una xufa.</p>
+<h2 id="el-caso-de-2-colores">El caso de 2 colores</h2>
+<p>Los dibujos que solo usan 2 colores son los grafos bipartitos, los
+cuales tienen muchas propiedades muy satisfactorias de estudiar.</p>
+<p><u><strong>Corolario:</strong></u> Para un dibujo que usa solo dos
+colores, <span class="math inline">\(r(G) = rad(G)\)</span>.</p>
+<p><u>Demostración:</u> El algoritmo es el siguiente: toma un vértice
+central y alternadamente rellénalo de un color y del otro. Observando
+que tras <span class="math inline">\(n\)</span> iteraciones se habrán
+rellenado todos los vértices a distancia <span
+class="math inline">\(n\)</span> o menor, el algoritmo necesita <span
+class="math inline">\(rad(G)\)</span> rellenamientos y, por el teorema
+anterior, es óptimo.</p>
+<p>En particular,
+<a onclick="loadChess(6,6); window.scrollTo(0, 0);">esto</a> se rellena
+de forma óptima con <span class="math inline">\(6\)</span>
+rellenamientos, pues es su radio.</p>
+<h2 id="algunos-dibujos-con-los-que-jugar">Algunos dibujos con los que
+jugar</h2>
+<p><a onclick="loadDrawing(0); window.scrollTo(0,0);">Oruga 1</a>
+<a onclick="loadDrawing(1); window.scrollTo(0,0);">Oruga 2</a>
+<a onclick="loadDrawing(2); window.scrollTo(0,0);">Oruga 3</a></p>
+<p><a onclick="loadChess(3,3); window.scrollTo(0,0);">Ajedrez 3x3</a>
+<a onclick="loadChess(4,4); window.scrollTo(0,0);">Ajedrez 4x4</a>
+<a onclick="loadChess(5,5); window.scrollTo(0,0);">Ajedrez 5x5</a>
+<a onclick="loadChess(6,6); window.scrollTo(0,0);">Ajedrez 6x6</a></p>
+<p><a onclick="loadDrawing(3); window.scrollTo(0,0);">Cuatro colores</a>
+<a onclick="loadDrawing(4); window.scrollTo(0,0);">Lila</a>
+<a onclick="loadDrawing(5); window.scrollTo(0,0);">No conexo</a>
+<a onclick="loadDrawing(6); window.scrollTo(0,0);">Cubismo</a>
+<a onclick="loadDrawing(7); window.scrollTo(0,0);">Ciclo</a>
+<a onclick="loadDrawing(8); window.scrollTo(0,0);">Ocho</a></p>
+<h2 id="notas">Notas</h2>
+<ul>
+<li>La cota del teorema solo tiene en cuenta la estructura del grafo y
+no cómo está coloreado. ¿Hay alguna forma de dar una cota que aúne ambas
+cosas?</li>
+<li>La cota dada por el teorema dice que tras identificar un subgrafo de
+diámetro <span class="math inline">\(2\)</span> de <span
+class="math inline">\(G\)</span>, el radio de <span
+class="math inline">\(G\)</span> decrece a lo sumo en <span
+class="math inline">\(1\)</span>. No sé si este resultado se puede
+generalizar…</li>
+<li>He estudiado este problema en todo momento sin usar que hablo de
+grafos planos. No sé si hay alguna propiedad de esta familia como el
+Teorema de los 4 colores que pueda usarse para resolver el problema u
+obtener mejores cotas.</li>
+<li>¿Hay alguna cosa requetealgebraica que se le pueda asociar a <span
+class="math inline">\((G,c)\)</span> para dar mejores cotas o
+caracterizar <span class="math inline">\(r(G)\)</span>?</li>
+<li>Otra cosa “interesante” que se puede plantear es un juego para dos
+jugadores: por turnos se colorea una de las zonas de modo que decrezca
+el número de vértices al menos en uno. Pierde quién obtiene en su turno
+el grafo con un solo vértice. Véase el juego <a
+href="https://es.wikipedia.org/wiki/Col_(juego)">Col</a> de Conway que
+presenta cierta relación.</li>
+</ul>
+<script src="paint.js"></script>
+</div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>La interfaz tiene algunos comportamientos extraños. El
+más evidente es que no detecta qué rectángulo está encima de otro. Así
+que si dos rectángulos se detectan como adyacentes aún habiendo un
+tercero que opaca la zona en la que se tocan los dos primeros.<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+</body>
+</html>
