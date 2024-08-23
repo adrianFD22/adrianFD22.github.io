@@ -186,8 +186,13 @@ function paintRect(x,y) {
     }
 
     // Color the rectangle
-    n_moves++;
     sel_rect_color = rect_colors[sel_rect];
+
+    if (sel_rect_color == sel_color) {
+        return;
+    }
+
+    n_moves++;
     rect_stack = [sel_rect];
     visited = [];
 

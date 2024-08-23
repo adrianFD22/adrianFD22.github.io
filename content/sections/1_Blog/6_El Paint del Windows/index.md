@@ -84,7 +84,7 @@ se rellena de forma óptima con $6$ rellenamientos, pues es su radio.
 
 ## Notas
 - La cota del teorema solo tiene en cuenta la estructura del grafo y no cómo está coloreado. ¿Hay alguna forma de dar una cota que aúne ambas cosas?
-- La cota dada por el teorema dice que tras identificar un subgrafo de diámetro $2$ de $G$, el radio de $G$ decrece a lo sumo en $1$. No sé si este resultado se puede generalizar...
+- La cota dada por el teorema dice que tras identificar un subgrafo de diámetro $2$ de $G$, el radio de $G$ decrece a lo sumo en $1$. La prueba se puede generalizar para mostrar que, tras identificar un subgrafo de diámetro $d$, el radio de $G$ decrece a lo sumo en  $d-1$.
 - He estudiado este problema en todo momento sin usar que hablo de grafos planos. No sé si hay alguna propiedad de esta familia como el Teorema de los 4 colores que pueda usarse para resolver el problema u obtener mejores cotas.
 - ¿Hay alguna cosa requetealgebraica que se le pueda asociar a $(G,c)$ para dar mejores cotas o caracterizar $r(G)$?
 - Otra cosa "interesante" que se puede plantear es un juego para dos jugadores: por turnos se colorea una de las zonas de modo que decrezca el número de vértices al menos en uno. Pierde quién obtiene en su turno el grafo con un solo vértice. Véase el juego [Col](https://es.wikipedia.org/wiki/Col_(juego)) de Conway que presenta cierta relación.
