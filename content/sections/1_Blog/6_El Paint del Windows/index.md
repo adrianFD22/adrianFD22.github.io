@@ -36,6 +36,7 @@ Como siempre, aprovecho para agradecer a las personas que me han escuchado/aguan
 <a onclick="loadDrawing(6); window.scrollTo(0,0);">Cubismo</a>
 <a onclick="loadDrawing(7); window.scrollTo(0,0);">Ciclo</a>
 <a onclick="loadDrawing(8); window.scrollTo(0,0);">Ocho</a>
+<a onclick="loadDrawing(9); window.scrollTo(0,0);">Robot vaquero</a>
 
 ## "Formalización" del problema
 
@@ -45,9 +46,7 @@ En estos términos, un rellenamiento consiste en cambiar el color de un vértice
 <a onclick="loadDrawing(0); window.scrollTo(0, 0);">aquí</a>
 rellenamos el vértice del medio de azul, el grafo pasará de tener 5 vértices (3 rojos y 2 azules) a solo 3 (2 rojos y 1 azul). De esta forma, habremos acabado cuando solo quede un vértice.
 
-Aunque no lo he dicho explícitamente, notar que distintas formas de rellenar un grafo pueden resolverlo en un distinto número de rellenamientos. Esto valida la definición del número mínimo de rellenamientos necesarios para resolver un grafo $G$ coloreado según $c$. Denotaremos a este número como $r(G,c)$ o simplemente $r(G)$, obviando la coloración (classic maths).
-
-A partir de ahora voy a asumir que el grafo es conexo sin perder generalidad, ya que $r(G_1 + G_2) = r(G_1) + r(G_2)$.
+Aunque no lo he dicho explícitamente, notar que distintas formas de rellenar un grafo pueden resolverlo en un distinto número de rellenamientos. Esto valida la definición del número mínimo de rellenamientos necesarios para resolver un grafo $G$ coloreado según $c$. Denotaremos a este número como $r(G,c)$ o simplemente $r(G)$, obviando la coloración (classic maths). Voy a considerar siempre grafos conexos.
 
 ## Cotas inferiores
 

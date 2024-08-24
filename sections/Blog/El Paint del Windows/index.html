@@ -80,7 +80,8 @@ jugar</h2>
 <a onclick="loadDrawing(5); window.scrollTo(0,0);">No conexo</a>
 <a onclick="loadDrawing(6); window.scrollTo(0,0);">Cubismo</a>
 <a onclick="loadDrawing(7); window.scrollTo(0,0);">Ciclo</a>
-<a onclick="loadDrawing(8); window.scrollTo(0,0);">Ocho</a></p>
+<a onclick="loadDrawing(8); window.scrollTo(0,0);">Ocho</a>
+<a onclick="loadDrawing(9); window.scrollTo(0,0);">Robot vaquero</a></p>
 <h2 id="formalización-del-problema">“Formalización” del problema</h2>
 <p>Creo que la forma más sencilla de modelizar este problema es, una vez
 más, con grafos. Consideremos el grafo cuyos vértices son las distintas
@@ -109,10 +110,7 @@ class="math inline">\(G\)</span> coloreado según <span
 class="math inline">\(c\)</span>. Denotaremos a este número como <span
 class="math inline">\(r(G,c)\)</span> o simplemente <span
 class="math inline">\(r(G)\)</span>, obviando la coloración (classic
-maths).</p>
-<p>A partir de ahora voy a asumir que el grafo es conexo sin perder
-generalidad, ya que <span class="math inline">\(r(G_1 + G_2) = r(G_1) +
-r(G_2)\)</span>.</p>
+maths). Voy a considerar siempre grafos conexos.</p>
 <h2 id="cotas-inferiores">Cotas inferiores</h2>
 <p>Una primera observación es que si tenemos <span
 class="math inline">\(n\)</span> colores, vamos a necesitar al menos
@@ -207,8 +205,11 @@ cosas?</li>
 diámetro <span class="math inline">\(2\)</span> de <span
 class="math inline">\(G\)</span>, el radio de <span
 class="math inline">\(G\)</span> decrece a lo sumo en <span
-class="math inline">\(1\)</span>. No sé si este resultado se puede
-generalizar…</li>
+class="math inline">\(1\)</span>. La prueba se puede generalizar para
+mostrar que, tras identificar un subgrafo de diámetro <span
+class="math inline">\(d\)</span>, el radio de <span
+class="math inline">\(G\)</span> decrece a lo sumo en <span
+class="math inline">\(d-1\)</span>.</li>
 <li>He estudiado este problema en todo momento sin usar que hablo de
 grafos planos. No sé si hay alguna propiedad de esta familia como el
 Teorema de los 4 colores que pueda usarse para resolver el problema u
