@@ -104,11 +104,13 @@ Lo que más me gusta de este juego es que la solución en grafos es bastante nat
 
 Q.E.D.
 
+## Notas
+
 Algunas notas finales (principalmente para Luis y Bea):
 
+- EDIT: parece que esto existe ya, me cago en la leche. Recibe el nombre de "[Generalized geography](https://en.wikipedia.org/wiki/Generalized_geography)" y creo que el Teorema aparece por primera vez [aquí](https://www.sciencedirect.com/science/article/pii/030439759390026P?via%3Dihub).
 - Lo que he llamado "partición en parejas de vértices adyacentes" es el concepto de [apareamiento](https://es.wikipedia.org/wiki/Apareamiento_(teor%C3%ADa_de_grafos)) (matching en inglés). Con este lenguaje, el teorema se puede reformular como "2 gana si y solo si G admite un apareamiento perfecto".
 - Calcular el [NIM value](https://es.wikipedia.org/wiki/Teorema_de_Sprague-Grundy) de un grafo cualquiera parece una tarea un poco difícil (escríbeme si lo consigues o si lo intentas).
-- No me parecería raro que alguien haya considerado ya este juego antes. Yo al menos lo desconozco (escríbeme por favor si sabes algo al respecto).
 
 <div>
 
