@@ -82,6 +82,11 @@ En particular,
 se rellena de forma óptima con $6$ rellenamientos, pues es su radio.
 
 ## Notas
+- EDIT: parece que esto ya existe bajo el nombre de "Free-Flood it" (problemas similares reciben el nombre de "Flood it games").
+<a onclick="loadDrawing(10); window.scrollTo(0, 0);">Esta</a>
+fue mi cara al descubrirlo. Además de la cota del radio y el caso de 2 colores, está probado que el $r(G)$ es igual al mínimo de entre los $r(T)$ tal que $T$ es un árbol generador de $G$. Véase
+<a href="https://link.springer.com/chapter/10.1007/978-3-319-98355-4_20">este</a>
+survey por ejemplo.
 - La cota del teorema solo tiene en cuenta la estructura del grafo y no cómo está coloreado. ¿Hay alguna forma de dar una cota que aúne ambas cosas?
 - La cota dada por el teorema dice que tras identificar un subgrafo de diámetro $2$ de $G$, el radio de $G$ decrece a lo sumo en $1$. La prueba se puede generalizar para mostrar que, tras identificar un subgrafo de diámetro $d$, el radio de $G$ decrece a lo sumo en  $d-1$.
 - He estudiado este problema en todo momento sin usar que hablo de grafos planos. No sé si hay alguna propiedad de esta familia como el Teorema de los 4 colores que pueda usarse para resolver el problema u obtener mejores cotas.
