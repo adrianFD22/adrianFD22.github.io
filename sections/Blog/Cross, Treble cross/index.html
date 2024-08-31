@@ -38,6 +38,8 @@
 <div id="container">
 <h1 id="cross-treble-cross">Cross, Treble Cross</h1>
 <style>
+    a { text-decoration: underline; }
+
     #board {
         display: block;
         margin: auto;
@@ -69,7 +71,7 @@ No furula en este navegador.
 <label>Tamaño</label>
 </td>
 <td>
-<input style="width: 3em" id="n_squares" type="number" min="1" max="30" value=15>
+<input style="width: 3em" id="n_squares" type="number" min="1" max="30" value=14>
 </td>
 </tr>
 <tr>
@@ -81,6 +83,25 @@ Generar tablero
 </td>
 </tr>
 </table>
+<h2 id="un-poco-de-estrategia">Un poco de estrategia</h2>
+<p>Hay movimientos que significan perder inmediatamente. Si dibujamos
+una cruz pegada a otra, en el turno siguiente nuestro oponente hará 3 en
+raya. Lo mismo pasa con dibujar una cruz dejando solo una casilla de
+separación con la más próxima, pues nuestro oponente jugará entre ambas
+y ganará. De esta forma, podemos pensar que cada cruz “bloquea” las
+casillas que se encuentran a 1 ó 2 de distancia, pues suponen perder
+inmediatamente. El juego se convierte así en uno de ir eliminando
+casillas hasta que no quede ninguna (juega en la interfaz
+<a id="switch_button" onclick="switchMode(this); window.scrollTo(0,0);">pro</a>).</p>
+<p>Con este enfoque, podemos ver que el primer jugador siempre se puede
+llevar la victoria cuando juega en un tablero impar. Esto es porque
+puede empezar jugando en el centro, lo que dividirá el tablero en dos
+tableros iguales más pequeñitos. De esta forma, por cada movimiento que
+haga su oponente en un tablero, este podrá responder jugando el mismo
+movimiento pero en el tablero opuesto. Esta estrategia de jugar en
+“espejo” es muy habitual en este tipo de juegos.</p>
+<p>Hasta donde yo sé, no se conoce una estrategia ganadora para un
+tablero par 🤷‍♂️.</p>
 <h2 id="notas">Notas</h2>
 <ul>
 <li>Este juego se llama <a
@@ -98,10 +119,8 @@ juego es periódico o no. Algunos (muchos) valores de su sucesión de NIM
 están calculados en las <a
 href="http://wwwhomes.uni-bielefeld.de/achim/octal.html">tablas de
 juegos octales</a> de Achim Flammenkamp.</li>
-<li>Notar que <a
-href="http://gamescrafters.berkeley.edu/games.php?game=dawsonschess">Dawson’s
-chess</a> en modo misère es el mismo juego que Treblecross (en modo
-normal).</li>
+<li>Por si quieres <a onclick="nimMode(); window.scrollTo(0,0);">ver</a>
+los nim values mientras juegas.</li>
 </ul>
 <script src="007.js"></script>
 </div>
