@@ -160,6 +160,40 @@ function nimMode() {
     draw();
 }
 
+function computePlays() {
+    n = parseInt(document.getElementById("count_input").value);
+    plays = nPlays(n);
+
+    document.getElementById("min_plays").innerHTML = Math.ceil(n/5);
+    document.getElementById("max_plays").innerHTML = Math.ceil(n/3);
+    document.getElementById("count_res").innerHTML = plays;
+}
+
+function nPlays(n) {
+    switch (n) {
+        case 0:
+            return 1;
+        case 1:
+            return 1;
+        case 2:
+            return 2;
+        case 3:
+            return 3;
+        case 4:
+            return 3;
+    }
+
+    last_values = [1,1,2,3,3]
+    n_plays = 0;
+
+    for (let curr_n=5; curr_n<=n; curr_n++) {
+        n_plays = last_values[0] + last_values[1] + last_values[2];
+        last_values.shift();
+        last_values.push(n_plays)
+    }
+
+    return last_values[3];
+}
 
 //---------------------
 //        Main
@@ -179,6 +213,7 @@ const ctx = canvas.getContext("2d");
 
 generateBoard();
 draw();
+computePlays();
 
 canvas.addEventListener('mousedown', function(e) {
     handleClick(e);
