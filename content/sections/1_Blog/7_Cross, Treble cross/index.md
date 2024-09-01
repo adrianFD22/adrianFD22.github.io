@@ -19,7 +19,6 @@
         background-color: gray;
     }
 
-
     #data-table td {
         width: 20px;
         text-align: right;

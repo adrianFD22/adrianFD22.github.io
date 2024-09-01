@@ -134,7 +134,7 @@ compile_post() {
         echo "</div>"
         } >> "$file_html"
 
-        pandoc "${pandoc_flags[@]}" "--highlight-style=zenburn" -s --template="resources/default.html5" --metadata "title:$title" -c "${depth}../resources/style.css" -f markdown -t html "$file_html" -o "$file_html"
+        pandoc "${pandoc_flags[@]}" "--highlight-style=zenburn" -s --template="resources/default.html5" --metadata "title:$title" -c "${depth}../resources/style.css" -f markdown -t html "$file_html" -o "$file_html" &
         rm "$curr_file"
     fi
 }
@@ -174,6 +174,8 @@ for curr_file in $(ls -1d content_tmp/sections/*); do
     echo "Compiling ${curr_file#content_tmp/sections/}..."
     compile_post "$curr_file"
 done
+
+wait    # Wait for all the pandoc compilations before proceeding
 
 # Clean after building
 for curr_file in $(ls -1d content_tmp/*); do
