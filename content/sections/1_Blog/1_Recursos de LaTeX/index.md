@@ -48,6 +48,12 @@ También podemos tener un script como [este](https://github.com/adrianFD22/dotfi
 
 ----
 
+### verb
+
+Yo suelo usar \verb para escribir código inline. Sin embargo, hay veces que no funciona. Siguiendo [esta](https://tex.stackexchange.com/questions/724170/error-using-verb-in-a-footnote-in-beamer) idea, podemos simplemente cambiar la fuente con \ttfamily como solución chapucera.
+
+----
+
 ### Beamer: quitar barra inferior
 ```tex
 \setbeamertemplate{navigation symbols}{}
