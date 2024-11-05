@@ -29,6 +29,9 @@
 ## Talks and posters
 
 2024
+:   Talk: *Distributed matrix multiplication using multivariate polynomials* at MatSI, IMAC and Singacom Day on Algebraic Applications to Information Theory.
+
+2024
 :   Talk: *Distributed matrix multiplication with straggler tolerance using algebraic function fields* at ISIT 2024.
 
 2024

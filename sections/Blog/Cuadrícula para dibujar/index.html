@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AFD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../../resources/style.css" />
+</head>
+<body>
+<ul id="navbar">
+<li>
+<a href="../../../index.html">Home</a>
+</li>
+<li>
+<a href="../../Blog/index.html">Blog</a>
+</li>
+<li>
+<a href="../../CV/index.html">CV</a>
+</li>
+</ul>
+<div id="container">
+<style>
+    a { text-decoration: underline; }
+
+    #board {
+        top: 1em;
+        display: block;
+        position: sticky;
+        margin: auto;
+        border-width: 4px;
+        border-style: solid;
+        border-color: gray;
+    }
+
+    table {
+        margin: 1.5em auto;
+        padding: 0.5em;
+        background-color: gray;
+    }
+</style>
+<h1 id="herramienta-para-pensar">Herramienta para pensar</h1>
+<!-- Board -->
+<!-- <div style="display: grid; grid-template-rows: auto; justify-items: center"> -->
+<canvas id="board">
+No furula en este navegador.
+</canvas>
+<table style>
+<tr>
+<td>
+<label>Filas</label>
+</td>
+<td>
+<input style="width: 3em" id="n_rows" type="number" min="1" max="10" value=4><br>
+</td>
+</tr>
+<tr>
+<td>
+<label>Columnas</label>
+</td>
+<td>
+<input style="width: 3em" id="n_cols" type="number" min="1" max="10" value=5>
+</td>
+</tr>
+<tr>
+<td>
+<button type="button" onclick="generateBoard(); drawBoard();">
+Generar tablero
+</button>
+<br>
+</td>
+</tr>
+</table>
+<!-- </div> -->
+<p>Disponible en los colores
+<a onclick="changeColor('black', 'white', 'gray'); drawBoard()">blanco/negro</a>,
+<a onclick="changeColor('#007fd7', '#de0606', '#3f3f3f'); drawBoard()">espiderman</a>
+y, por tiempo limitado, en color
+<a onclick="changeColor('#1d8c84', '#c5e2df', 'gray'); drawBoard()">BYMAT</a>!</p>
+<script src="herramientas.js"></script>
+</div>
+</body>
+</html>

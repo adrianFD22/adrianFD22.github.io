@@ -154,7 +154,7 @@ Como es gratis, adjunto una tabla con algunos de estos números calculados y un 
 
 ## Notas
 - Este juego se llama [Treblecross](https://en.wikipedia.org/wiki/Treblecross) y es del capítulo "Take and break" de [Winning Ways for your Mathematical Plays](https://es.wikipedia.org/wiki/Winning_Ways_for_your_Mathematical_Plays). Su notación [octal](https://es.wikipedia.org/wiki/Juego_octal) es 007 (ver esta [explicación](https://math.stackexchange.com/questions/4283174/why-do-we-say-treblecross-octal-game-notation-is-007)). Este juego no aparece en ninguna película de James Bond, al menos que yo sepa.
-- En el momento de escribir esto, agosto de 2024, no se conoce si este juego es periódico o no. Algunos (muchos) valores de su sucesión de NIM están calculados en las [tablas de juegos octales](http://wwwhomes.uni-bielefeld.de/achim/octal.html) de Achim Flammenkamp.
+- En el momento de escribir esto, agosto de 2024, no se conoce si este juego es periódico o no (Siegel, Capítulo 4: Juegos imparciales. Tras el Teorema de periodicidad octal, sección sobre juegos de monedas). Algunos (muchos) valores de su sucesión de NIM están calculados en las [tablas de juegos octales](http://wwwhomes.uni-bielefeld.de/achim/octal.html) de Achim Flammenkamp.
 - Por si quieres
 <a onclick="nimMode(); window.scrollTo(0,0);">ver</a>
 los nim values mientras juegas.

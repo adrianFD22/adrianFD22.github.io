@@ -60,3 +60,7 @@ vaina. Adjunto tablas con tabletas de chocolate y sus movimientos ganadores (sol
 El código con el que se han generado estos pdfs está en este [repositorio](https://github.com/adrianFD22/chocolate).
 
 <script src="chocolate.js"></script>
+
+## Notas
+- En el chocolate infinito (la tableta es omega por omega) hay exactamente tres movimientos ganadores.
+- ¿Cuál es la interpretación en términos de juegos del producto de Norton (el producto más simple que convierte al grupo de los NIM values en un cuerpo)? Ver A. Siegel, Combinatorial game theory, Ch. 5: NIM arithmetic, por ejemplo. ¿Se puede aplicar para estudiar este juego viéndolo como producto de NIMs?
