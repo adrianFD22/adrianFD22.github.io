@@ -4,10 +4,11 @@
 //---------------------
 
 function generateBoard() {
-    n_rows = document.getElementById("n_rows").value
-    n_cols = document.getElementById("n_cols").value
+    n_rows = document.getElementById("n_rows").value;
+    n_cols = document.getElementById("n_cols").value;
 
-    board = []
+    board = [];
+    n_sel = 0;
 
     for (let row = 0; row < n_rows; row++) {
         board.push([]);
@@ -50,6 +51,9 @@ function drawBoard() {
         ctx.lineTo(col*square_size, n_rows*square_size);
     }
     ctx.stroke();
+
+    // Print number of selected squares
+    document.getElementById("n_sel").innerHTML = n_sel.toString() +  " + " + (n_rows*n_cols - n_sel).toString() + " = " + (n_rows*n_cols).toString();
 }
 
 // When square is clicked, flip the corresponding colors
@@ -62,7 +66,15 @@ function flipColors(canvas, event) {
     sel_col = Math.floor(x / square_size);
 
     if (sel_row < n_rows && sel_col < n_cols ) {
-        board[sel_row][sel_col] = (board[sel_row][sel_col] + 1) % 2;
+        if (board[sel_row][sel_col] == 0) {
+            board[sel_row][sel_col] = 1;
+            n_sel = n_sel + 1;
+        }
+        else {
+            board[sel_row][sel_col] = 0;
+            n_sel = n_sel - 1;
+        }
+        //board[sel_row][sel_col] = (board[sel_row][sel_col] + 1) % 2;
     }
 }
 
@@ -80,6 +92,8 @@ function changeColor(new_color0, new_color1, new_color_border) {
 let n_rows;
 let n_cols;
 const size = 400;
+
+let n_sel;
 
 let color0 = "black";
 let color1 = "white";

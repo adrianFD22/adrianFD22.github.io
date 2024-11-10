@@ -5,13 +5,15 @@
     #board {
         top: 1em;
         display: block;
-        position: sticky;
         margin: auto;
         border-width: 4px;
         border-style: solid;
         border-color: gray;
     }
 
+    #n_sel {
+        text-align: center;
+    }
     table {
         margin: 1.5em auto;
         padding: 0.5em;
@@ -27,6 +29,9 @@
 <canvas id="board">
     No furula en este navegador.
 </canvas>
+
+<h3 id="n_sel"></h3>
+<h3 id="n_sel"></h3>
 
 <table style="">
     <tr>
@@ -46,6 +51,8 @@
 Disponible en los colores
 <a onclick="changeColor('black', 'white', 'gray'); drawBoard()">blanco/negro</a>,
 <a onclick="changeColor('#007fd7', '#de0606', '#3f3f3f'); drawBoard()">espiderman</a> y, por tiempo limitado, en color
-<a onclick="changeColor('#1d8c84', '#c5e2df', 'gray'); drawBoard()">BYMAT</a>!
+<a onclick="changeColor('#1d8c84', '#c5e2df', 'black'); drawBoard()">BYMAT</a>!
+
+Gracias a Rodrigo por sus consejos sobre la interfaz.
 
 <script src="herramientas.js"></script>
