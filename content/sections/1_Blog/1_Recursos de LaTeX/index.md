@@ -37,14 +37,16 @@ Como curiosidad esteganográfica, si escribes algo después de \end{document}, e
 ----
 
 ### latexdiff
-[latexdiff](https://github.com/ftilmann/latexdiff) es un script de perl que hace lo siguiente: dadas dos versiones del mismo tex, genera otro tex que, al compilarlo, muestra los cambios entre ambas versiones. Puede usarse de forma fácil en overleaf: [link](https://www.overleaf.com/learn/latex/Articles/How_to_use_latexdiff_on_Overleaf).
+[latexdiff](https://github.com/ftilmann/latexdiff) es un script de perl que hace lo siguiente: dadas dos versiones del mismo tex, genera otro tex que, al compilarlo, muestra los cambios entre ambas versiones.
 
-Por defecto muestra el texto antiguo en tachado en rojo y el nuevo subrayado en azul. Esto se puede sobreescribir redefiniendo los comandos que generan el texto al principio del tex producido por latexdiff. Por ejemplo, para que solo aparezca el texto nuevo en azul escribimos:
+Puede usarse de forma fácil en overleaf: [link](https://www.overleaf.com/learn/latex/Articles/How_to_use_latexdiff_on_Overleaf). Si queremos un poco más de personalización con esta opción, creo que lo mejor es usar un [preámbulo personalizado](https://tex.stackexchange.com/questions/251224/only-highlighting-new-parts-added).
+
+Por defecto, latexdiff muestra el texto antiguo en tachado en rojo y el nuevo subrayado en azul. Esto se puede sobreescribir redefiniendo los comandos que generan el texto al principio del tex producido por latexdiff. Por ejemplo, para que solo aparezca el texto nuevo en azul escribimos:
 ```tex
 \providecommand{\DIFdel}[1]{}
 \providecommand{\DIFadd}[1]{{\color{blue}#1}}
 ```
-También podemos tener un script como [este](https://github.com/adrianFD22/dotfiles/blob/main/.local/bin/scripts/latexdiff) para agilizar el proceso y compilar directamente el tex generado por latexdiff.
+También podemos tener un script como [este](https://github.com/adrianFD22/dotfiles/blob/main/.local/bin/scripts/latexdiff) si lo usamos en local para agilizar el proceso y compilar directamente el tex generado por latexdiff.
 
 ----
 
