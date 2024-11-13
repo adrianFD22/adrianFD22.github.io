@@ -80,6 +80,8 @@
 <a onclick="init_given_graph(petersen); window.scrollTo(0, 0);">Petersen</a>
 <a onclick="init_given_graph(sobre); window.scrollTo(0, 0);">Sobre</a>
 <a onclick="init_given_graph(star); window.scrollTo(0, 0);">Estrella</a>
+<a onclick="init_given_graph(dodecaedron); window.scrollTo(0, 0);">Dodecaedron</a>
+<a onclick="init_given_graph(cube); window.scrollTo(0, 0);">Cube</a>
 <a onclick="init_given_graph(graph1); window.scrollTo(0, 0);">IraIACOCG</a>
 
 <script src="grafos.js"></script>
