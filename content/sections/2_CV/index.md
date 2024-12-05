@@ -52,6 +52,9 @@
 ## Publications
 
 2024
+:   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance over very small fields. Preprint: <https://arxiv.org/abs/2411.19065>.
+
+2024
 :   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance using algebraic function fields. Preprint: <https://doi.org/10.48550/arXiv.2401.13573>.
 
 ## Organizing
