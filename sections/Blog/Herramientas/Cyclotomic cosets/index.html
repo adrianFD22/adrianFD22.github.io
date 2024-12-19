@@ -21,33 +21,55 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../../resources/style.css" />
+  <link rel="stylesheet" href="../../../../resources/style.css" />
 </head>
 <body>
 <ul id="navbar">
 <li>
-<a href="../../../index.html">Home</a>
+<a href="../../../../index.html">Home</a>
 </li>
 <li>
-<a href="../../Blog/index.html">Blog</a>
+<a href="../../../Blog/index.html">Blog</a>
 </li>
 <li>
-<a href="../../CV/index.html">CV</a>
+<a href="../../../CV/index.html">CV</a>
 </li>
 </ul>
 <div id="container">
-<h1 id="blogherramientas">Blog/Herramientas</h1>
-<ul id="list_dirs">
-<li>
-<a href="Grafos/index.html">Grafos</a>
-</li>
-<li>
-<a href="Cyclotomic cosets/index.html">Cyclotomic cosets</a>
-</li>
-<li>
-<a href="Cuadrícula/index.html">Cuadrícula</a>
-</li>
-</ul>
+
+<h1 id="cyclotomic-cosets">Cyclotomic cosets</h1>
+<p>Dedicated to Seyma!</p>
+<table>
+<tr>
+<td style="color: var(--text-color1)">
+p =
+</td>
+<td>
+<input style="width: 5em" id="input_p" type="number" min="0" value=2>
+</td>
+</tr>
+<tr>
+<td style="color: var(--text-color1)">
+n =
+</td>
+<td>
+<input style="width: 5em" id="input_n" type="number" min="0" value=4>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+<button type="button" onclick="show_cosets()">
+Compute
+</button>
+<br>
+</td>
+</tr>
+<table>
+<p id="cosets">
+</p>
+<script src="cyclo.js"></script>
 </div>
 </body>
 </html>

@@ -29,6 +29,9 @@
 ## Talks and posters
 
 2024
+:   Talk: *Multiplicación distribuida de matrices mediante cuerpos de funciones algebraicas* at SINGACOM Seminar.
+
+2024
 :   Talk: *Distributed matrix multiplication using multivariate polynomials* at MatSI, IMAC and Singacom Day on Algebraic Applications to Information Theory.
 
 2024
@@ -52,7 +55,7 @@
 ## Publications
 
 2024
-:   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance over very small fields. Preprint: <https://arxiv.org/abs/2411.19065>.
+:   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance over very small fields. IEEE transactions on Information theory, <https://ieeexplore.ieee.org/document/10786350>.
 
 2024
 :   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance using algebraic function fields. Preprint: <https://doi.org/10.48550/arXiv.2401.13573>.
