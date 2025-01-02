@@ -21,36 +21,27 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../../resources/style.css" />
+  <link rel="stylesheet" href="../../../../resources/style.css" />
 </head>
 <body>
 <ul id="navbar">
 <li>
-<a href="../../../index.html">Home</a>
+<a href="../../../../index.html">Home</a>
 </li>
 <li>
-<a href="../../Blog/index.html">Blog</a>
+<a href="../../../Blog/index.html">Blog</a>
 </li>
 <li>
-<a href="../../CV/index.html">CV</a>
+<a href="../../../CV/index.html">CV</a>
 </li>
 </ul>
 <div id="container">
-<h1 id="blogherramientas">Blog/Herramientas</h1>
-<ul id="list_dirs">
-<li>
-<a href="Semigrupos numéricos/index.html">Semigrupos numéricos</a>
-</li>
-<li>
-<a href="Grafos/index.html">Grafos</a>
-</li>
-<li>
-<a href="Cyclotomic cosets/index.html">Cyclotomic cosets</a>
-</li>
-<li>
-<a href="Cuadrícula/index.html">Cuadrícula</a>
-</li>
-</ul>
+<h1 id="semigrupos-numéricos">Semigrupos numéricos</h1>
+<p><input type="text" id="generators" value="5,7,11"/>
+<button type="button" onclick="compute_semigroup()">Calcular</button></p>
+<p id="semigroup_invariants">
+</p>
+<script src="semnum.js"></script>
 </div>
 </body>
 </html>
