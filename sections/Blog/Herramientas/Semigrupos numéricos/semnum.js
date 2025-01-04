@@ -36,6 +36,7 @@ function compute_apery() {
 
     apery = Array(generators[0]).fill(Infinity);
     apery[0] = 0;
+
     minimal_generators = [generators[0]];
 
     for (let i=1; i<generators.length; i++) {
@@ -47,13 +48,13 @@ function compute_apery() {
             for (let q=0; q<generators[0]; q++) {
                 curr_i = q % d;
                 if (curr_i == r) {
-                    curr_n = apery[curr_i];
+                    curr_n = apery[q];
                     if (curr_n < n) { n = curr_n; }
                 }
             }
 
             if (n != Infinity) {
-                for (let j=0; j<generators[0]/d; j++) {
+                for (let j=0; j<generators[0]/d-1; j++) {
                     n = n + generators[i];
                     p = n % generators[0];
 
@@ -151,7 +152,6 @@ function compute_semigroup() {
     }
 
     // Compute
-    console.log(generators);
     if (gcd_list(generators) != 1) {
         document.getElementById("semigroup_invariants").innerHTML = "ERROR: el máximo común no es 1";
         return;
@@ -164,7 +164,7 @@ function compute_semigroup() {
     semigroup_invariants = "<br>";
     semigroup_invariants += "S=<" + minimal_generators.toString() + ">";
     semigroup_invariants += "={" + nongaps.toString() + "," + (frobenius+1).toString() + ",...}" + "<br>";
-    //semigroup_invariants += "<br>";
+    semigroup_invariants += "<br>";
 
     semigroup_invariants += "gaps={" + gaps.toString() + "}" + "<br>";
     semigroup_invariants += "<br>";
