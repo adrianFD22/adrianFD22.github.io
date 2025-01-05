@@ -76,38 +76,47 @@ function compute_apery() {
 function compute_invariants() {
     frobenius = Math.max(...apery) - minimal_generators[0];
 
-    // Compute gaps and nontrivial elements
+    // Compute gaps, nontrivial elements and fundamental gaps
     gaps = [];
+    fundamental_gaps = [];
     nongaps = [];
     graphic_representation = "";
 
     for (let x=0; x<=frobenius; x++) {
-        if (belongs_to_semigroup(x)) {
+        if (belongs_to_semigroup(x) ) {
             nongaps.push(x);
             graphic_representation += "▗";
         }
         else {
             gaps.push(x);
             graphic_representation += ".";
+
+            if (belongs_to_semigroup(2*x) && belongs_to_semigroup(3*x)) {
+                fundamental_gaps.push(x)
+            }
         }
     }
     graphic_representation += "▗";
 
-    // Compute pseudofrobenius
+    // Compute pseudofrobenius and special gaps
+    // These computations maybe can be implemented more efficiently
+    //    using an alternative definition of special gaps and merged
+    //    in the upper loop computing gaps.
     let curr_pseudo;
     let is_pseudo;
 
     let apery_sorted = [...apery].sort((a,b) => a-b).map(x => {return x - minimal_generators[0]});
 
     pseudofrobenius = [];
+    special_gaps = [];
 
     for (let i=apery_sorted.length-1; 0<i; i--) {
         curr_pseudo = apery_sorted[i];
 
-        if (minimal_generators.includes(curr_pseudo)) {
-            pseudofrobenius.push(curr_pseudo);
-        } else {
-            is_pseudo = true;
+        is_pseudo = true;
+
+        // Check if curr_pseudo is a maximal of the apery set. If is minimal generator, skip because it is trivially
+        if (! minimal_generators.includes(curr_pseudo)) {
             for (let j=0; j<pseudofrobenius.length; j++) {
                 if (belongs_to_semigroup(pseudofrobenius[j] - curr_pseudo)) {
                     is_pseudo = false;
@@ -115,11 +124,19 @@ function compute_invariants() {
                 }
             }
 
-            if (is_pseudo) {
-                pseudofrobenius.push(curr_pseudo);
+        }
+
+        if (is_pseudo) {
+            pseudofrobenius.push(curr_pseudo);
+
+            if (belongs_to_semigroup(2*curr_pseudo)) {
+                special_gaps.push(curr_pseudo);
             }
         }
     }
+
+    pseudofrobenius.reverse();
+    special_gaps.reverse();
 }
 
 function belongs_to_semigroup(x) {
@@ -136,7 +153,7 @@ let minimal_generators;
 let apery;
 let semigroup_invariants;
 let frobenius;
-let gaps;
+let gaps, fundamental_gaps, special_gaps;
 let nongaps;
 let graphic_representation;
 let pseudofrobenius;
@@ -182,7 +199,11 @@ function compute_semigroup() {
 
     semigroup_invariants += "Frobenius(S) = " + frobenius.toString() + "<br>";
     semigroup_invariants += "tipo(S) = " + pseudofrobenius.length.toString() + "<br>";
-    semigroup_invariants += "pseudofrobenius(S) = {" + pseudofrobenius.toString() + "}" + "<br>";
+    semigroup_invariants += "pseudofrobenius(S)={" + pseudofrobenius.toString() + "}" + "<br>";
+    semigroup_invariants += "<br>";
+
+    semigroup_invariants += "fundamental_gaps={" + fundamental_gaps.toString() + "}" + "<br>";
+    semigroup_invariants += "special_gaps={" + special_gaps.toString() + "}" + "<br>";
     semigroup_invariants += "<br>";
 
     semigroup_invariants += "Apéry(S," + generators[0].toString() + ")={" + apery.toString() + "}";
