@@ -99,6 +99,9 @@ function compute_invariants() {
     graphic_representation += "▗";
 
     // Compute pseudofrobenius and special gaps
+    // These computations maybe can be implemented more efficiently
+    //    using an alternative definition of special gaps and merged
+    //    in the upper loop computing gaps.
     let curr_pseudo;
     let is_pseudo;
 

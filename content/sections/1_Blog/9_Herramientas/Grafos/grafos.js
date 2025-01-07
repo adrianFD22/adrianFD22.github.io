@@ -1,9 +1,9 @@
 
 // Parameters
-vertex_size   = 30;
-canvas_height = 500;
-canvas_width  = 500;
-click_radius  = 2*vertex_size/3;
+let vertex_size   = 30;
+let canvas_height = 500;
+let canvas_width  = 500;
+let click_radius  = 2*vertex_size/3;
 
 //---------------------
 //      Functions
@@ -72,12 +72,7 @@ function draw_graph() {
 
         ctx.beginPath();
 
-        if ( active_list[i] == 0 ) {   // If vertex is activated
-            ctx.fillStyle = "red";
-        }
-        else {                      // If vertex is not activated
-            ctx.fillStyle = "blue";
-        }
+        ctx.fillStyle = colors[active_list[i]];
 
         ctx.arc(coordinates[i][0], coordinates[i][1], vertex_size/2, 0, 2 * Math.PI, true);
         ctx.fill();
@@ -315,10 +310,10 @@ function init_grid(n) {
 //       Main
 //---------------------
 
-mode              = 0;
-vertex_is_sel     = -1;
-sel_remove_vertex = 0;
-n_active = 0
+let mode              = 0;
+let vertex_is_sel     = -1;
+let sel_remove_vertex = 0;
+const colors = ["red", "blue", "green", "yellow"];
 
 // Initialize
 init_path(5);
@@ -329,14 +324,7 @@ canvas.addEventListener('mousedown', async function(e) {
 
     // If mode is playing and selected vertex is valid
     if (mode == 0 && sel_vertex.length != 2) {
-        if (active_list[sel_vertex] == 1) {
-            active_list[sel_vertex] = 0;
-            n_active--;
-        }
-        else {
-            active_list[sel_vertex] = 1;
-            n_active++;
-        }
+        active_list[sel_vertex] = (active_list[sel_vertex] + 1) % colors.length;
         draw_graph();
     }
 

@@ -23,7 +23,7 @@
     }
 </style>
 
-# Herramienta (grafos)
+# Herramienta (grafos) 🟥🟦🟩🟨
 
 
 <!-- Board -->
