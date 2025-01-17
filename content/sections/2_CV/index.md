@@ -28,6 +28,9 @@
 
 ## Talks and posters
 
+2025
+:   Talk: *Distributed matrix multiplication using multivariate polynomials* at RSME's 7th Congress of Young Researchers.
+
 2024
 :   Talk: *Multiplicación distribuida de matrices mediante cuerpos de funciones algebraicas* at SINGACOM Seminar.
 
