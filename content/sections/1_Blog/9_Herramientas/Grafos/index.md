@@ -48,6 +48,10 @@
     <tr>
         <td> <button type="button" onclick="remove_graph(); draw_graph()">Borrar grafo</button> </td>
     </tr>
+    <tr>
+        <td> Número de colores: <td>
+        <td> <input style="width: 3em" id="n_colors" type="number" min="2" max="4" value=1> </td>
+    </tr>
 </table>
 </div>
 

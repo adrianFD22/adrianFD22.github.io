@@ -111,11 +111,18 @@ function switch_mode() {
         button_mode.innerHTML = "Editar";
         play_buttons.style.display = "block";
         edit_buttons.style.display = "none";
+
+        // Get number of colors to cycle
+        n_colors_button = document.getElementById("n_colors");
+        n_colors = Math.min(n_colors_button.value, colors.length);  // Less than colors.length
+        n_colors = Math.max(n_colors, 2);                                               // More than 1
+
+        n_colors_button.value = n_colors;
     }
 
     // If mode is modifying
     else {
-        button_mode.innerHTML = "Jugar"
+        button_mode.innerHTML = "Jugar";
         play_buttons.style.display = "none";
         edit_buttons.style.display = "block";
 
@@ -314,6 +321,7 @@ let mode              = 0;
 let vertex_is_sel     = -1;
 let sel_remove_vertex = 0;
 const colors = ["red", "blue", "green", "yellow"];
+let n_colors = 2;
 
 // Initialize
 init_path(5);
@@ -324,7 +332,7 @@ canvas.addEventListener('mousedown', async function(e) {
 
     // If mode is playing and selected vertex is valid
     if (mode == 0 && sel_vertex.length != 2) {
-        active_list[sel_vertex] = (active_list[sel_vertex] + 1) % colors.length;
+        active_list[sel_vertex] = (active_list[sel_vertex] + 1) % n_colors;
         draw_graph();
     }
 
