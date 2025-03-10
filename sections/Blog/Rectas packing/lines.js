@@ -47,7 +47,7 @@ function drawBoard() {
         curr_line = lines_drawing[i];
 
         if (lines_intersecting[i] == 1) {
-            ctx.strokeStyle = "red";
+            ctx.strokeStyle = "#cc241d";
         }
         else {
             ctx.strokeStyle = "yellow";

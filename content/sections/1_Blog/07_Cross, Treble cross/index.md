@@ -158,8 +158,8 @@ Como es gratis, adjunto una tabla con algunos de estos números calculados y un 
 - Por si quieres
 <a onclick="nimMode(); window.scrollTo(0,0);">ver</a>
 los nim values mientras juegas.
-- Queda pendiente ver si se puede aplicar la técnica ninja de las funciones generatrices para dar una fórmula cerrada del número de partidas, el cuál genera
-<a href="https://oeis.org/A017818">esta</a>
-sucesión.
+- EDIT: para obtener una fórmula no recursiva del número de partidas puede considerarse estudiar las raíces del polinomio característico ([wikipedia](https://en.wikipedia.org/wiki/Recurrence_relation)). Gracias a Alberto por esta observación.
+- La sucesión $t_n$ del número de partidas es
+<a href="https://oeis.org/A017818">esta</a>.
 
 <script src="007.js"></script>

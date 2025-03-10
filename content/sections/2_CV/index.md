@@ -21,12 +21,18 @@
 
 ## Teaching
 
+2024-2025
+:   Problem sessions: Using Sagemath.
+
 2023-2024
-:   Problem sessions: Fundamentals of mathematics.
+:   Problem sessions: Using Maple.
 :   Problem sessions: Coding theory and cryptography.
 :   Problem sessions: Cryptography.
 
 ## Talks and posters
+
+2025
+:   Talk: *Distributed matrix multiplication using multivariate polynomials* at Error-correcting codes and combinatorial structures workshop.
 
 2025
 :   Talk: *Distributed matrix multiplication using multivariate polynomials* at RSME's 7th Congress of Young Researchers.

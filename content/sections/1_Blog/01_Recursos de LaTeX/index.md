@@ -61,6 +61,36 @@ Yo suelo usar \verb para escribir código inline. Sin embargo, hay veces que no 
 \setbeamertemplate{navigation symbols}{}
 ```
 
+Como sigo viendo a la gente poniendo la barrita, igual lo que quieren realmente es ponerla aunque no se use nunca jamás de los jamases jamás. Si es así, entiendo que cuantas más barritas mejor. Para escribir n barritas, añade esto en el preámbulo.
+```tex
+% https://tex.stackexchange.com/questions/167648/beamer-navigation-symbols-inside-footline
+\setbeamertemplate{navigation symbols}{}
+\addtobeamertemplate{footline}{
+    \leavevmode
+    \hbox{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.75ex,dp=.5ex,right,rightskip=1em]{mycolor}
+        \usebeamercolor[fg]{navigation symbols}
+
+        \newcount\n
+        \n=5
+
+        \loop
+        \insertslidenavigationsymbol
+        \insertframenavigationsymbol
+        \insertsubsectionnavigationsymbol
+        \insertsectionnavigationsymbol
+        \insertdocnavigationsymbol
+        \insertbackfindforwardnavigationsymbol
+
+        \advance \n by -1
+        \unless\ifnum \n<1
+        \repeat
+    \end{beamercolorbox}
+    }
+    \vskip0.5pt
+}{}
+```
+
 ----
 
 ### Beamer: superponer una imagen

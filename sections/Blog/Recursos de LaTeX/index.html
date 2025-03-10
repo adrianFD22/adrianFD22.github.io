@@ -174,15 +174,46 @@ chapucera.</p>
 <h3 id="beamer-quitar-barra-inferior">Beamer: quitar barra inferior</h3>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode tex"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\setbeamertemplate</span>{navigation symbols}{}</span></code></pre></div>
+<p>Como sigo viendo a la gente poniendo la barrita, igual lo que quieren
+realmente es ponerla aunque no se use nunca jamás de los jamases jamás.
+Si es así, entiendo que cuantas más barritas mejor. Para escribir n
+barritas, añade esto en el preámbulo.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">% https://tex.stackexchange.com/questions/167648/beamer-navigation-symbols-inside-footline</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\setbeamertemplate</span>{navigation symbols}{}</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\addtobeamertemplate</span>{footline}{</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\leavevmode</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\hbox</span>{</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\begin</span>{<span class="ex">beamercolorbox</span>}[wd=<span class="fu">\paperwidth</span>,ht=2.75ex,dp=.5ex,right,rightskip=1em]{mycolor}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\usebeamercolor</span>[fg]{navigation symbols}</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\newcount\n</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\n</span>=5</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\loop</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\insertslidenavigationsymbol</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\insertframenavigationsymbol</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\insertsubsectionnavigationsymbol</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\insertsectionnavigationsymbol</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\insertdocnavigationsymbol</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\insertbackfindforwardnavigationsymbol</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\advance</span> <span class="fu">\n</span> by -1</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\unless\ifnum</span> <span class="fu">\n</span>&lt;1</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\repeat</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\end</span>{<span class="ex">beamercolorbox</span>}</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\vskip</span>0.5pt</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>}{}</span></code></pre></div>
 <hr />
 <h3 id="beamer-superponer-una-imagen">Beamer: superponer una imagen</h3>
 <p>Un recurso que me gusta mucho es exponer un resultado y
 posteriormente resumirlo superponiendo una imagen. Para presentaciones
 más desenfadadas esta imagen es un meme.</p>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode tex"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Put</span>(#1,#2)#3{<span class="fu">\leavevmode\makebox</span>(0,0){<span class="fu">\put</span>(#1,#2){#3}}}</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\Put</span>(55,160){<span class="bu">\includegraphics</span>[scale=0.35]{<span class="ex">Images/meme1.jpg</span>}}</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Put</span>(#1,#2)#3{<span class="fu">\leavevmode\makebox</span>(0,0){<span class="fu">\put</span>(#1,#2){#3}}}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\Put</span>(55,160){<span class="bu">\includegraphics</span>[scale=0.35]{<span class="ex">Images/meme1.jpg</span>}}</span></code></pre></div>
 </div>
 </body>
 </html>
