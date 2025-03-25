@@ -1,4 +1,15 @@
 
+function gcd(a,b) {
+    let c;
+    while (b != 0) {
+        c = a
+        a = b;
+        b = c % b;
+    }
+
+    return a;
+}
+
 // Given p and n, compute the corresponding cyclotomic cosets.
 function get_cosets(p,n) {
     cosets = [];
@@ -26,6 +37,11 @@ function show_cosets() {
     // Get p and n
     p = parseInt(document.getElementById("input_p").value);
     n = parseInt(document.getElementById("input_n").value);
+
+    if (gcd(p,n) != 1) {
+        document.getElementById("cosets").innerHTML = "ERROR: greatest common divisor is not 1.";
+        return;
+    }
 
     // Compute cyclotomic cosets
     cosets = get_cosets(p, n);

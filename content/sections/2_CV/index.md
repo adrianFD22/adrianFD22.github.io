@@ -11,23 +11,51 @@
 ## Education
 
 2023-present
-:   PhD in Mathematics advised by Umberto Martínez-Peñas; University of Valladolid.
+:   PhD in Mathematics advised by Umberto Martínez-Peñas; Universidad de Valladolid.
 
 2021-2022
 :   Master's degree in Mathematical Research; Universitat de València.
 
 2017-2021
-:   Bachelor's degree in Computational Math; Universitat Jaume I.
+:   Bachelor's degree in Computational Mathematics; Universitat Jaume I.
+
+## Publications
+
+2024
+:   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance over very small fields. Preprint, <https://arxiv.org/abs/2411.19065>.
+
+2024
+:   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance using algebraic function fields. IEEE transactions on Information theory, <https://ieeexplore.ieee.org/document/10786350>.
+
+2024
+:   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication over small fields with straggler tolerance. EACA, Meetings on Computer Algebra and Applications, <https://eventos.ucm.es/104844/section/50597/eaca2024.html>.
+
+2024
+:   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance using algebraic function fields. IEEE International Symposium on Information Theory, <https://cmsworkshops.com/ISIT2024/view_paper.php?PaperNum=1629>.
+
 
 ## Teaching
 
 2024-2025
-:   Problem sessions: Using Sagemath.
+:   TA in Fundamentals of Mathematics: Using Sagemath. Responsibilities: lecturing once a week and preparing and grading HW assignments and exams.
+
+:   Supervision of Bachelor's thesis: Applications of the Borsuk-Ulam theorem.
+
+:   Supervision of Bachelor's thesis: An introduction to knot theory.
+
+:   Organizer of the reading group for Master and PhD students "Homological algebra". Responsabilities: lecturing once a month and preparing HW assignments.
 
 2023-2024
-:   Problem sessions: Using Maple.
-:   Problem sessions: Coding theory and cryptography.
-:   Problem sessions: Cryptography.
+:   TA in Fundamentals of Mathematics: Using Maple. Responsibilities: lecturing once a week and preparing and grading HW assignments and exams.
+
+:   TA in Coding theory and cryptography. Responsibilities: lecturing once a week and preparing and grading HW assignments.
+
+:   TA in Cryptography. Responsibilities: lecturing once a week and preparing and grading HW assignments.
+
+## Language skills
+    Spanish: native.
+    English: fluent.
+    French: basic.
 
 ## Talks and posters
 
@@ -61,15 +89,17 @@
 2023
 :   Poster: *Distributed matrix multiplication via algebraic-geometric codes* at Sixth EACA International School on Computer Algebra and its Applications.
 
-## Publications
 
-2024
-:   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance over very small fields. Preprint, <https://arxiv.org/abs/2411.19065>.
+## Monographs
 
-2024
-:   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance using algebraic function fields. IEEE transactions on Information theory, <https://ieeexplore.ieee.org/document/10786350>.
+2022
+: Curvas proyectivas monomiales aritméticamente Cohen-Macaulay y el problema del cambio de monedas. Master's thesis, supervised by Francisco Monserrat and Julio José Moyano-Fernández.
+
+2021
+:   Semigrupos numéricos supersimétricos. Bachelor's thesis, supervised by Julio José Moyano-Fernández. Available at <http://hdl.handle.net/10234/195547>.
 
 ## Organizing
+
 2024
 :   Member of the organizing committee of VI BYMAT conference.
 
@@ -80,3 +110,4 @@
 
 2017-2018
 :   Grant from Ministerio de Educación for high performance.
+
