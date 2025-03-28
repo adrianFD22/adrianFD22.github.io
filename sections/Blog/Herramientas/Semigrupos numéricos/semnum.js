@@ -75,28 +75,49 @@ function compute_apery() {
 
 function compute_invariants() {
     frobenius = Math.max(...apery) - minimal_generators[0];
+    let is_half = false;
 
     // Compute gaps, nontrivial elements and fundamental gaps
     gaps = [];
     fundamental_gaps = [];
     nongaps = [];
-    graphic_representation = "";
+    graphic_representation = [];
 
     for (let x=0; x<=frobenius; x++) {
         if (belongs_to_semigroup(x) ) {
             nongaps.push(x);
-            graphic_representation += "▗";
+            graphic_representation.push("<span class=\"fix-width\">▗</span>");
+            //graphic_representation.push("▗");
+            //graphic_representation.push("<mark class=\"nongap\";\">#</mark>");
         }
         else {
             gaps.push(x);
-            graphic_representation += ".";
+            graphic_representation.push("<span class=\"fix-width\">.</span>");
+            //graphic_representation.push(".");
 
             if (belongs_to_semigroup(2*x) && belongs_to_semigroup(3*x)) {
                 fundamental_gaps.push(x)
             }
         }
     }
-    graphic_representation += "▗";
+
+    let half_conductor = Math.ceil((frobenius+1)/2);
+    graphic_representation[half_conductor] = belongs_to_semigroup(half_conductor) ? "<mark class=\"fix-width\">H</mark>" : "H";
+
+    // Add linebreaks if frobenius and multiplicity are large
+    let n_digits_conductor = Math.floor(Math.log10(frobenius+1));
+    let curr_digits;
+    if (frobenius > 140 && minimal_generators[0] > 10) {
+        graphic_representation.unshift("&nbsp;".repeat(n_digits_conductor) + "0&nbsp;&nbsp;&nbsp;");
+        for (let x=1; minimal_generators[0]*x <= frobenius; x++) {
+            curr_digits = Math.floor(Math.log10(minimal_generators[0]*x));
+            graphic_representation.splice((minimal_generators[0]+2)*x-1, 0, "<br>", "&nbsp;".repeat(n_digits_conductor - curr_digits) + (minimal_generators[0]*x).toString() + "&nbsp;&nbsp;&nbsp;" );
+        }
+    }
+    //graphic_representation.push("<mark class=\"nongap\";\">x</mark>");
+    graphic_representation.push("▗");
+
+    graphic_representation = graphic_representation.join("");
 
     // Compute pseudofrobenius and special gaps
     // These computations maybe can be implemented more efficiently
@@ -179,15 +200,13 @@ function compute_semigroup() {
 
     // Show
     semigroup_invariants = "<br>";
-    semigroup_invariants += "S=<" + minimal_generators.toString() + ">";
-    semigroup_invariants += "={" + nongaps.toString() + "," + (frobenius+1).toString() + ",...}" + "<br>";
+    semigroup_invariants += "S = <" + minimal_generators.toString() + ">";
+    semigroup_invariants += " = {" + nongaps.toString() + "," + (frobenius+1).toString() + ",...}" + "<br>";
     semigroup_invariants += "<br>";
 
-    semigroup_invariants += "gaps={" + gaps.toString() + "}" + "<br>";
+    semigroup_invariants += "gaps = {" + gaps.toString() + "}" + "<br>";
     semigroup_invariants += "<br>";
 
-    semigroup_invariants += graphic_representation + "<br>";
-    semigroup_invariants += "<br>";
 
     semigroup_invariants += "embebimiento(S) = " + minimal_generators.length.toString() + "<br>";
     semigroup_invariants += "profundidad(S) = " + (Math.ceil((frobenius+1)/minimal_generators[0])) + "<br>";
@@ -199,17 +218,22 @@ function compute_semigroup() {
 
     semigroup_invariants += "Frobenius(S) = " + frobenius.toString() + "<br>";
     semigroup_invariants += "tipo(S) = " + pseudofrobenius.length.toString() + "<br>";
-    semigroup_invariants += "pseudofrobenius(S)={" + pseudofrobenius.toString() + "}" + "<br>";
+    semigroup_invariants += "pseudofrobenius(S) = {" + pseudofrobenius.toString() + "}" + "<br>";
     semigroup_invariants += "<br>";
 
-    semigroup_invariants += "fundamental_gaps={" + fundamental_gaps.toString() + "}" + "<br>";
-    semigroup_invariants += "special_gaps={" + special_gaps.toString() + "}" + "<br>";
+    semigroup_invariants += "fundamental_gaps = {" + fundamental_gaps.toString() + "}" + "<br>";
+    semigroup_invariants += "special_gaps = {" + special_gaps.toString() + "}" + "<br>";
     semigroup_invariants += "<br>";
 
-    semigroup_invariants += "Apéry(S," + generators[0].toString() + ")={" + apery.toString() + "}";
+    semigroup_invariants += "Apéry(S," + generators[0].toString() + ") = {" + apery.toString() + "}";
     semigroup_invariants += "<br>";
+    semigroup_invariants += "<br>";
+
+    //semigroup_invariants += graphic_representation + "<br>";
+    //semigroup_invariants += "<br>";
 
     semigroup_invariants += "";
 
     document.getElementById("semigroup_invariants").innerHTML = semigroup_invariants;
+    document.getElementById("semigroup_representation").innerHTML = graphic_representation;
 }
