@@ -75,28 +75,59 @@ function compute_apery() {
 
 function compute_invariants() {
     frobenius = Math.max(...apery) - minimal_generators[0];
+    let is_half = false;
 
     // Compute gaps, nontrivial elements and fundamental gaps
     gaps = [];
     fundamental_gaps = [];
     nongaps = [];
-    graphic_representation = "";
+    graphic_representation = [];
 
     for (let x=0; x<=frobenius; x++) {
         if (belongs_to_semigroup(x) ) {
             nongaps.push(x);
-            graphic_representation += "▗";
+            //graphic_representation.push("<span class=\"fix-width\">▗</span>");
+            graphic_representation.push("▗");
+            //graphic_representation.push("<mark class=\"nongap\";\">#</mark>");
         }
         else {
             gaps.push(x);
-            graphic_representation += ".";
+            //graphic_representation.push("<span class=\"fix-width\">.</span>");
+            graphic_representation.push(".");
 
             if (belongs_to_semigroup(2*x) && belongs_to_semigroup(3*x)) {
                 fundamental_gaps.push(x)
             }
         }
     }
-    graphic_representation += "▗";
+
+    let half_conductor = Math.ceil((frobenius+1)/2);
+    graphic_representation[half_conductor] = belongs_to_semigroup(half_conductor) ? "<mark>H</mark>" : "H";
+
+    // Junk: if device is a mobile, set each character to fix length to counter the bug
+    // that causes that, in mobile navigator, the monospace font is not monospaced
+    //let is_mobile = (/Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator.userAgent);
+//
+    //if (is_mobile) {
+        //for (let x=0; x<=frobenius; x++) {
+           //graphic_representation[x] = "<span class=\"fix-width\">" + graphic_representation[x] + "</span>";
+        //}
+    //}
+
+    // Add linebreaks if frobenius and multiplicity are large
+    let n_digits_conductor = Math.floor(Math.log10(frobenius+1));
+    let curr_digits;
+    if (frobenius > 140 && minimal_generators[0] > 10) {
+        graphic_representation.unshift("&nbsp;".repeat(n_digits_conductor) + "0&nbsp;&nbsp;&nbsp;");
+        for (let x=1; minimal_generators[0]*x <= frobenius; x++) {
+            curr_digits = Math.floor(Math.log10(minimal_generators[0]*x));
+            graphic_representation.splice((minimal_generators[0]+2)*x-1, 0, "<br>", "&nbsp;".repeat(n_digits_conductor - curr_digits) + (minimal_generators[0]*x).toString() + "&nbsp;&nbsp;&nbsp;" );
+        }
+    }
+    //graphic_representation.push("<mark class=\"nongap\";\">x</mark>");
+    graphic_representation.push("▗");
+
+    graphic_representation = graphic_representation.join("");
 
     // Compute pseudofrobenius and special gaps
     // These computations maybe can be implemented more efficiently
@@ -158,12 +189,13 @@ let nongaps;
 let graphic_representation;
 let pseudofrobenius;
 
-function compute_semigroup() {
+async function compute_semigroup() {
     // Parse input
     parse_generators();
     for (let i=0; i<generators.length; i++) {
         if (!Number.isInteger(generators[i]) || generators[i] <= 0 ) {
             document.getElementById("semigroup_invariants").innerHTML = "ERROR: introduce enteros positivos separados por comas";
+            document.getElementById("semigroup_representation").innerHTML = "";
             return;
         }
     }
@@ -171,6 +203,7 @@ function compute_semigroup() {
     // Compute
     if (gcd_list(generators) != 1) {
         document.getElementById("semigroup_invariants").innerHTML = "ERROR: el máximo común no es 1";
+        document.getElementById("semigroup_representation").innerHTML = "";
         return;
     }
 
@@ -179,15 +212,13 @@ function compute_semigroup() {
 
     // Show
     semigroup_invariants = "<br>";
-    semigroup_invariants += "S=<" + minimal_generators.toString() + ">";
-    semigroup_invariants += "={" + nongaps.toString() + "," + (frobenius+1).toString() + ",...}" + "<br>";
+    semigroup_invariants += "S = <" + minimal_generators.toString() + ">";
+    semigroup_invariants += " = {" + nongaps.toString() + "," + (frobenius+1).toString() + ",...}" + "<br>";
     semigroup_invariants += "<br>";
 
-    semigroup_invariants += "gaps={" + gaps.toString() + "}" + "<br>";
+    semigroup_invariants += "gaps = {" + gaps.toString() + "}" + "<br>";
     semigroup_invariants += "<br>";
 
-    semigroup_invariants += graphic_representation + "<br>";
-    semigroup_invariants += "<br>";
 
     semigroup_invariants += "embebimiento(S) = " + minimal_generators.length.toString() + "<br>";
     semigroup_invariants += "profundidad(S) = " + (Math.ceil((frobenius+1)/minimal_generators[0])) + "<br>";
@@ -199,17 +230,22 @@ function compute_semigroup() {
 
     semigroup_invariants += "Frobenius(S) = " + frobenius.toString() + "<br>";
     semigroup_invariants += "tipo(S) = " + pseudofrobenius.length.toString() + "<br>";
-    semigroup_invariants += "pseudofrobenius(S)={" + pseudofrobenius.toString() + "}" + "<br>";
+    semigroup_invariants += "pseudofrobenius(S) = {" + pseudofrobenius.toString() + "}" + "<br>";
     semigroup_invariants += "<br>";
 
-    semigroup_invariants += "fundamental_gaps={" + fundamental_gaps.toString() + "}" + "<br>";
-    semigroup_invariants += "special_gaps={" + special_gaps.toString() + "}" + "<br>";
+    semigroup_invariants += "fundamental_gaps = {" + fundamental_gaps.toString() + "}" + "<br>";
+    semigroup_invariants += "special_gaps = {" + special_gaps.toString() + "}" + "<br>";
     semigroup_invariants += "<br>";
 
-    semigroup_invariants += "Apéry(S," + generators[0].toString() + ")={" + apery.toString() + "}";
+    semigroup_invariants += "Apéry(S," + generators[0].toString() + ") = {" + apery.toString() + "}";
     semigroup_invariants += "<br>";
+    semigroup_invariants += "<br>";
+
+    //semigroup_invariants += graphic_representation + "<br>";
+    //semigroup_invariants += "<br>";
 
     semigroup_invariants += "";
 
     document.getElementById("semigroup_invariants").innerHTML = semigroup_invariants;
+    document.getElementById("semigroup_representation").innerHTML = graphic_representation;
 }
