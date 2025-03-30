@@ -214,6 +214,23 @@ más desenfadadas esta imagen es un meme.</p>
 class="sourceCode tex"><code class="sourceCode latex"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Put</span>(#1,#2)#3{<span class="fu">\leavevmode\makebox</span>(0,0){<span class="fu">\put</span>(#1,#2){#3}}}</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>...</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\Put</span>(55,160){<span class="bu">\includegraphics</span>[scale=0.35]{<span class="ex">Images/meme1.jpg</span>}}</span></code></pre></div>
+<hr />
+<h3 id="beamer-número-de-página">Beamer: número de página</h3>
+<p>¿Has querido alguna vez numerar tus diapositivas con un número
+aleatorio? Yo sí. Otra cosa que he visto alguna vez es poner <span
+class="math inline">\(\infty\)</span> como número de diapositivas
+totales.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">%https://texblog.org/2011/04/19/latex-pseudo-random-number-generator/</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[first=-30, last=30]{<span class="ex">lcg</span>}</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\random</span>}{<span class="fu">\rand\arabic</span>{rand}} <span class="co">% Generates a random number</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\setbeamertemplate</span>{footline}{</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\begin</span>{<span class="ex">beamercolorbox</span>}[wd=<span class="fu">\paperwidth</span>,ht=2.75ex,dp=.5ex,right,rightskip=1em]{mycolor}</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\random</span>/<span class="fu">\inserttotalframenumber</span>  <span class="co">% Text to appear in the footer</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\end</span>{<span class="ex">beamercolorbox</span>}</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\vskip</span>2pt</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>}{}</span></code></pre></div>
 </div>
 </body>
 </html>

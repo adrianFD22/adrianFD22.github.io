@@ -100,3 +100,20 @@ Un recurso que me gusta mucho es exponer un resultado y posteriormente resumirlo
 ...
 \Put(55,160){\includegraphics[scale=0.35]{Images/meme1.jpg}}
 ```
+
+----
+
+### Beamer: número de página
+¿Has querido alguna vez numerar tus diapositivas con un número aleatorio? Yo sí. Otra cosa que he visto alguna vez es poner $\infty$ como número de diapositivas totales.
+```tex
+%https://texblog.org/2011/04/19/latex-pseudo-random-number-generator/
+\usepackage[first=-30, last=30]{lcg}
+\newcommand{\random}{\rand\arabic{rand}} % Generates a random number
+
+\setbeamertemplate{footline}{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.75ex,dp=.5ex,right,rightskip=1em]{mycolor}
+        \random/\inserttotalframenumber  % Text to appear in the footer
+    \end{beamercolorbox}
+    \vskip2pt
+}{}
+```
