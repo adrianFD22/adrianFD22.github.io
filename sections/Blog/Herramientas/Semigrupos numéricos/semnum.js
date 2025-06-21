@@ -1,4 +1,10 @@
 
+// Copy button
+function copyToClipboard() {
+    var copyText = document.getElementById("semigroup_representation");
+    navigator.clipboard.writeText(copyText.innerText);
+}
+
 // Parser: get list of generators from the form
 function parse_generators() {
     let generators_str = document.getElementById("generators").value;
@@ -82,52 +88,100 @@ function compute_invariants() {
     fundamental_gaps = [];
     nongaps = [];
     graphic_representation = [];
+    latex_code = '\\begin{figure}' + '<br>' +
+                 '&nbsp;&nbsp;&nbsp;&nbsp;\\centering' + '<br>' +
+                 '&nbsp;&nbsp;&nbsp;&nbsp;\\begin{tikzpicture}' + '<br>';
+    show_semigroup = "";
+
+    depth = (Math.ceil((frobenius+1)/minimal_generators[0]));
+
+    const x_step = 0.1;
+    const y_step = 0.2;
+    const radius_circle = 0.1;
+    const side_square_x = 0.04;
+    const side_square_y = 0.09;
+
+    let tikz_x,tikz_y;
 
     for (let x=0; x<=frobenius; x++) {
         if (belongs_to_semigroup(x) ) {
             nongaps.push(x);
             //graphic_representation.push("<span class=\"fix-width\">▗</span>");
-            graphic_representation.push("▗");
             //graphic_representation.push("<mark class=\"nongap\";\">#</mark>");
+
+            if (show_mode == "drawing") {
+                graphic_representation.push("▗");
+            }
+
+            else if (show_mode == "latex") {
+                tikz_x = ((x % minimal_generators[0]) * x_step - side_square_x/2).toString();
+                tikz_y = (depth - (Math.floor(x/minimal_generators[0]) * y_step + side_square_y/2)).toString();
+                latex_code +=  '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\\filldraw[black] (' + tikz_x + ',' + tikz_y + ') rectangle ++(' + side_square_x.toString() + ',' + side_square_y.toString() + ')';
+
+                if (x % minimal_generators[0] == 0 ) {
+                    latex_code += 'node[below=1.3pt, left=4pt, font=\\tiny, scale=0.7] {' + x.toString() + '};';
+                }
+            }
         }
         else {
             gaps.push(x);
-            //graphic_representation.push("<span class=\"fix-width\">.</span>");
-            graphic_representation.push(".");
-
             if (belongs_to_semigroup(2*x) && belongs_to_semigroup(3*x)) {
                 fundamental_gaps.push(x)
             }
+            //graphic_representation.push("<span class=\"fix-width\">.</span>");
+
+             if (show_mode == "drawing") {
+                graphic_representation.push(".");
+             }
+
+            else if (show_mode == "latex") {
+                tikz_x = ((x % minimal_generators[0]) * x_step).toString();
+                tikz_y = (depth - (Math.floor(x/minimal_generators[0]) * y_step)).toString();
+                latex_code +=  '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\\filldraw[black] (' + tikz_x + ',' + tikz_y + ') circle (' + radius_circle.toString() + 'pt)';
+             }
+        }
+
+        if (show_mode == "latex") {
+            latex_code += '; % ' + x.toString() + ' <br>';
         }
     }
 
-    let half_conductor = Math.ceil((frobenius+1)/2);
-    graphic_representation[half_conductor] = belongs_to_semigroup(half_conductor) ? "<mark>H</mark>" : "H";
+    if (show_mode == "drawing") {
+        const half_conductor = Math.ceil((frobenius+1)/2);
+        graphic_representation[half_conductor] = belongs_to_semigroup(half_conductor) ? "<mark>H</mark>" : "H";
 
-    // Junk: if device is a mobile, set each character to fix length to counter the bug
-    // that causes that, in mobile navigator, the monospace font is not monospaced
-    //let is_mobile = (/Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator.userAgent);
-//
-    //if (is_mobile) {
-        //for (let x=0; x<=frobenius; x++) {
-           //graphic_representation[x] = "<span class=\"fix-width\">" + graphic_representation[x] + "</span>";
+        // Junk: if device is a mobile, set each character to fix length to counter the bug
+        // that causes that, in mobile navigator, the monospace font is not monospaced
+        //let is_mobile = (/Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator.userAgent);
+        //
+        //if (is_mobile) {
+            //for (let x=0; x<=frobenius; x++) {
+               //graphic_representation[x] = "<span class=\"fix-width\">" + graphic_representation[x] + "</span>";
+            //}
         //}
-    //}
 
-    // Add linebreaks if frobenius and multiplicity are large
-    let n_digits_conductor = Math.floor(Math.log10(frobenius+1));
-    let curr_digits;
-    if (frobenius > 140 && minimal_generators[0] > 10) {
-        graphic_representation.unshift("&nbsp;".repeat(n_digits_conductor) + "0&nbsp;&nbsp;&nbsp;");
-        for (let x=1; minimal_generators[0]*x <= frobenius; x++) {
-            curr_digits = Math.floor(Math.log10(minimal_generators[0]*x));
-            graphic_representation.splice((minimal_generators[0]+2)*x-1, 0, "<br>", "&nbsp;".repeat(n_digits_conductor - curr_digits) + (minimal_generators[0]*x).toString() + "&nbsp;&nbsp;&nbsp;" );
-        }
+        // Add linebreaks if frobenius and multiplicity are large
+        let n_digits_conductor = Math.floor(Math.log10(frobenius+1));
+        let curr_digits;
+        //if (frobenius > 140 && minimal_generators[0] > 10) {
+            graphic_representation.unshift("&nbsp;".repeat(n_digits_conductor) + "0&nbsp;&nbsp;&nbsp;");
+            for (let x=1; minimal_generators[0]*x <= frobenius; x++) {
+                curr_digits = Math.floor(Math.log10(minimal_generators[0]*x));
+                graphic_representation.splice((minimal_generators[0]+2)*x-1, 0, "<br>", "&nbsp;".repeat(n_digits_conductor - curr_digits) + (minimal_generators[0]*x).toString() + "&nbsp;&nbsp;&nbsp;" );
+            }
+        //}
+        //graphic_representation.push("<mark class=\"nongap\";\">x</mark>");
+        graphic_representation.push("▗");
+
+        show_semigroup = graphic_representation.join("");
     }
-    //graphic_representation.push("<mark class=\"nongap\";\">x</mark>");
-    graphic_representation.push("▗");
 
-    graphic_representation = graphic_representation.join("");
+    else if (show_mode == "latex") {
+        latex_code += '&nbsp;&nbsp;&nbsp;&nbsp;\\end{tikzpicture}' + '<br>' +
+                      '&nbsp;&nbsp;&nbsp;&nbsp;\\caption{Numerical semigroup $\\langle ' + minimal_generators.toString() + '\\rangle$.}' + '<br>' +
+                      '\\end{figure}' + '<br>';
+        show_semigroup = latex_code;
+    }
 
     // Compute pseudofrobenius and special gaps
     // These computations maybe can be implemented more efficiently
@@ -187,7 +241,12 @@ let frobenius;
 let gaps, fundamental_gaps, special_gaps;
 let nongaps;
 let graphic_representation;
+let latex_code;
 let pseudofrobenius;
+let depth;
+let show_mode;
+let show_semigroup;
+let copy_button;
 
 async function compute_semigroup() {
     // Parse input
@@ -199,6 +258,8 @@ async function compute_semigroup() {
             return;
         }
     }
+
+    show_mode = document.getElementById("mode").value;
 
     // Compute
     if (gcd_list(generators) != 1) {
@@ -213,15 +274,16 @@ async function compute_semigroup() {
     // Show
     semigroup_invariants = "<br>";
     semigroup_invariants += "S = <" + minimal_generators.toString() + ">";
-    semigroup_invariants += " = {" + nongaps.toString() + "," + (frobenius+1).toString() + ",...}" + "<br>";
-    semigroup_invariants += "<br>";
+    if (show_mode != "") {
+        semigroup_invariants += " = {" + nongaps.toString() + "," + (frobenius+1).toString() + ",...}" + "<br>";
+        semigroup_invariants += "<br>";
 
-    semigroup_invariants += "gaps = {" + gaps.toString() + "}" + "<br>";
-    semigroup_invariants += "<br>";
-
+        semigroup_invariants += "gaps = {" + gaps.toString() + "}";
+    }
+    semigroup_invariants += "<br><br>";
 
     semigroup_invariants += "embebimiento(S) = " + minimal_generators.length.toString() + "<br>";
-    semigroup_invariants += "profundidad(S) = " + (Math.ceil((frobenius+1)/minimal_generators[0])) + "<br>";
+    semigroup_invariants += "profundidad(S) = " + depth + "<br>";
     semigroup_invariants += "<br>";
 
     semigroup_invariants += "no_triviales(S) = " + nongaps.length.toString() + "<br>";
@@ -230,22 +292,31 @@ async function compute_semigroup() {
 
     semigroup_invariants += "Frobenius(S) = " + frobenius.toString() + "<br>";
     semigroup_invariants += "tipo(S) = " + pseudofrobenius.length.toString() + "<br>";
-    semigroup_invariants += "pseudofrobenius(S) = {" + pseudofrobenius.toString() + "}" + "<br>";
-    semigroup_invariants += "<br>";
 
-    semigroup_invariants += "fundamental_gaps = {" + fundamental_gaps.toString() + "}" + "<br>";
-    semigroup_invariants += "special_gaps = {" + special_gaps.toString() + "}" + "<br>";
-    semigroup_invariants += "<br>";
+    if (show_mode != "") {
+        semigroup_invariants += "pseudofrobenius(S) = {" + pseudofrobenius.toString() + "}" + "<br>";
+        semigroup_invariants += "<br>";
 
-    semigroup_invariants += "Apéry(S," + generators[0].toString() + ") = {" + apery.toString() + "}";
-    semigroup_invariants += "<br>";
-    semigroup_invariants += "<br>";
+        semigroup_invariants += "fundamental_gaps = {" + fundamental_gaps.toString() + "}" + "<br>";
+        semigroup_invariants += "special_gaps = {" + special_gaps.toString() + "}" + "<br>";
+        semigroup_invariants += "<br>";
 
-    //semigroup_invariants += graphic_representation + "<br>";
-    //semigroup_invariants += "<br>";
+        semigroup_invariants += "Apéry(S," + generators[0].toString() + ") = {" + apery.toString() + "}";
+        semigroup_invariants += "<br>";
+        semigroup_invariants += "<br>";
 
-    semigroup_invariants += "";
+        //semigroup_invariants += graphic_representation + "<br>";
+        //semigroup_invariants += "<br>";
+    }
 
     document.getElementById("semigroup_invariants").innerHTML = semigroup_invariants;
-    document.getElementById("semigroup_representation").innerHTML = graphic_representation;
+    document.getElementById("semigroup_representation").innerHTML = show_semigroup;
+
+    copy_button = document.getElementById("copy_button");
+
+    if (show_mode == "latex") {
+        copy_button.style.display = 'block';
+    } else {
+        copy_button.style.display = 'none';
+    }
 }
