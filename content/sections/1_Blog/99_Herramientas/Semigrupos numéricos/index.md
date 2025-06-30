@@ -1,5 +1,5 @@
 
-# Semigrupos numéricos
+# Semigrupineitor
 
 <style>
     .fix-width {

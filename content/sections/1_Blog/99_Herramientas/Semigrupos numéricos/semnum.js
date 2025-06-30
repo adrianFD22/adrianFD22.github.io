@@ -90,6 +90,7 @@ function compute_invariants() {
     graphic_representation = [];
     latex_code = '\\begin{figure}' + '<br>' +
                  '&nbsp;&nbsp;&nbsp;&nbsp;\\centering' + '<br>' +
+                 '&nbsp;&nbsp;&nbsp;&nbsp;\\scalebox{1}{' + '<br>' +
                  '&nbsp;&nbsp;&nbsp;&nbsp;\\begin{tikzpicture}' + '<br>';
     show_semigroup = "";
 
@@ -119,7 +120,7 @@ function compute_invariants() {
                 latex_code +=  '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\\filldraw[black] (' + tikz_x + ',' + tikz_y + ') rectangle ++(' + side_square_x.toString() + ',' + side_square_y.toString() + ')';
 
                 if (x % minimal_generators[0] == 0 ) {
-                    latex_code += 'node[below=1.3pt, left=4pt, font=\\tiny, scale=0.7] {' + x.toString() + '};';
+                    latex_code += 'node[below=1.3pt, left=4pt, font=\\tiny, scale=0.7] {' + x.toString() + '}';
                 }
             }
         }
@@ -178,6 +179,7 @@ function compute_invariants() {
 
     else if (show_mode == "latex") {
         latex_code += '&nbsp;&nbsp;&nbsp;&nbsp;\\end{tikzpicture}' + '<br>' +
+                      '&nbsp;&nbsp;&nbsp;&nbsp;}' +  '<br>' +
                       '&nbsp;&nbsp;&nbsp;&nbsp;\\caption{Numerical semigroup $\\langle ' + minimal_generators.toString() + '\\rangle$.}' + '<br>' +
                       '\\end{figure}' + '<br>';
         show_semigroup = latex_code;
