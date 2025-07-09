@@ -1,5 +1,5 @@
 
-# Semigrupineitor
+# Semigroupinator
 
 <style>
     .fix-width {
@@ -17,17 +17,17 @@
 <form action="javascript:compute_semigroup()">
     <input type="text" id="generators" value="125, 130, 150, 526" autofocus/>
     <select id="mode">
-        <option value="drawing">Dibujito</option>
+        <option value="drawing">Drawing</option>
         <option value="latex">LaTeX</option>
-        <option value="">Rápido⚡</option>
+        <option value="">Turbo⚡</option>
     </select>
-    <input type="submit" value="Calcular"/>
+    <input type="submit" value="Compute"/>
 </form>
 
 <nobr>
 <p id="semigroup_invariants"></p>
 
-<button style="display: none" id="copy_button" onclick="copyToClipboard()">Copiar</button>
+<button style="display: none" id="copy_button" onclick="copyToClipboard()">Copy</button>
 <p style="font-size: 13px; font-family: Noto Sans Mono, monospace;" id="semigroup_representation"></p>
 
 </nobr>

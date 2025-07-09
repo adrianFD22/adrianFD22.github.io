@@ -284,26 +284,26 @@ async function compute_semigroup() {
     }
     semigroup_invariants += "<br><br>";
 
-    semigroup_invariants += "embebimiento(S) = " + minimal_generators.length.toString() + "<br>";
-    semigroup_invariants += "profundidad(S) = " + depth + "<br>";
+    semigroup_invariants += "embedding = " + minimal_generators.length.toString() + "<br>";
+    semigroup_invariants += "depth = " + depth + "<br>";
     semigroup_invariants += "<br>";
 
-    semigroup_invariants += "no_triviales(S) = " + nongaps.length.toString() + "<br>";
-    semigroup_invariants += "gaps(S) = " + gaps.length.toString() + "<br>";
+    semigroup_invariants += "non_trivials = " + nongaps.length.toString() + "<br>";
+    semigroup_invariants += "gaps = " + gaps.length.toString() + "<br>";
     semigroup_invariants += "<br>";
 
-    semigroup_invariants += "Frobenius(S) = " + frobenius.toString() + "<br>";
-    semigroup_invariants += "tipo(S) = " + pseudofrobenius.length.toString() + "<br>";
+    semigroup_invariants += "Frobenius = " + frobenius.toString() + "<br>";
+    semigroup_invariants += "type = " + pseudofrobenius.length.toString() + "<br>";
 
     if (show_mode != "") {
-        semigroup_invariants += "pseudofrobenius(S) = {" + pseudofrobenius.toString() + "}" + "<br>";
+        semigroup_invariants += "pseudoFrobenius = {" + pseudofrobenius.toString() + "}" + "<br>";
         semigroup_invariants += "<br>";
 
         semigroup_invariants += "fundamental_gaps = {" + fundamental_gaps.toString() + "}" + "<br>";
         semigroup_invariants += "special_gaps = {" + special_gaps.toString() + "}" + "<br>";
         semigroup_invariants += "<br>";
 
-        semigroup_invariants += "Apéry(S," + generators[0].toString() + ") = {" + apery.toString() + "}";
+        semigroup_invariants += "Apéry(" + generators[0].toString() + ") = {" + apery.toString() + "}";
         semigroup_invariants += "<br>";
         semigroup_invariants += "<br>";
     }
