@@ -21,8 +21,11 @@
 
 ## Publications
 
-2024
-:   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance over very small fields. Preprint, <https://arxiv.org/abs/2411.19065>.
+2025
+:   Eduardo Camps Moreno, Adrián Fidalgo-Díaz, Hiram H. López, Umberto Martínez-Peñas, Diego Ruano, Rodrigo San-José. Duals of multiplicity codes. Preprint, <https://arxiv.org/abs/2505.14472>.
+
+2025
+:   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance over very small fields. Designs, codes and cryptography, <https://link.springer.com/article/10.1007/s10623-025-01689-7>.
 
 2024
 :   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance using algebraic function fields. IEEE transactions on Information theory, <https://ieeexplore.ieee.org/document/10786350>.
@@ -60,33 +63,32 @@
 ## Talks and posters
 
 2025
+:   Talk: *Computing the Clifford defect for some families of semigroups* at the International Meeting on Commutative Monoids 2025.
+
+:   Talk: *Distributed matrix multiplication with straggler tolerance using one point algebraic geometry codes* at SIAM Conference on Applied Algebraic Geometry (AG25).
+
+:   Talk: *A numerical semigroup problem motivated by decoding AG codes* at the Seventh EACA International School on Computer Algebra and its Applications.
+
 :   Talk: *Distributed matrix multiplication using multivariate polynomials* at Error-correcting codes and combinatorial structures workshop.
 
-2025
 :   Talk: *Distributed matrix multiplication using multivariate polynomials* at RSME's 7th Congress of Young Researchers.
 
 2024
 :   Talk: *Multiplicación distribuida de matrices mediante cuerpos de funciones algebraicas* at SINGACOM Seminar.
 
-2024
 :   Talk: *Distributed matrix multiplication using multivariate polynomials* at MatSI, IMAC and Singacom Day on Algebraic Applications to Information Theory.
 
-2024
 :   Talk: *Distributed matrix multiplication with straggler tolerance using algebraic function fields* at ISIT 2024.
 
-2024
 :   Talk: *Distributed matrix multiplication over small fields with straggler tolerance* at XVIII EACA.
 
-2024
 :   Talk: *Distributed matrix multiplication with straggler tolerance based on polynomial algebras* at V jornadas de la red MatSI.
 
-2024
 :   Talk: *Numerical semigroup problems motivated by distributed matrix multiplication* at the SecureCAT Follow­Up Workshop.
 
 2023
 :   Talk: *Distributed Matrix Multiplication with straggler tolerance using one point algebraic geometry codes* at V BYMAT conference.
 
-2023
 :   Poster: *Distributed matrix multiplication via algebraic-geometric codes* at Sixth EACA International School on Computer Algebra and its Applications.
 
 
