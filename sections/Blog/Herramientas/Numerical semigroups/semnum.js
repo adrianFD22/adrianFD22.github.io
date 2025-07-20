@@ -255,7 +255,7 @@ async function compute_semigroup() {
     parse_generators();
     for (let i=0; i<generators.length; i++) {
         if (!Number.isInteger(generators[i]) || generators[i] <= 0 ) {
-            document.getElementById("semigroup_invariants").innerHTML = "ERROR: introduce enteros positivos separados por comas";
+            document.getElementById("semigroup_invariants").innerHTML = "ERROR: enter positive integers separated by commas";
             document.getElementById("semigroup_representation").innerHTML = "";
             return;
         }
@@ -265,7 +265,7 @@ async function compute_semigroup() {
 
     // Compute
     if (gcd_list(generators) != 1) {
-        document.getElementById("semigroup_invariants").innerHTML = "ERROR: el máximo común no es 1";
+        document.getElementById("semigroup_invariants").innerHTML = "ERROR: greatest common divisor is not 1";
         document.getElementById("semigroup_representation").innerHTML = "";
         return;
     }
