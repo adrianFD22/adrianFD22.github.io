@@ -297,8 +297,13 @@ async function compute_semigroup() {
 
     if (show_mode != "") {
         semigroup_invariants += "pseudoFrobenius = {" + pseudofrobenius.toString() + "}" + "<br>";
-        semigroup_invariants += "<br>";
 
+    }
+
+    semigroup_invariants += "Wilf = " + ((minimal_generators.length * nongaps.length) - frobenius - 1).toString() + "<br>";
+    semigroup_invariants += "<br>";
+
+    if (show_mode != "") {
         semigroup_invariants += "fundamental_gaps = {" + fundamental_gaps.toString() + "}" + "<br>";
         semigroup_invariants += "special_gaps = {" + special_gaps.toString() + "}" + "<br>";
         semigroup_invariants += "<br>";
