@@ -104,9 +104,27 @@ function compute_invariants() {
 
     let tikz_x,tikz_y;
 
+    let elements_beneath = 0;
+    let curr_clifford;
+    clifford_elements = [];
+    clifford_defect = -3;
+
     for (let x=0; x<=frobenius; x++) {
         if (belongs_to_semigroup(x) ) {
             nongaps.push(x);
+
+            // Compute Clifford defect
+            elements_beneath += 1;
+            curr_clifford = x - 2*elements_beneath;
+
+            if (clifford_defect == curr_clifford) {
+                clifford_elements.push(x);
+            }
+            else if (clifford_defect < curr_clifford) {
+                clifford_defect = curr_clifford;
+                clifford_elements = [x];
+            }
+
             //graphic_representation.push("<span class=\"fix-width\">▗</span>");
             //graphic_representation.push("<mark class=\"nongap\";\">#</mark>");
 
@@ -146,6 +164,8 @@ function compute_invariants() {
             latex_code += '; % ' + x.toString() + ' <br>';
         }
     }
+
+    clifford_defect = clifford_defect/2.0 + 1;    // Rescale clifford defect. This allows to use less floating point operations
 
     if (show_mode == "drawing") {
         const half_conductor = Math.ceil((frobenius+1)/2);
@@ -249,6 +269,7 @@ let depth;
 let show_mode;
 let show_semigroup;
 let copy_button;
+let clifford_defect, clifford_elements;
 
 async function compute_semigroup() {
     // Parse input
@@ -301,6 +322,10 @@ async function compute_semigroup() {
     }
 
     semigroup_invariants += "Wilf = " + ((minimal_generators.length * nongaps.length) - frobenius - 1).toString() + "<br>";
+    semigroup_invariants += "<br>";
+
+    semigroup_invariants +=  "clifford_elements = {" + clifford_elements.toString() + "}<br>";
+    semigroup_invariants +=  "clifford_defect = " + clifford_defect.toString() + "<br>";
     semigroup_invariants += "<br>";
 
     if (show_mode != "") {
