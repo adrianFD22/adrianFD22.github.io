@@ -63,6 +63,8 @@
 ## Talks and posters
 
 2025
+:   Talk: *Multiplying matrices using codes* at the Graduate Workshop on Linear Algebra over Finite Fields & Applications in ICERM.
+
 :   Talk: *Computing the Clifford defect for some families of semigroups* at the International Meeting on Commutative Monoids 2025.
 
 :   Talk: *Distributed matrix multiplication with straggler tolerance using one point algebraic geometry codes* at SIAM Conference on Applied Algebraic Geometry (AG25).
