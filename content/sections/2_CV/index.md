@@ -63,6 +63,10 @@
 ## Talks and posters
 
 2025
+:   Talk: *Algorithms for distributed matrix multiplication using codes* in the Applied Algebra seminar at Virginia Tech.
+
+:   Talk: *Algorithms for distributed matrix multiplication using codes* in the PICS seminar.
+
 :   Talk: *Multiplying matrices using codes* at the Graduate Workshop on Linear Algebra over Finite Fields & Applications in ICERM.
 
 :   Talk: *Computing the Clifford defect for some families of semigroups* at the International Meeting on Commutative Monoids 2025.
