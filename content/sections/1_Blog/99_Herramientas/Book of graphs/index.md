@@ -1,6 +1,6 @@
 
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
-<script>sagecell.makeSagecell({"inputLocation": ".sage", "editor": {"height": 1000}});</script>
+<script>sagecell.makeSagecell({"inputLocation": ".sage"});</script>
 
 # Book of graphs (prueba de concepto)
 
@@ -9,7 +9,7 @@ Para Sara.
 Este script busca todos los grafos G de una cantidad de vértices dada que cumplen una determinada propiedad. Genera un fichero pdf con los dibujitos de dichos grafos. Este es el [repositorio](https://github.com/adrianFD22/book-of-graphs-generator) original. Ver también [House of graphs](https://houseofgraphs.org/).
 
 <div class="sage">
-  <script type="text/x-sage">
+<script type="text/x-sage">
 # ----------------
 #    Parameters
 # ----------------
@@ -160,5 +160,6 @@ os.system("rm -r Images")
 os.system("rm -r tex")
 
 print("Done")
-  </script>
+
+</script>
 </div>

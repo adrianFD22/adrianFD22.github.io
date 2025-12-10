@@ -22,6 +22,9 @@
 ## Publications
 
 2025
+:   Eduardo Camps-Moreno, Adrián Fidalgo-Díaz, Umberto Martínez-Peñas, Gretchen L. Matthews. The Clifford defect of a numerical semigroup, <https://arxiv.org/abs/2512.04925>.
+
+2025
 :   Eduardo Camps Moreno, Adrián Fidalgo-Díaz, Hiram H. López, Umberto Martínez-Peñas, Diego Ruano, Rodrigo San-José. Duals of multiplicity codes. Preprint, <https://arxiv.org/abs/2505.14472>.
 
 2025
