@@ -65,6 +65,9 @@
 
 ## Talks and posters
 
+2026
+:   Talk: *Computing the Clifford defect for some numerical semigroups* in Congreso Bienal de la Real Sociedad Matemática Española 2026.
+
 2025
 :   Talk: *Algorithms for distributed matrix multiplication using codes* in the Applied Algebra seminar at Virginia Tech.
 
