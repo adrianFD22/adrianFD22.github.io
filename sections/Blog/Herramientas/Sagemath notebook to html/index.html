@@ -21,43 +21,35 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../../resources/style.css" />
+  <link rel="stylesheet" href="../../../../resources/style.css" />
 </head>
 <body>
 <ul id="navbar">
 <li>
-<a href="../../../index.html">Home</a>
+<a href="../../../../index.html">Home</a>
 </li>
 <li>
-<a href="../../Blog/index.html">Blog</a>
+<a href="../../../Blog/index.html">Blog</a>
 </li>
 <li>
-<a href="../../CV/index.html">CV</a>
+<a href="../../../CV/index.html">CV</a>
 </li>
 </ul>
 <div id="container">
-<h1 id="blogherramientas">Blog/Herramientas</h1>
-<ul id="list_dirs">
-<li>
-<a href="Sagemath notebook to html/index.html">Sagemath notebook to
-html</a>
-</li>
-<li>
-<a href="Numerical semigroups/index.html">Numerical semigroups</a>
-</li>
-<li>
-<a href="Grafos/index.html">Grafos</a>
-</li>
-<li>
-<a href="Cyclotomic cosets/index.html">Cyclotomic cosets</a>
-</li>
-<li>
-<a href="Cuadrícula/index.html">Cuadrícula</a>
-</li>
-<li>
-<a href="Book of graphs/index.html">Book of graphs</a>
-</li>
-</ul>
+<h1 id="sagemath-notebook---html">Sagemath notebook -&gt; html</h1>
+<p>Convert Sagemath notebooks into a html file that emulates the
+original notebook via <a
+href="https://sagecell.sagemath.org/">SageMathCell</a>. It implements a
+very reduced version of markdown (it supports titles, bold, italic and
+two level nested lists) and it employs <a
+href="https://www.mathjax.org/">Mathjax</a> for LaTeX rendering. It is
+completely client-side. See also <a
+href="https://dahn-research.eu/nbplayer/">Notebook Player</a>.</p>
+<p><input type="file" id="selectFiles" value="Import"/></p>
+<button id="import">
+Download
+</button>
+<script src="generate.js"></script>
 </div>
 </body>
 </html>
