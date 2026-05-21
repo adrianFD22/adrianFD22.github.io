@@ -42,8 +42,13 @@
 
 ## Teaching
 
+2025-2026
+:   TA in Algebraic estructures: groups and rings. Responsabilities: lecturing once a week and preparing and grading HW assignments and exams.
+
+:   Supervision of Bachelor's thesis: Algebra and combinatorics in two-player games.
+
 2024-2025
-:   TA in Fundamentals of Mathematics: Using Sagemath. Responsibilities: lecturing once a week and preparing and grading HW assignments and exams.
+:   TA in Fundamentals of Mathematics: Using Sagemath. Responsabilities: lecturing once a week and preparing and grading HW assignments and exams.
 
 :   Supervision of Bachelor's thesis: Applications of the Borsuk-Ulam theorem.
 
@@ -66,6 +71,8 @@
 ## Talks and posters
 
 2026
+:   Talk: *Clifford defect of a numerical semigroup* in XIX EACA.
+
 :   Talk: *Computing the Clifford defect for some numerical semigroups* in Congreso Bienal de la Real Sociedad Matemática Española 2026.
 
 2025

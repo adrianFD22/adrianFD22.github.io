@@ -8,9 +8,9 @@
 - Occupation: PhD student in Mathematics at the University of Valladolid
 - Interests:
     - Coding theory
-    - Distributed matrix multiplication
-    - Graph theory
+    - Algebraic geometry codes
     - Numerical semigroups
+    - Graph theory
 - Past:
     - Bachelor's degree in Computational Mathematics at the University Jaume I
     - Master's degree in Mathematical Research at the University of Valencia
