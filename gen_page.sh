@@ -8,7 +8,7 @@
 #    Parameters
 ###################
 
-title="AFD"                         # The title of the webpage
+title="adrianfd"                         # The title of the webpage
 home_text="Home"                    # Text to appear as the link to the root page
 ls_flags=("-r")                     # Flags for ls when used for listing files in a directory not containing index.md
 pandoc_flags=("--mathjax")          # Flags to pass to pandoc when compilate markdown files
@@ -182,4 +182,8 @@ for curr_file in $(ls -1d content_tmp/*); do
     mv "$curr_file" .
 done
 rmdir content_tmp
+
+echo "Creating rss"
+./rss_creator.sh
+
 echo Done

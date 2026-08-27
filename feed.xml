@@ -1,0 +1,76 @@
+
+<rss version="2.0">
+    <channel>
+    <title>adrianfd</title>
+	<description>I dont know how to use rss</description>
+	<link>https://adrianfd22.github.io/</link>
+
+	<item>
+		<title>Recursos de LaTeX</title>
+		<link>https://adrianfd22.github.io/sections/Blog/Recursos de LaTeX/</link>
+		<pubDate>2025-03-30</pubDate>
+	</item>
+
+	<item>
+		<title>Resolviendo un puzle</title>
+		<link>https://adrianfd22.github.io/sections/Blog/Resolviendo un puzle/</link>
+		<pubDate>2024-07-23</pubDate>
+	</item>
+
+	<item>
+		<title>Chocolate</title>
+		<link>https://adrianfd22.github.io/sections/Blog/Chocolate/</link>
+		<pubDate>2024-11-05</pubDate>
+	</item>
+
+	<item>
+		<title>Un gato en una caja</title>
+		<link>https://adrianfd22.github.io/sections/Blog/Un gato en una caja/</link>
+		<pubDate>2024-11-11</pubDate>
+	</item>
+
+	<item>
+		<title>No me pises lo fregao</title>
+		<link>https://adrianfd22.github.io/sections/Blog/No me pises lo fregao/</link>
+		<pubDate>2024-08-26</pubDate>
+	</item>
+
+	<item>
+		<title>El Paint del Windows</title>
+		<link>https://adrianfd22.github.io/sections/Blog/El Paint del Windows/</link>
+		<pubDate>2024-08-26</pubDate>
+	</item>
+
+	<item>
+		<title>Cross, Treble cross</title>
+		<link>https://adrianfd22.github.io/sections/Blog/Cross, Treble cross/</link>
+		<pubDate>2025-03-02</pubDate>
+	</item>
+
+	<item>
+		<title>Números narcisistas</title>
+		<link>https://adrianfd22.github.io/sections/Blog/Números narcisistas/</link>
+		<pubDate>2025-02-27</pubDate>
+	</item>
+
+	<item>
+		<title>Rectas packing</title>
+		<link>https://adrianfd22.github.io/sections/Blog/Rectas packing/</link>
+		<pubDate>2025-03-02</pubDate>
+	</item>
+
+	<item>
+		<title>Juegos octales periódicos</title>
+		<link>https://adrianfd22.github.io/sections/Blog/Juegos octales periódicos/</link>
+		<pubDate>2026-08-27</pubDate>
+	</item>
+
+	<item>
+		<title>Herramientas</title>
+		<link>https://adrianfd22.github.io/sections/Blog/Herramientas/</link>
+		<pubDate>2026-03-30</pubDate>
+	</item>
+
+	</channel>
+</rss>
+

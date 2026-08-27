@@ -42,14 +42,39 @@
 </li>
 </ul>
 <section id="container">
-<h1 id="números-narcisistas">Números narcisistas</h1>
-<p>No sé qué poner aquí.</p>
-<input style="width: 5em" id="input_n" type="number" min="0" value=14>
-<button type="button" onclick="show_sequence()">Calcular
-sucesión</button><br>
-<p id="sequence">
+<h1 id="teorema-de-periodicidad-octal">Teorema de periodicidad
+octal</h1>
+<p>Inacabado, espero que no para siempre.</p>
+<form action="javascript:compute_and_show()">
+<table style="background-color: grey; margin: 1.5em auto; padding: 0.5em;">
+<tr style="padding: 2em">
+<th>
+Código octal:
+</th>
+<th>
+<input style="width: 10em" id="octal_code" type="number" value="77" autofocus/>
+</th>
+</tr>
+<tr>
+<th>
+Máx periodo y preperiodo:
+</th>
+<th>
+<input style="width: 10em" id="max_period" type="number" min="1" value=100>
+</th>
+</tr>
+<tr>
+<th>
+</th>
+<th>
+<input type="submit" value="Calcular"/>
+</th>
+</tr>
+</table>
+</form>
+<p id="result">
 </p>
-<script src="narcisistas.js"></script>
+<script src="octal.js"></script>
 </section>
 </body>
 </html>

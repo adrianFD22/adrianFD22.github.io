@@ -43,9 +43,11 @@
 ## Teaching
 
 2025-2026
-:   TA in Algebraic estructures: groups and rings. Responsabilities: lecturing once a week and preparing and grading HW assignments and exams.
+:   TA in Algebraic estructures: group and ring theory. Responsabilities: lecturing once a week and preparing and grading HW assignments and exams.
 
 :   Supervision of Bachelor's thesis: Algebra and combinatorics in two-player games.
+
+:   Member of the reading group for PhD students "Introduction to matroids". Responsabilities: lecturing once each two months and preparing HW assignments.
 
 2024-2025
 :   TA in Fundamentals of Mathematics: Using Sagemath. Responsabilities: lecturing once a week and preparing and grading HW assignments and exams.
