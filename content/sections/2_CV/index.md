@@ -49,6 +49,8 @@
 
 :   Member of the reading group for PhD students "Introduction to matroids". Responsabilities: lecturing once each two months and preparing HW assignments.
 
+:   Organizer of the reading group for PhD students "Algebraic function fields and codes". Responsabilities: lecturing twice a month.
+
 2024-2025
 :   TA in Fundamentals of Mathematics: Using Sagemath. Responsabilities: lecturing once a week and preparing and grading HW assignments and exams.
 
