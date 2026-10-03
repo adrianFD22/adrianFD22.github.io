@@ -22,10 +22,10 @@
 ## Publications
 
 2025
-:   Eduardo Camps-Moreno, Adrián Fidalgo-Díaz, Umberto Martínez-Peñas, Gretchen L. Matthews. The Clifford defect of a numerical semigroup, <https://arxiv.org/abs/2512.04925>.
+:   Eduardo Camps-Moreno, Adrián Fidalgo-Díaz, Umberto Martínez-Peñas, Gretchen L. Matthews. The Clifford defect of a numerical semigroup. Preprint, <https://arxiv.org/abs/2512.04925>.
 
 2025
-:   Eduardo Camps Moreno, Adrián Fidalgo-Díaz, Hiram H. López, Umberto Martínez-Peñas, Diego Ruano, Rodrigo San-José. Duals of multiplicity codes. Preprint, <https://arxiv.org/abs/2505.14472>.
+:   Eduardo Camps Moreno, Adrián Fidalgo-Díaz, Hiram H. López, Umberto Martínez-Peñas, Diego Ruano, Rodrigo San-José. Duals of multiplicity codes. Designs, codes and cryptography, <https://link.springer.com/article/10.1007/s10623-026-01812-2>.
 
 2025
 :   Adrián Fidalgo-Díaz, Umberto Martínez-Peñas. Distributed matrix multiplication with straggler tolerance over very small fields. Designs, codes and cryptography, <https://link.springer.com/article/10.1007/s10623-025-01689-7>.
@@ -41,6 +41,13 @@
 
 
 ## Teaching
+
+2026-2027
+:   TA in Linear Algebra I. Responsabilities: lecturing once a week and preparing and grading HW and exams.
+
+:   TA in Fundamentals of Mathematics: Using Sagemath. Responsabilities: lecturing once a week and preparing and grading HW assignments and exams.
+
+:   Organizer of the reading group for PhD students "Algebraic function fields and codes II". Responsabilities: lecturing twice a month.
 
 2025-2026
 :   TA in Algebraic estructures: group and ring theory. Responsabilities: lecturing once a week and preparing and grading HW assignments and exams.
@@ -71,6 +78,7 @@
     Spanish: native.
     English: fluent.
     French: basic.
+    Italian: basic.
 
 ## Talks and posters
 
