@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>adrianfd</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #cccccc; background-color: #303030; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ffcfaf; } /* Alert */
+    code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+    code span.at { } /* Attribute */
+    code span.bn { color: #dca3a3; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #f0dfaf; } /* ControlFlow */
+    code span.ch { color: #dca3a3; } /* Char */
+    code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+    code span.co { color: #7f9f7f; } /* Comment */
+    code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+    code span.do { color: #7f9f7f; } /* Documentation */
+    code span.dt { color: #dfdfbf; } /* DataType */
+    code span.dv { color: #dcdccc; } /* DecVal */
+    code span.er { color: #c3bf9f; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #c0bed1; } /* Float */
+    code span.fu { color: #efef8f; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+    code span.kw { color: #f0dfaf; } /* Keyword */
+    code span.op { color: #f0efd0; } /* Operator */
+    code span.ot { color: #efef8f; } /* Other */
+    code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+    code span.sc { color: #dca3a3; } /* SpecialChar */
+    code span.ss { color: #cc9393; } /* SpecialString */
+    code span.st { color: #cc9393; } /* String */
+    code span.va { } /* Variable */
+    code span.vs { color: #cc9393; } /* VerbatimString */
+    code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../../resources/style.css" />
+</head>
+<body>
+<ul id="navbar">
+<li>
+<a href="../../../index.html">Home</a>
+</li>
+<li>
+<a href="../../Blog/index.html">Blog</a>
+</li>
+<li>
+<a href="../../CV/index.html">CV</a>
+</li>
+</ul>
+<div id="container">
+<script>
+    function unfold(e) {
+        let unfolded = document.getElementById("unfolded");
+        unfolded.style.display = "block";
+
+        let folded = document.getElementById("folded");
+        folded.remove();
+    }
+</script>
+<h1 id="recursos-de-vim">Recursos de Vim</h1>
+<div id="folded">
+<p>Pulsa <u onclick="unfold()">aquí</u> para desplegar la
+evangelización.</p>
+</div>
+<div id="unfolded" style="display: none">
+<p>El proceso de escribir a ordenador no consiste solo en ir
+introduciendo letra tras letra. Nos pasamos una parte no negligible del
+tiempo moviendo el cursor para ir a donde queremos ir o pulsando la
+tecla de borrar. Cada vez que queremos mover el cursor, las dos opciones
+comunes son utilizar el ratón o usar las flechitas del teclado. Ambas
+hacen que abandonemos la posición de reposo<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> que
+tienen las manos sobre las letras F y J, ya sea para coger el ratón o
+para pulsar las flechitas. Este reposicionamiento hace que perdamos un
+poco de tiempo y también interrumpe nuestro flujo de pensamiento. Como
+necesitamos mover el cursor de forma frecuente, esto nos lastra
+considerablemente. Lo ideal sería que no hubiera ninguna fricción entre
+lo que queremos escribir y cómo lo escribimos. Necesitamos cambiar la
+forma en la que interactuamos con el editor.</p>
+<p>Este es el principal motivo que encuentro para usar Vim. No voy a
+explicar cómo se usa Vim aquí porque hay chorrocientos recursos sobre
+esto. Solo diré que Vim es un editor de texto plano que, entre otras
+cosas, resuelve el anterior problema haciendo que sea posible mover el
+cursor sin abandonar la posición F J. Al principio añade una capa de
+dificultad porque hay que aprender a utilizarlo, pero esto está más que
+justificado al igual que lo está aprender mecanografía: una vez que lo
+aprendes, los moVimientos que antes requerían reflexionar se vuelven
+memoria muscular (por ejemplo, si quiero escribir la letra U, no pienso
+en que mi índice derecho tiene que subir a la primera fila del teclado
+para pulsarlo, simplemente lo hago como un acto reflejo).</p>
+<p>Si bien es cierto que hay otros editores más modernos distintos a Vim
+que implementan funcionalidades equivalentes, Vim se puede encontrar
+allá donde vayas de una forma relativamente fácil y tiene una gran
+comunidad detrás. Igual que pienso que el teclado QWERTY no es
+reemplazable porque está demasiado arraigado, tengo un sentimiento
+parecido hacia Vim. Yo no soy desarrollador de sistemas ni nada
+parecido, pero me gusta el poder encontrar Vim cuando tengo que utilizar
+una máquina que no es la mía. También creo que el hecho de que en Vim no
+haya que pulsar más de una tecla simultáneamente (ni siquiera Ctrl+C
+para copiar) es positivo porque evita tener que hacer contorsionismo con
+las manos, el cual se puede traducir en posteriores dolores (fuente:
+Miami me lo confirmó).</p>
+</div>
+<div class="flex">
+<p><img src="vim.png" width="150" height="150"></p>
+</div>
+<p>Ahora que he terminado de evangelizar, recopilo a continuación
+algunos recursos relacionados con Vim. Existen listas colaborativas de
+este estilo (ver <a
+href="https://github.com/erikw/vim-keybindings-everywhere-the-ultimate-list">esta</a>
+por ejemplo), pero aquí recojo solo aquellas que me ayudan en mi día a
+día de persona que hace mates y ocasionalmente programa de forma
+compulsiva. Ver también mi configuración de Neovim en mis <a
+href="https://github.com/adrianFD22/dotfiles/tree/main/.config/nvim">dotfiles</a>.</p>
+<hr />
+<h3 id="aprender-a-usar-vim">Aprender a usar Vim</h3>
+<p>Yo creo que lo mejor para aprender Vim es usarlo. Hay que intentar
+escribir todo lo que se pueda con Vim para aprender al principio.</p>
+<p>El tutorial clásico es vimtutor: tras abrir Neovim, escribe “:Tutor”
+y pulsa Enter. Si además quieres leer un libro, recuerdo haber leído un
+poco de “Practical Vim” y también recuerdo que me gustó. Otra cosa que
+creo que es positiva es ver a gente usando Vim. Para esto último
+cualquier video es bueno.</p>
+<p>No hay que volvernos tuturalatas pensando en usar siempre la mínima
+cantidad de tecladas pulsadas. Alguien que sea muy pro me verá usar Vim
+y podría pensar “wow, este tipo es un manta. Ha pulsado cuatro veces la
+w en vez de hacer 3w y ahorrarse dos pulsaciones”. La forma en la que yo
+uso Vim es funcional y suficientemente rápida a mi juicio, eso es todo
+lo que importa. No dejo de lado el hecho de que me parece divertido
+vimgolf (ver más abajo).</p>
+<hr />
+<h3 id="vim-en-la-terminal">Vim en la terminal</h3>
+<p>El comando <code>set editing-mode vi</code> activa el modo vim (o
+modo vi). Lo que hace es cambiar una opción de la librería readline (ver
+<code>man readline</code>). Los intérpretes de algunos lenguajes de
+programación la utilizan, así que esto les dota también de un modo vim.
+Además, el comando <code>set keyseq-timeout 10</code> hace que la tecla
+ESC tenga efecto inmediato, algo necesario para usar Vim cómodamente.
+Ambos comandos hay que añadirlos al fichero ~/.inputrc para que tengan
+efecto permanente.</p>
+<p>Si solo quieres cambiar a modo vim en bash (también funciona para
+otras shells), puedes usar el comando <code>set -o vi</code> (ver
+<code>man bash</code>). Hay que añadirlo, por ejemplo, al fichero
+~/.bashrc para que sea permanente. Este comando es útil memorizarlo para
+poder tener un modo vim temporal de forma rápida en una máquina
+ajena.</p>
+<hr />
+<h3 id="teclas-turborrápidas">Teclas turborrápidas</h3>
+<p>Si usas X11 (es lo estándar en las principales distribuciones Linux),
+entonces puedes usar el comando <code>xset r rate 300 60</code>, el cual
+aumenta la frecuencia con la que se dispara una tecla al dejarla
+pulsada. Otro imprescindibles es
+<code>setxkbmap -option caps:swapescape</code>, que intercambia las
+teclas ESC y Bloqueo de mayúsculas (pensemos en que la tecla de Bloqueo
+de mayúsculas está en una posición muy accesible al lado del meñique
+izquierdo a pesar de ser una tecla que no solemos usar. La tecla ESC
+está a tomar por saco y es quizás la tecla que más usamos cuando
+utilizamos Vim).</p>
+<hr />
+<h3 id="jupyter">Jupyter</h3>
+<p>En este momento, jupyter no admite modo vim. Sin embargo, jupyterlab
+tiene un sistema de extensiones para el que existe <a
+href="https://github.com/jupyterlab-contrib/jupyterlab-vim">esta</a>.
+Está disponible en el <a
+href="https://aur.archlinux.org/packages/python-jupyterlab-vim">AUR</a>.</p>
+<hr />
+<h3 id="excel">Excel</h3>
+<p><a
+href="https://extensions.libreoffice.org/en/extensions/show/99516">Esta</a>
+extensión de Libreoffice funciona bien. Otra alternativa es usar algún
+programa de terminal (los cuales no he probado) como <a
+href="https://terminaltrove.com/sheets/">este</a>.</p>
+<hr />
+<h3 id="navegadores-à-la-vim">Navegadores à la Vim</h3>
+<p>Aquí no veo una solución clara. El problema principal es que muchos
+de los navegadores “Vim” funcionan excelentemente, pero muchos flashean
+una pantalla en blanco al entrar en una página nueva, algo muy molesto
+para una persona sensible a las luces. En otros, aplicaciones web como
+outlook no funcionan correctamente o son muy difíciles de usar.</p>
+<p>Recomiendo la extensión de Firefox <a
+href="https://tridactyl.xyz/about/">Tridactyl</a> (también hay
+extensiones para Chrome, pero no las he probado). Si quieres un
+navegador full Vim, recomiendo <a
+href="https://qutebrowser.org/">Qutebrowser</a>. La opción de usar una
+extensión en Firefox me parece más robusta, aunque la experiencia Vim de
+Qutebrowser es claramente mejor porque las extensiones de los
+navegadores muchas veces se sienten como si fueran parches.</p>
+<hr />
+<h3 id="vimgolf">vimgolf</h3>
+<p>En el golf tienes que meter una pelota en un hoyo con pocos golpes.
+En <a href="https://www.vimgolf.com/">vimgolf</a> tienes que transformar
+un fichero en otro pulsando pocas teclas. Es útil para aprender nuevas
+técnicas ninja. Aunque los mortales no implementemos lo aprendido en la
+edición del día a día, me parece un recurso divertido.</p>
+<hr />
+<h3 id="python-y-sagemath">Python y SageMath</h3>
+<p>El intérprete de Python actualmente no usa la biblioteca readline
+(ver el apartado anterior sobre Vim en la terminal), lo que significa
+que no se puede configurar su modo vim mediante cambiar las opciones de
+esta. En su lugar, se le puede forzar a que sí la utilice mediante
+declarar una variable de environment de la siguiente manera en la shell:
+<code>export PYTHON_BASIC_REPL=1</code>. Como antes, hay que añadirla al
+.bashrc para hacer el cambio permanente.</p>
+<p>Para incorporar un modo vim al intérprete de Sage, la solución que he
+encontrado es crear un fichero
+~/.sage/ipython-5.0.0/profile_default/ipython_config.py que contenga lo
+siguiente:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>c.TerminalInteractiveShell.editing_mode <span class="op">=</span> <span class="st">&#39;vi&#39;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>c.TerminalInteractiveShell.emacs_bindings_in_vi_insert_mode <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>c.TerminalInteractiveShell.timeoutlen <span class="op">=</span> <span class="fl">0.25</span></span></code></pre></div>
+<hr />
+<h3 id="overleaf">Overleaf</h3>
+<p>Afortunadamente🤲🤲🤲, ahora mismo Overleaf tiene un modo vim nativo.
+Para incluir un pequeño “.vimrc” se puede usar un script de tampermonkey
+como explica este <a
+href="https://docs.overleaf.com/navigating-in-the-editor/vim-and-emacs-keybinding/providing-custom-vim-key-bindings">post</a>.</p>
+<hr />
+<h3 id="text-objects">Text objects</h3>
+<p>Aunque estoy diciendo Vim todo el rato, esto es todo una farsa: yo
+uso Neovim. <a
+href="https://thevaluable.dev/vim-create-text-objects/">Este</a>
+tutorial explica cómo crear nuevos text objects con Lua. La utilidad de
+esto es la siguiente. Si estamos escribiendo código LaTeX, a menudo
+querremos editar lo que hay entre dos símbolos $. Si fueran paréntesis,
+podríamos simplemente hacer “ci(” desde el modo normal. Las siguientes
+líneas de Lua se pueden usar para que Neovim permita hacer “ci$” y
+similares.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode lua"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_set_keymap<span class="op">(</span><span class="st">&#39;x&#39;</span><span class="op">,</span> <span class="st">&quot;i&quot;</span> <span class="op">..</span> <span class="st">&#39;$&#39;</span><span class="op">,</span> <span class="fu">string.format</span><span class="op">(</span><span class="st">&#39;:&lt;C-u&gt;silent! normal! f%sF%slvt%s&lt;CR&gt;&#39;</span><span class="op">,</span> <span class="st">&#39;$&#39;</span><span class="op">,</span> <span class="st">&#39;$&#39;</span><span class="op">,</span> <span class="st">&#39;$&#39;</span><span class="op">),</span> <span class="op">{</span> <span class="va">noremap</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">silent</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_set_keymap<span class="op">(</span><span class="st">&#39;x&#39;</span><span class="op">,</span> <span class="st">&quot;a&quot;</span> <span class="op">..</span> <span class="st">&#39;$&#39;</span><span class="op">,</span> <span class="fu">string.format</span><span class="op">(</span><span class="st">&#39;:&lt;C-u&gt;silent! normal! f%sF%svf%s&lt;CR&gt;&#39;</span><span class="op">,</span> <span class="st">&#39;$&#39;</span><span class="op">,</span> <span class="st">&#39;$&#39;</span><span class="op">,</span> <span class="st">&#39;$&#39;</span><span class="op">),</span> <span class="op">{</span> <span class="va">noremap</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">silent</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_set_keymap<span class="op">(</span><span class="st">&#39;o&#39;</span><span class="op">,</span> <span class="st">&quot;i&quot;</span> <span class="op">..</span> <span class="st">&#39;$&#39;</span><span class="op">,</span> <span class="fu">string.format</span><span class="op">(</span><span class="st">&#39;:&lt;C-u&gt;silent! normal! f%sF%slvt%s&lt;CR&gt;&#39;</span><span class="op">,</span> <span class="st">&#39;$&#39;</span><span class="op">,</span> <span class="st">&#39;$&#39;</span><span class="op">,</span> <span class="st">&#39;$&#39;</span><span class="op">),</span> <span class="op">{</span> <span class="va">noremap</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">silent</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">vim</span><span class="op">.</span><span class="va">api</span><span class="op">.</span>nvim_set_keymap<span class="op">(</span><span class="st">&#39;o&#39;</span><span class="op">,</span> <span class="st">&quot;a&quot;</span> <span class="op">..</span> <span class="st">&#39;$&#39;</span><span class="op">,</span> <span class="fu">string.format</span><span class="op">(</span><span class="st">&#39;:&lt;C-u&gt;silent! normal! f%sF%svf%s&lt;CR&gt;&#39;</span><span class="op">,</span> <span class="st">&#39;$&#39;</span><span class="op">,</span> <span class="st">&#39;$&#39;</span><span class="op">,</span> <span class="st">&#39;$&#39;</span><span class="op">),</span> <span class="op">{</span> <span class="va">noremap</span> <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="va">silent</span> <span class="op">=</span> <span class="kw">true</span> <span class="op">})</span></span></code></pre></div>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Suponiendo que sabemos escribir sin mirar. Si no es así,
+este razonamiento no tiene ningún sentido. También estoy suponiendo que
+usamos un teclado QWERTY y no uno AZERTY, DVORAK o XDLOL.<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
