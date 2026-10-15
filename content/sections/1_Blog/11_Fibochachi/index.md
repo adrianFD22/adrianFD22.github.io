@@ -14,7 +14,7 @@ Hago este post porque Andrés me ha dicho que me tiraría de casa si seguía hab
 
 ## Definición
 
-Los primeros términos de la sucesión de Fibonacci son los siguientes: 1, 1, 2, 3, 5, 8, 13, 21, 34... Cada término se define como la suma de los dos anteriores (fijando los dos primeros términos igual a 1). De esta forma, 1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8... Tenemos así que podemos calcular el término que está en la posición 10 a partir de calcular los términos de las posiciones 9 y 8. Para calcular estos necesitamos obtener aquellos de las posiciones 7 y 6. Para calcular estos necesitamos los de las posiciones 5 y 4. Para calcular estos necesitamos... En general, para obtener un término es necesario haber calculado todos los anteriores. A grosso modo, esto es lo que se conoce como una definición recursiva: necesitas calcular los casos pequeñitos para poder calcular un caso más grande.
+Los primeros términos de la sucesión de Fibonacci son los siguientes: 1, 1, 2, 3, 5, 8, 13, 21, 34... Cada término se define como la suma de los dos anteriores (fijando los dos primeros términos igual a 1). De esta forma, 1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8... Tenemos así que podemos calcular el término que está en la posición 10 a partir de calcular los términos de las posiciones 9 y 8. Para calcular estos necesitamos obtener aquellos de las posiciones 7 y 6. Para calcular estos necesitamos los de las posiciones 5 y 4. Para calcular estos necesitamos... En general, para obtener un término es necesario haber calculado todos los anteriores. Grosso modo, esto es lo que se conoce como una definición recursiva: necesitas calcular los casos pequeñitos para poder calcular un caso más grande.
 
 El siguiente cacharro implementa eso mismo para calcular el término en la posición n.
 
@@ -74,7 +74,7 @@ para cualquier número $n$. Si $x$ no es $0$ (un caso del que podemos olvidarnos
 \begin{equation*}
    1 + x = x^2.
 \end{equation*}
-Esto es muy bueno porque partiamos de una ecuación distinta para cada $n$ distinto y ahora solo tenemos una única ecuación que no depende de $n$. En vez de tener infinitas ecuaciones, ahora tenemos solo una. Restando $1 + x$ a los dos lados, obtenemos $x^2 - 1 - x = 0$, una ecuación de segundo grado corriente y moliente. Tras recordar lo que nos enseñaron en segundo de la ESO, la resolvemos y deducimos que sus soluciones son $\frac{1 + \sqrt{5}}{2}$ y $\frac{1 - \sqrt{5}}{2}$. Por simplicidad, voy a referirme a estos números como $\phi_+$ y $\phi_{-}$, respectivamente.
+Esto es muy bueno porque partíamos de una ecuación distinta para cada $n$ distinto y ahora solo tenemos una única ecuación que no depende de $n$. En vez de tener infinitas ecuaciones, ahora tenemos solo una. Restando $1 + x$ a los dos lados, obtenemos $x^2 - 1 - x = 0$, una ecuación de segundo grado corriente y moliente. Tras recordar lo que nos enseñaron en segundo de la ESO, la resolvemos y deducimos que sus soluciones son $\frac{1 + \sqrt{5}}{2}$ y $\frac{1 - \sqrt{5}}{2}$. Por simplicidad, voy a referirme a estos números como $\phi_+$ y $\phi_{-}$, respectivamente.
 
 Resumiendo, hemos razonado que las únicas sucesiones de potencias que son de tipo Fibonacci son la sucesión $1, \phi_{+}, \phi_{+}^2, \phi_{+}^3, \ldots, \phi_{+}^n, \ldots$ y la sucesión $1, \phi_{-}, \phi_{-}^2, \phi_{-}^3, \ldots, \phi_{-}^n, \ldots$
 
@@ -124,7 +124,7 @@ Esto es un sistema de ecuaciones lineales (bastante pequeño además). Usando de
     \frac{1}{\sqrt{5}} \phi_+^n - \frac{1}{\sqrt{5}} \phi_-^n = \frac{1}{\sqrt{5}} \left ( \left (\frac{1 + \sqrt{5}}{2} \right )^n - \left (\frac{1 - \sqrt{5}}{2} \right )^n \right ).
 \end{equation*}
 
-Me parece bastante increíble que esto se pueda deducir de esta forma. La fórmula que tenemos no es recursiva y es bastante sencilla. En esencia, todo lo que hemos hecho ha sido resolver un sistema de segundo grado y un sistema de ecuaciones lineales. Dale like si te ha gustado.
+Me parece bastante increíble que esto se pueda deducir de esta forma. La fórmula que tenemos no es recursiva y es bastante sencilla. Recibe el nombre de fórmula de Binet. En esencia, todo lo que hemos hecho ha sido resolver un sistema de segundo grado y un sistema de ecuaciones lineales. Dale like si te ha gustado.
 
 ## Conclusiones
 
