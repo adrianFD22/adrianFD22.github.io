@@ -10,7 +10,7 @@
 
 ## Education
 
-2023-present
+2023-2026
 :   PhD in Mathematics advised by Umberto Martínez-Peñas; Universidad de Valladolid.
 
 2021-2022

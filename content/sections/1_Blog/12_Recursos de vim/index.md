@@ -35,7 +35,7 @@ Ahora que he terminado de evangelizar, recopilo a continuación algunos recursos
 
 Yo creo que lo mejor para aprender Vim es usarlo. Hay que intentar escribir todo lo que se pueda con Vim para aprender al principio.
 
-El tutorial clásico es vimtutor: tras abrir Neovim, escribe ":Tutor" y pulsa Enter. Si además quieres leer un libro, recuerdo haber leído un poco de "Practical Vim" y también recuerdo que me gustó. Otra cosa que creo que es positiva es ver a gente usando Vim. Para esto último cualquier video es bueno.
+El tutorial clásico es vimtutor: tras abrir Neovim, escribe ":Tutor" y pulsa Enter. Si además quieres leer un libro, recuerdo haber leído un poco de "Practical Vim" y también recuerdo que me gustó. Otra cosa que creo que es positiva es ver a gente usando Vim. Para esto último cualquier video es bueno. Ver también este [post](https://rc3.org/2012/05/12/the-grammar-of-vim/) sobre la gramática de Vim.
 
 No hay que volvernos tuturalatas pensando en usar siempre la mínima cantidad de tecladas pulsadas. Alguien que sea muy pro me verá usar Vim y podría pensar "wow, este tipo es un manta. Ha pulsado cuatro veces la w en vez de hacer 3w y ahorrarse dos pulsaciones". La forma en la que yo uso Vim es funcional y suficientemente rápida a mi juicio, eso es todo lo que importa. No dejo de lado el hecho de que me parece divertido vimgolf (ver más abajo).
 

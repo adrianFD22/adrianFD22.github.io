@@ -56,6 +56,12 @@ Yo suelo usar \verb para escribir código inline. Sin embargo, hay veces que no 
 
 ----
 
+### Diagramas conmutativos
+
+Tiene poco sentido dibujar un digrama conmutativo escribiendo el código LaTeX a mano. Una forma más práctica (y rápida) es usar una herramienta como [esta](https://tikzcd.yichuanshen.de/), que permite crear el diagrama de una forma sencilla y visual para luego generar el código tikzcd. Notar que si tienes instalada una versión antigua de tikz, has de sustituir los [] por {}.
+
+----
+
 ### Beamer: quitar barra inferior
 ```tex
 \setbeamertemplate{navigation symbols}{}
